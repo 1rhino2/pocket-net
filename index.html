@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      (function () {
+        var p = new URLSearchParams(location.search);
+        var queryForce = p.has('handset') || p.get('mobile') === '1' || p.get('handset') === '1';
+        if (queryForce) sessionStorage.setItem('rn_force_handset', '1');
+        var h = location.hostname.toLowerCase();
+        var hostForce =
+          h !== 'localhost' &&
+          h !== '127.0.0.1' &&
+          h !== '[::1]' &&
+          (h.indexOf('m.') === 0 ||
+            h.indexOf('mobile.') === 0 ||
+            h.indexOf('handset.') === 0 ||
+            h === 'pocket-net-handset.vercel.app' ||
+            h.slice(-20) === '-handset.vercel.app');
+        var forced = sessionStorage.getItem('rn_force_handset') === '1' || hostForce || queryForce;
+        if (forced) {
+          document.documentElement.dataset.rnForceHandset = '1';
+          document.documentElement.dataset.rhinoShell = 'handset';
+          window.dispatchEvent(new Event('rn-handset'));
+        }
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5"
+    />
+    <meta name="theme-color" content="#0c1016" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>RhinoNet 2000 — Pocket Edition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
