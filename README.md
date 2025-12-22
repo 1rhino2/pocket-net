@@ -1,3 +1,6 @@
 # pocket-net
 
-vite + react shell. nothing works yet.
+```bash
+npm install
+npm run dev
+```
