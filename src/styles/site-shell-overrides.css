@@ -1,0 +1,465 @@
+/* Wins over generic .browser-content .site theme shell for hero pages + nodes */
+
+.browser-content .site-shift,
+.browser-content .site-map,
+.browser-content .site-radio,
+.browser-content .site-archive {
+  padding: 0;
+  max-width: none;
+}
+
+.browser-content .site-shift h1,
+.browser-content .site-map h1,
+.browser-content .site-radio h1,
+.browser-content .site-archive h1,
+.browser-content .site-node h1 {
+  color: inherit;
+}
+
+.browser-content .site-shift .lead,
+.browser-content .site-map .lead,
+.browser-content .site-radio .lead,
+.browser-content .site-archive .lead {
+  color: inherit;
+  opacity: 0.85;
+}
+
+/* Net Index: catalog only, no generic cards */
+.browser-content .site-shift .shift-plaque h1 {
+  color: #f0e0c8;
+}
+
+.browser-content .site-shift .shift-index-card {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 1px solid #a89070;
+  background: #fff8f0;
+  color: #2a2018;
+  padding: 0.5rem 0.55rem;
+  margin-bottom: 0.35rem;
+  cursor: pointer;
+  font-family: Georgia, serif;
+  box-shadow: 2px 2px 0 #c8b090;
+}
+
+.browser-content .site-shift .shift-index-card:hover {
+  background: #fff;
+  border-color: #6a5038;
+}
+
+.browser-content .site-shift .shift-index-card strong {
+  display: block;
+  font-size: 0.88rem;
+}
+
+.browser-content .site-shift .shift-index-card span {
+  font-size: 0.68rem;
+  color: #6a5848;
+  font-family: var(--font-mono);
+}
+
+.browser-content .site-shift .shift-pulse-list li {
+  border-bottom-color: #a89878;
+}
+
+.browser-content .site-shift .shift-pager button {
+  border: 1px solid #8a6848;
+  background: #e8dcc8;
+  color: #2a2018;
+  padding: 0.3rem 0.65rem;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+/* Net Map: sonar console */
+.browser-content .site-map .map-header h1 {
+  color: #80d0ff;
+}
+
+.browser-content .site-map .map-blip.ghost .map-blip-ping {
+  background: #c080ff;
+  box-shadow: 0 0 8px #c080ff;
+}
+
+/* RhinoFM: studio controls */
+.browser-content .site-radio .radio-on-air {
+  background: #e84040;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.browser-content .site-radio .radio-preset-btn {
+  border: 2px solid #504030;
+  background: #282018;
+  color: #f0e8d8;
+  padding: 0.55rem;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+.browser-content .site-radio .radio-preset-btn.tuned {
+  border-color: #e8a040;
+  background: #3a2820;
+  box-shadow: inset 0 0 0 1px #e8a040;
+}
+
+.browser-content .site-radio .radio-fader {
+  accent-color: #e8a040;
+  width: 100%;
+}
+
+/* Packet Archive: microfiche vault */
+.browser-content .site-archive .archive-vault-head h1 {
+  color: #70e090;
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+}
+
+.browser-content .site-archive .archive-frame {
+  border: 2px solid #306040;
+  background: #081008;
+}
+
+.browser-content .site-archive .archive-frame button {
+  border-color: #408050;
+  background: #142818;
+  color: #90e0a0;
+}
+
+/* Route nodes: six distinct shells */
+.browser-content .site-node {
+  padding: 0;
+  max-width: none;
+}
+
+.browser-content .site-node .node-tag-pill {
+  display: inline-block;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.15rem 0.45rem;
+  margin-bottom: 0.45rem;
+  border: 1px solid currentColor;
+  opacity: 0.85;
+}
+
+.browser-content .site-node .node-prose p {
+  line-height: 1.55;
+  margin: 0.55rem 0;
+}
+
+.browser-content .site-node .node-actions .btn {
+  font-size: 0.78rem;
+}
+
+.browser-content .site-node[data-layout='fax'] {
+  background: #e8e4dc;
+  color: #1a1814;
+}
+
+.browser-content .site-node[data-layout='fax'] .node-fax-page {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 1.5rem;
+  background: #fff;
+  border: 1px solid #999;
+  box-shadow: 4px 4px 0 #ccc;
+  font-family: Courier New, monospace;
+}
+
+.browser-content .site-node[data-layout='fax'] h1 {
+  font-size: 1.1rem;
+  border-bottom: 1px dashed #666;
+  padding-bottom: 0.35rem;
+}
+
+.browser-content .site-node[data-layout='bbs'] {
+  background: #000080;
+  color: #ffff55;
+}
+
+.browser-content .site-node[data-layout='bbs'] .node-bbs-screen {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0.75rem;
+  border: 3px double #55ffff;
+}
+
+.browser-content .site-node[data-layout='bbs'] .node-bbs-bar {
+  background: #ffff55;
+  color: #000080;
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.25rem;
+  margin-bottom: 0.65rem;
+}
+
+.browser-content .site-node[data-layout='bbs'] h1 {
+  color: #55ffff;
+}
+
+.browser-content .site-node[data-layout='card'] {
+  background: #c8b898;
+  color: #2a2018;
+  padding: 1rem;
+}
+
+.browser-content .site-node[data-layout='card'] .node-sheet {
+  max-width: 480px;
+  margin: 0 auto;
+  background: #fffef8;
+  border: 1px solid #6a5848;
+  padding: 1rem;
+  box-shadow: 3px 3px 0 #8a7860;
+  font-family: Georgia, serif;
+}
+
+.browser-content .site-node[data-layout='telegram'] {
+  background: #d8d0c0;
+  color: #1a1814;
+  padding: 1rem;
+}
+
+.browser-content .site-node[data-layout='telegram'] .node-telegram-slip {
+  max-width: 400px;
+  margin: 0 auto;
+  background: #fff9e8;
+  border: 2px solid #1a1814;
+  padding: 0.75rem 1rem;
+  font-family: Courier New, monospace;
+}
+
+.browser-content .site-node[data-layout='telegram'] h1::before {
+  content: 'STOP ';
+  color: #c02020;
+  font-weight: 700;
+}
+
+.browser-content .site-node[data-layout='report'] {
+  background: #d0d4d8;
+  color: #1a1814;
+}
+
+.browser-content .site-node[data-layout='report'] .node-report-head {
+  background: #1e3a5c;
+  color: #fff;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: Arial, sans-serif;
+}
+
+.browser-content .site-node[data-layout='report'] .node-report-body {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid #8898a8;
+}
+
+.browser-content .site-node[data-layout='receipt'] {
+  background: #888;
+  padding: 1.25rem 1rem;
+}
+
+.browser-content .site-node[data-layout='receipt'] .node-receipt-slip {
+  max-width: 300px;
+  margin: 0 auto;
+  background: #fff;
+  color: #111;
+  padding: 0.75rem;
+  border: 1px dashed #333;
+  font-family: monospace;
+  font-size: 0.82rem;
+}
+
+.browser-content .site-node[data-layout='receipt'] .node-receipt-store {
+  text-align: center;
+  font-weight: 700;
+  border-bottom: 1px dashed #999;
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.browser-content .site-node[data-drift='true'] {
+  background: #060a14;
+  color: #90b0ff;
+}
+
+.browser-content .site-node[data-drift='true'] .node-drift-wrap {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem;
+  border: 1px solid #3040a0;
+  position: relative;
+  overflow: hidden;
+}
+
+.browser-content .site-node[data-drift='true'] .node-drift-badge {
+  display: inline-block;
+  background: #3040c0;
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.5rem;
+  margin-bottom: 0.55rem;
+}
+
+.browser-content .site-node[data-drift='true'] h1 {
+  color: #c0d8ff;
+  text-shadow: 0 0 12px rgba(96, 144, 255, 0.4);
+}
+
+/* Hour chapters */
+.browser-content .site-hour-chapter {
+  padding: 0;
+  max-width: none;
+}
+
+.browser-content .site-hour-chapter h1 {
+  color: inherit;
+}
+
+.browser-content .site-hour-chapter[data-layout='dossier'] {
+  background: #4a4030;
+  padding: 1rem;
+}
+
+.browser-content .site-hour-chapter[data-layout='zine'] {
+  background: #ff2060;
+  padding: 1rem;
+}
+
+.browser-content .site-hour-chapter[data-layout='logbook'] {
+  background: #142028;
+  color: #b0d0e8;
+  padding: 1rem;
+  font-family: monospace;
+}
+
+.browser-content .site-hour-chapter[data-layout='casefile'] {
+  background: #e0d8c8;
+  padding: 1rem;
+}
+
+/* RhinoNet home portal */
+.browser-content .site-home.site-portal h1.portal-title {
+  color: #3ddc84;
+}
+
+.browser-content .site-home.site-portal p {
+  color: inherit;
+}
+
+/* RhinoMail: beat global dark-theme leaks */
+.browser-content .site-mail {
+  padding: 0;
+  color: #000;
+  background: #c0c0c0;
+  min-height: 100%;
+}
+
+.browser-content .site-mail .mail-chrome {
+  color: #fff;
+}
+
+.browser-content .site-mail .mail-stats {
+  color: #000;
+  background: #ece9d8;
+}
+
+.browser-content .site-mail .mail-from {
+  color: #000080;
+}
+
+.browser-content .site-mail .mail-preview {
+  color: #333;
+}
+
+.browser-content .site-mail .mail-meta {
+  color: #333;
+}
+
+.browser-content .site-mail .mail-view h2 {
+  color: #000080;
+}
+
+.browser-content .site-mail .mail-body {
+  color: #000;
+  background: #ffffe0;
+}
+
+.browser-content .site-mail .mail-row {
+  color: #000;
+}
+
+.browser-content .site-mail .mail-row strong {
+  color: #000;
+}
+
+.browser-content .site-mail .mail-row.active,
+.browser-content .site-mail .mail-row.active strong {
+  color: #fff;
+}
+
+.browser-content .site-mail .mail-row.active .mail-from,
+.browser-content .site-mail .mail-row.active .mail-preview {
+  color: #c8d8ff;
+}
+
+.browser-content .site-mail .mail-toolbar button,
+.browser-content .site-mail .mail-view .btn {
+  color: #000;
+}
+
+.browser-content .site-wiki {
+  padding: 0;
+  color: #202122;
+}
+
+.browser-content .site-wiki h1 {
+  color: #0645ad;
+}
+
+.browser-content .site-wiki {
+  background: #f8f9fa;
+  min-height: 100%;
+}
+
+.browser-content .site-wiki p,
+.browser-content .site-wiki .wiki-main,
+.browser-content .site-wiki .wiki-sidebar h2 {
+  color: #202122;
+}
+
+.browser-content .site-wiki .wiki-main h2 {
+  color: #000;
+}
+
+.browser-content .site-wiki .wiki-main p {
+  color: #202122;
+}
+
+.browser-content .site-wiki .wiki-infobox-body,
+.browser-content .site-wiki .wiki-infobox-body p {
+  color: #202122;
+}
+
+.browser-content .site-wiki .wiki-index-card h2 {
+  color: #0645ad;
+}
+
+.browser-content .site-wiki .wiki-index-card p {
+  color: #54595d;
+}
+
+.browser-content .site-wiki .wiki-sidebar button {
+  color: #0645ad;
+}
