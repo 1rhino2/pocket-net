@@ -1,0 +1,427 @@
+/* Site-wide color + formatting: beats index.css dark defaults */
+
+/* Browser chrome matches active page */
+.browser-content:has(.site-home) { background: #0a0e12; }
+.browser-content:has(.site-search) { background: #f5f5f0; }
+.browser-content:has(.site-directory) { background: #fff9e0; }
+.browser-content:has(.site-forum) { background: #1a3050; }
+.browser-content:has(.site-mart) { background: #1a1028; }
+.browser-content:has(.site-readme) { background: #0c0c0c; }
+.browser-content:has(.site-mail) { background: #c0c0c0; }
+.browser-content:has(.site-weather) { background: #0a2848; }
+.browser-content:has(.site-wiki) { background: #f8f9fa; }
+.browser-content:has(.site-jobs) { background: #f0ebe0; }
+.browser-content:has(.site-chat) { background: #ffffcc; }
+.browser-content:has(.site-hack) { background: #000; }
+.browser-content:has(.site-map) { background: #061018; }
+.browser-content:has(.site-arcade) { background: #120818; }
+.browser-content:has(.site-quests) { background: #5c4030; }
+.browser-content:has(.site-status) { background: #0a0c10; }
+.browser-content:has(.site-discover) { background: #2a2420; }
+.browser-content:has(.site-archive) { background: #0a120c; }
+.browser-content:has(.site-shift) { background: #3d3228; }
+.browser-content:has(.site-chronicle) { background: #4a3828; }
+.browser-content:has(.site-radio) { background: #120a18; }
+.browser-content:has(.site-node) { background: #0a0e12; }
+.browser-content:has(.site-hour-chapter) { background: #1a1418; }
+
+/* Themed primitives inside browser sites */
+.browser-content .site {
+  min-height: 100%;
+}
+
+.browser-content .site h1 {
+  color: var(--site-accent);
+}
+
+.browser-content .site .lead {
+  color: var(--site-muted);
+}
+
+.browser-content .site p {
+  color: inherit;
+}
+
+.browser-content .site .card {
+  background: var(--site-panel);
+  border: 1px solid var(--site-border);
+  border-left: 3px solid var(--site-accent);
+  color: var(--site-text);
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.browser-content .site .card:hover {
+  background: var(--site-panel);
+  border-color: var(--site-accent);
+  filter: brightness(1.06);
+}
+
+.browser-content .site .card h2 {
+  color: var(--site-text);
+}
+
+.browser-content .site .tag {
+  border-color: var(--site-border);
+  color: var(--site-muted);
+}
+
+.browser-content .site .btn {
+  border: 1px solid var(--site-border);
+  background: var(--site-panel);
+  color: var(--site-text);
+}
+
+.browser-content .site .btn-primary {
+  background: var(--site-accent);
+  border-color: var(--site-accent);
+  color: #fff;
+}
+
+.browser-content .site .field {
+  border: 1px solid var(--site-border);
+  background: var(--site-panel);
+  color: var(--site-text);
+}
+
+/* --- Light pages: explicit readable text --- */
+.browser-content .site-search {
+  padding: 0;
+  background: #f5f5f0;
+  color: #1a1a1a;
+}
+
+.browser-content .site-search h1,
+.browser-content .site-search p,
+.browser-content .site-search .search-meta {
+  color: inherit;
+}
+
+.browser-content .site-search .search-secret {
+  color: #1a1a1a;
+}
+
+.browser-content .site-search .search-empty {
+  color: #5f6368;
+}
+
+.browser-content .site-directory {
+  padding: 0;
+  background: #fff9e0;
+  color: #2a2010;
+}
+
+.browser-content .site-directory .dir-masthead h1,
+.browser-content .site-directory .dir-masthead p {
+  color: #2a2010;
+}
+
+.browser-content .site-wiki {
+  padding: 0;
+  background: #f8f9fa;
+  color: #202122;
+}
+
+.browser-content .site-wiki h1 {
+  color: #0645ad;
+}
+
+.browser-content .site-wiki p,
+.browser-content .site-wiki .wiki-main,
+.browser-content .site-wiki .wiki-main h2,
+.browser-content .site-wiki .wiki-main p,
+.browser-content .site-wiki .wiki-sidebar h2,
+.browser-content .site-wiki .wiki-infobox-body,
+.browser-content .site-wiki .wiki-infobox-body p {
+  color: #202122;
+}
+
+.browser-content .site-wiki .wiki-index-card h2 {
+  color: #0645ad;
+}
+
+.browser-content .site-wiki .wiki-index-card p {
+  color: #54595d;
+}
+
+.browser-content .site-wiki .wiki-sidebar button {
+  color: #0645ad;
+}
+
+.browser-content .site-wiki .wiki-index-card .tag {
+  color: #54595d;
+  border-color: #a2a9b1;
+}
+
+.browser-content .site-jobs {
+  padding: 0;
+  background: #f0ebe0;
+  color: #2a2420;
+}
+
+.browser-content .site-jobs p,
+.browser-content .site-jobs h1,
+.browser-content .site-jobs h2,
+.browser-content .site-jobs .jobs-listing {
+  color: inherit;
+}
+
+.browser-content .site-chat {
+  padding: 0;
+  background: #ffffcc;
+  color: #000;
+}
+
+.browser-content .site-chat p,
+.browser-content .site-chat h1 {
+  color: inherit;
+}
+
+/* --- Dark layout shells --- */
+.browser-content .site-forum {
+  padding: 0;
+  background: #1a3050;
+  color: #e0e8f0;
+}
+
+.browser-content .site-forum .forum-compose input,
+.browser-content .site-forum .forum-compose textarea {
+  color: #000;
+  background: #fff;
+}
+
+.browser-content .site-weather {
+  padding: 0;
+  color: #e8f4ff;
+}
+
+.browser-content .site-mart {
+  padding: 0;
+  color: #f0e8ff;
+}
+
+.browser-content .site-readme {
+  padding: 0;
+  color: #c8c8c8;
+}
+
+.browser-content .site-hack {
+  padding: 0;
+  color: #0f0;
+}
+
+.browser-content .site-hack .lead,
+.browser-content .site-hack .hack-card,
+.browser-content .site-hack .hack-card p {
+  color: #0f0;
+}
+
+.browser-content .site-status {
+  padding: 0.75rem;
+  color: #a8b8c8;
+}
+
+.browser-content .site-status .lead,
+.browser-content .site-status p {
+  color: #a8b8c8;
+}
+
+.browser-content .site-status h1 {
+  color: #40e080;
+}
+
+.browser-content .site-arcade {
+  padding: 0.75rem;
+  color: #ffe0f0;
+}
+
+.browser-content .site-arcade .lead {
+  color: #c080a0;
+}
+
+.browser-content .site-quests {
+  padding: 0;
+  color: #2a1810;
+}
+
+.browser-content .site-quests .quests-board h1 {
+  color: #2a1810;
+}
+
+.browser-content .site-quests .quests-stipend,
+.browser-content .site-quests .quests-stipend h2,
+.browser-content .site-quests .quests-stipend p {
+  color: #2a1810;
+}
+
+.browser-content .site-quests .quest-pin,
+.browser-content .site-quests .quest-pin h2,
+.browser-content .site-quests .quest-pin p {
+  color: #2a1810;
+}
+
+.browser-content .site-quests .quest-pin .tag {
+  color: #f0e8d8;
+  background: #3a3028;
+  border-color: #5a4838;
+}
+
+.browser-content .site-quests .quest-stipend-btn {
+  border: 2px solid #2a4a2a;
+  background: #4a8a4a;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+}
+
+.browser-content .site-quests .quest-stipend-btn:disabled {
+  background: #8aaa8a;
+  border-color: #5a6a5a;
+  color: #1a1810;
+  cursor: default;
+}
+
+.browser-content .site-discover {
+  padding: 0.75rem;
+}
+
+.browser-content .site-discover .discover-album,
+.browser-content .site-discover .discover-album p,
+.browser-content .site-discover .discover-album h1 {
+  color: #2a2018;
+}
+
+.browser-content .site-discover .discover-stamp {
+  color: #2a2018;
+}
+
+.browser-content .site-chronicle {
+  padding: 0;
+  color: #f0e0c8;
+}
+
+.browser-content .site-chronicle .chronicle-intro,
+.browser-content .site-chronicle .chronicle-polaroid {
+  color: #1a1814;
+}
+
+.browser-content .site-chronicle .chronicle-polaroid .tag {
+  color: #5a4830;
+  border-color: #8a7860;
+}
+
+/* Hero shells (padding 0) */
+.browser-content .site-shift,
+.browser-content .site-map,
+.browser-content .site-radio,
+.browser-content .site-archive,
+.browser-content .site-mail {
+  padding: 0;
+  max-width: none;
+}
+
+/* Hour chapters: cards inside light/dark wrappers */
+.browser-content .site-hour-chapter[data-layout='dossier'] .hour-folder {
+  color: #1a1814;
+}
+
+.browser-content .site-hour-chapter[data-layout='dossier'] .hour-folder h1 {
+  color: #1a1814;
+}
+
+.browser-content .site-hour-chapter[data-layout='dossier'] .hour-folder p,
+.browser-content .site-hour-chapter[data-layout='dossier'] .hour-folder .lead {
+  color: #3a3428;
+}
+
+.browser-content .site-hour-chapter[data-layout='dossier'] .hour-folder .card {
+  background: #fff;
+  color: #1a1814;
+  border-color: #8a7860;
+  border-left-color: #8b4513;
+}
+
+.browser-content .site-hour-chapter[data-layout='dossier'] .hour-folder .card h2 {
+  color: #1a1814;
+}
+
+.browser-content .site-hour-chapter[data-layout='casefile'] .hour-case {
+  color: #1a1814;
+}
+
+.browser-content .site-hour-chapter[data-layout='casefile'] .hour-case h1,
+.browser-content .site-hour-chapter[data-layout='casefile'] .hour-case p,
+.browser-content .site-hour-chapter[data-layout='casefile'] .hour-case .lead {
+  color: #1a1814;
+}
+
+.browser-content .site-hour-chapter[data-layout='casefile'] .hour-case .card {
+  background: #faf8f4;
+  color: #1a1814;
+  border-color: #1a1814;
+}
+
+.browser-content .site-hour-chapter[data-layout='zine'] .hour-zine {
+  color: #1a1814;
+}
+
+.browser-content .site-hour-chapter[data-layout='zine'] .hour-zine h1,
+.browser-content .site-hour-chapter[data-layout='zine'] .hour-zine p,
+.browser-content .site-hour-chapter[data-layout='zine'] .hour-zine .lead {
+  color: #1a1814;
+}
+
+.browser-content .site-hour-chapter[data-layout='zine'] .hour-zine .card {
+  background: #fff;
+  border-color: #1a1814;
+  color: #1a1814;
+}
+
+.browser-content .site-hour-chapter[data-layout='logbook'] .hour-log {
+  color: #c8dce8;
+}
+
+.browser-content .site-hour-chapter[data-layout='logbook'] .hour-log h1,
+.browser-content .site-hour-chapter[data-layout='logbook'] .hour-log p,
+.browser-content .site-hour-chapter[data-layout='logbook'] .hour-log .lead {
+  color: #c8dce8;
+}
+
+.browser-content .site-hour-chapter[data-layout='logbook'] .hour-log .card {
+  background: #0c1418;
+  color: #c8dce8;
+  border-color: #3a5060;
+  border-left-color: #50a8e0;
+}
+
+.browser-content .site-hour-chapter .chronicle-trace {
+  color: inherit;
+}
+
+.browser-content .site-hour-chapter .chronicle-trace strong {
+  color: inherit;
+}
+
+/* Nodes */
+.browser-content .site-node .lead {
+  color: var(--site-muted, #708898);
+}
+
+.browser-content .site-node[data-layout='fax'] .lead,
+.browser-content .site-node[data-layout='card'] .lead,
+.browser-content .site-node[data-layout='telegram'] .lead,
+.browser-content .site-node[data-layout='report'] .lead,
+.browser-content .site-node[data-layout='receipt'] .lead {
+  color: inherit;
+  opacity: 0.85;
+}
+
+.browser-content .site-node .node-actions .btn {
+  border-color: currentColor;
+}
+
+/* Shift node grid on hour pages */
+.browser-content .site-hour-chapter .shift-node-grid .btn {
+  text-align: left;
+}
