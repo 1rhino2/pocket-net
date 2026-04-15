@@ -1,0 +1,730 @@
+/* Per-page character polish - unique shells and intentional rough edges */
+
+/* --- Arcade cabinet --- */
+.browser-content:has(.site-arcade) {
+  background: #0a0610;
+}
+
+.browser-content .site-arcade {
+  padding: 0.75rem;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.arcade-cabinet {
+  width: 100%;
+  max-width: 420px;
+  background: #2a1830;
+  border: 8px solid #1a1018;
+  border-radius: 12px 12px 4px 4px;
+  box-shadow: 0 12px 0 #0a0608, 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.arcade-marquee {
+  text-align: center;
+  padding: 0.65rem 0.5rem 0.5rem;
+  background: #1a0818;
+  border-bottom: 4px solid #ff4080;
+}
+
+.arcade-marquee-glow {
+  display: block;
+  font-family: Impact, Haettenschweiler, sans-serif;
+  font-size: 1.1rem;
+  color: #ff80c0;
+  letter-spacing: 0.2em;
+}
+
+.arcade-marquee-title {
+  display: block;
+  font-family: Impact, sans-serif;
+  font-size: 2rem;
+  color: #fff;
+  text-shadow: 0 0 12px #ff4080;
+  line-height: 1;
+}
+
+.arcade-marquee-sub {
+  display: block;
+  font-size: 0.62rem;
+  color: #c080a0;
+  letter-spacing: 0.15em;
+  margin-top: 0.25rem;
+}
+
+.arcade-screen-bezel {
+  padding: 0.65rem;
+  background: #0a080a;
+}
+
+.arcade-screen {
+  background: #102018;
+  border: 3px inset #304050;
+  padding: 0.65rem;
+  color: #c0e8c0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.arcade-rules {
+  margin: 0 0 0.5rem;
+  color: #80a890;
+  line-height: 1.45;
+}
+
+.arcade-hud {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.68rem;
+  color: #ffd200;
+}
+
+.arcade-lane {
+  position: relative;
+  height: 28px;
+  background: #0a1018;
+  border: 2px inset #406060;
+  margin-bottom: 0.65rem;
+}
+
+.arcade-green {
+  position: absolute;
+  left: 38%;
+  width: 24%;
+  top: 0;
+  bottom: 0;
+  background: #208040;
+}
+
+.arcade-needle {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  width: 4px;
+  margin-left: -2px;
+  background: #ff4060;
+  box-shadow: 0 0 8px #ff4060;
+}
+
+.arcade-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.arcade-btn {
+  border: 3px outset #ff80a0;
+  background: #ff4080;
+  color: #fff;
+  font-family: Impact, sans-serif;
+  font-size: 1rem;
+  padding: 0.45rem 1.25rem;
+  cursor: pointer;
+  letter-spacing: 0.08em;
+}
+
+.arcade-btn-stop {
+  background: #e02020;
+  border-color: #ff8080;
+  animation: arcade-pulse 0.8s steps(2) infinite;
+}
+
+@keyframes arcade-pulse {
+  50% { opacity: 0.75; }
+}
+
+.arcade-btn-start {
+  background: #40c040;
+  border-color: #80ff80;
+}
+
+.arcade-msg {
+  margin: 0.55rem 0 0;
+  text-align: center;
+  color: #a0c8b0;
+}
+
+.arcade-msg-win {
+  color: #ffd200;
+}
+
+.arcade-coin-tray {
+  text-align: center;
+  font-size: 0.58rem;
+  color: #806070;
+  padding: 0.35rem;
+  letter-spacing: 0.06em;
+  background: #140c14;
+}
+
+/* --- NOC status console --- */
+.browser-content .site-status {
+  padding: 0;
+}
+
+.status-console {
+  min-height: 100%;
+  padding: 0.65rem;
+}
+
+.status-topbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #283038;
+  padding-bottom: 0.45rem;
+  margin-bottom: 0.35rem;
+}
+
+.status-live {
+  color: #40e080;
+  font-size: 0.72rem;
+  font-weight: 700;
+  animation: status-blink 1.2s steps(2) infinite;
+}
+
+@keyframes status-blink {
+  50% { opacity: 0.4; }
+}
+
+.status-topbar h1 {
+  margin: 0;
+  flex: 1;
+  font-size: 1.15rem;
+  color: #40e080;
+}
+
+.status-date {
+  font-size: 0.72rem;
+  color: #607080;
+  font-family: var(--font-mono);
+}
+
+.status-tagline {
+  margin: 0 0 0.45rem;
+  font-size: 0.82rem;
+  color: #708898;
+}
+
+.status-ticker {
+  overflow: hidden;
+  background: #101820;
+  border: 1px solid #283038;
+  margin-bottom: 0.65rem;
+  white-space: nowrap;
+}
+
+.status-ticker span {
+  display: inline-block;
+  padding: 0.3rem 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: #80b0d0;
+  animation: status-scroll 18s linear infinite;
+}
+
+@keyframes status-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.status-grid {
+  display: grid;
+  gap: 0.45rem;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+
+.status-panel {
+  background: #101418;
+  border: 1px solid #283038;
+  padding: 0.55rem;
+}
+
+.status-panel-accent {
+  border-color: #40e080;
+  background: #0f1a14;
+}
+
+.status-panel h2 {
+  margin: 0 0 0.35rem;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #607080;
+}
+
+.status-big {
+  font-size: 1.75rem;
+  color: #40e080;
+  margin: 0;
+  line-height: 1;
+}
+
+.status-unit {
+  font-size: 0.72rem;
+  color: #508860;
+}
+
+.status-val {
+  margin: 0;
+  color: #c0d0e0;
+  font-size: 1rem;
+}
+
+.status-sub {
+  margin: 0.15rem 0 0;
+  font-size: 0.75rem;
+  color: #607080;
+}
+
+.status-bar {
+  height: 10px;
+  background: #1a2030;
+  border: 1px solid #304050;
+  margin-bottom: 0.25rem;
+}
+
+.status-bar-fill {
+  height: 100%;
+  background: #40e080;
+}
+
+.status-wide {
+  grid-column: 1 / -1;
+}
+
+.status-btn {
+  border: 1px solid #40e080;
+  background: #142820;
+  color: #40e080;
+  padding: 0.35rem 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.status-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.status-table {
+  width: 100%;
+  font-size: 0.75rem;
+  border-collapse: collapse;
+}
+
+.status-table td {
+  padding: 0.25rem 0.35rem;
+  border-bottom: 1px solid #1a2030;
+  color: #a8b8c8;
+}
+
+.status-table td:last-child {
+  text-align: right;
+  color: #40e080;
+  font-family: var(--font-mono);
+}
+
+/* --- Cipher terminal --- */
+.browser-content .site-hack {
+  padding: 0;
+}
+
+.hack-crt {
+  position: relative;
+  min-height: 100%;
+  padding: 0.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.hack-scanlines {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0.12;
+  background: #000;
+  box-shadow: inset 0 0 0 1px #0a4a0a;
+}
+
+.hack-frame {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 560px;
+  border: 2px solid #0a6a0a;
+  background: #030303;
+  box-shadow: 0 0 32px rgba(0, 255, 0, 0.12);
+}
+
+.hack-titlebar {
+  display: flex;
+  justify-content: space-between;
+  background: #0a2a0a;
+  color: #6fdc6f;
+  padding: 0.3rem 0.55rem;
+  font-size: 0.72rem;
+}
+
+.hack-titlebar-sub {
+  color: #3a8a3a;
+}
+
+.hack-body {
+  padding: 0.75rem;
+  color: #0f0;
+  font-family: Courier New, monospace;
+}
+
+.hack-intro {
+  margin: 0 0 0.65rem;
+  color: #0c0;
+  line-height: 1.5;
+}
+
+.hack-meter {
+  height: 8px;
+  background: #0a1a0a;
+  border: 1px solid #0a4a0a;
+  margin-bottom: 0.55rem;
+}
+
+.hack-meter-fill {
+  height: 100%;
+  background: #0f0;
+}
+
+.hack-label {
+  margin: 0 0 0.2rem;
+  font-size: 0.65rem;
+  color: #060;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.hack-phrase {
+  margin: 0 0 0.55rem;
+  font-size: 0.95rem;
+  color: #afa;
+  word-break: break-word;
+}
+
+.hack-input {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #0a4a0a;
+  background: transparent;
+  color: #0f0;
+  font-family: inherit;
+  font-size: 0.9rem;
+  padding: 0.35rem 0;
+  outline: none;
+}
+
+.hack-btn {
+  border: 1px solid #0a4a0a;
+  background: #0a1a0a;
+  color: #0f0;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  font-family: inherit;
+  margin-top: 0.35rem;
+}
+
+.hack-btn-primary {
+  border-color: #0f0;
+  background: #0a2a0a;
+}
+
+.hack-score {
+  font-size: 1.1rem;
+  margin: 0 0 0.55rem;
+}
+
+.hack-cursor {
+  margin: 0.65rem 0 0;
+  animation: hack-blink 1s steps(2) infinite;
+}
+
+@keyframes hack-blink {
+  50% { opacity: 0; }
+}
+
+/* --- Hour chapters: four distinct products --- */
+.browser-content .site-hour-chapter {
+  padding: 0;
+}
+
+.hour-chrome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+}
+
+.site-hour-chapter[data-layout='dossier'] .hour-chrome {
+  background: #2a2018;
+  color: #e8dcc8;
+  border-bottom: 2px solid #8a6848;
+}
+
+.site-hour-chapter[data-layout='casefile'] .hour-chrome {
+  background: #1a2838;
+  color: #c0d8f0;
+}
+
+.site-hour-chapter[data-layout='zine'] .hour-chrome {
+  background: #ff2060;
+  color: #fff;
+}
+
+.site-hour-chapter[data-layout='logbook'] .hour-chrome {
+  background: #0c1820;
+  color: #80c0e0;
+}
+
+.hour-tag {
+  display: inline-block;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.12rem 0.4rem;
+  border: 1px solid currentColor;
+  opacity: 0.85;
+}
+
+.hour-route {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  opacity: 0.75;
+  margin: 0 0 0.65rem;
+}
+
+.hour-story p {
+  line-height: 1.6;
+  margin: 0.55rem 0;
+}
+
+.hour-notes,
+.hour-routes {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid currentColor;
+  opacity: 0.9;
+}
+
+.hour-notes h2,
+.hour-routes h2 {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+}
+
+.hour-notes-lead {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  margin: 0 0 0.55rem;
+}
+
+.hour-trace-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hour-trace {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px dashed currentColor;
+  opacity: 0.55;
+}
+
+.hour-trace.filed {
+  opacity: 1;
+}
+
+.hour-trace-body p {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+}
+
+.hour-trace-meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.hour-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.hour-route-grid {
+  display: grid;
+  gap: 0.35rem;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  margin-bottom: 0.55rem;
+}
+
+.hour-route-chip {
+  text-align: left;
+  border: 1px solid currentColor;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.4rem 0.45rem;
+  cursor: pointer;
+  color: inherit;
+  font-family: inherit;
+}
+
+.hour-route-chip strong {
+  display: block;
+  font-size: 0.82rem;
+}
+
+.hour-btn {
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  padding: 0.28rem 0.55rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+  margin-right: 0.35rem;
+  margin-top: 0.25rem;
+}
+
+.hour-btn-primary {
+  font-weight: 700;
+}
+
+.hour-nav {
+  margin-top: 1rem;
+  padding-top: 0.55rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+/* --- Forum banner --- */
+.forum-banner {
+  background: #0a2040;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  border-bottom: 3px solid #7eb8ff;
+}
+
+.forum-banner h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #fff;
+  letter-spacing: 0.04em;
+}
+
+.forum-banner p {
+  margin: 0.25rem 0 0;
+  font-size: 0.78rem;
+  color: #9ab0c8;
+}
+
+.forum-post-btn {
+  border: 2px outset #5a90c0;
+  background: #3a6090;
+  color: #fff;
+  padding: 0.3rem 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 0.35rem;
+}
+
+/* --- Jobs newspaper tear --- */
+.jobs-header::after {
+  content: '';
+  display: block;
+  height: 0;
+  margin-top: 0.5rem;
+  border-bottom: 4px dashed #1a1814;
+}
+
+/* --- Quest pins --- */
+.quest-stamp-btn {
+  border: 1px solid #8a6848;
+  background: #e8c060;
+  color: #2a2018;
+  padding: 0.28rem 0.55rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.78rem;
+}
+
+/* --- Discover passport --- */
+.discover-passport-label {
+  text-align: center;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #6a5848;
+  margin-bottom: 0.25rem;
+}
+
+.discover-stamp .tag {
+  font-size: 0.58rem;
+  border: 1px solid #8a7860;
+  color: #6a5848;
+  background: #f4efe6;
+}
+
+/* --- Weather lower third --- */
+.weather-crawl {
+  background: #102840;
+  border-top: 3px solid #ffd200;
+  padding: 0.35rem 0.55rem;
+  font-size: 0.72rem;
+  color: #ffd200;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* --- Readme man page spine --- */
+.readme-man {
+  border-left: 4px solid #80ff80;
+  padding-left: 0.85rem;
+}
+
+/* --- Chronicle polaroid pushpin --- */
+.chronicle-polaroid::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #c02020;
+  box-shadow: 1px 2px 0 #6a1010;
+}
+
+.chronicle-polaroid {
+  position: relative;
+}
+
+/* --- Intentionally rough: free-smile placeholder page feel on readme cmd --- */
+.readme-cmd {
+  border: 1px dashed #404040;
+}
