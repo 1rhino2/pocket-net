@@ -1,8 +1,10 @@
-# Pocket Net (RhinoNet)
+# Pocket Net (RhinoNet 0.8)
 
-Boot screen, `rn:` URLs, mini sites. Local save only.
+Exploration browser: chronicle threads, net index, discovery log.
 
 ```bash
 npm install
 npm run dev
 ```
+
+https://pocket-net.vercel.app/
