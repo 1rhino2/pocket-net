@@ -1,8 +1,9 @@
 name: Deploy to Vercel
 
+# Push trigger disabled: GitHub account billing lock blocks Actions runners.
+# Re-enable after billing is fixed, or use Vercel Git integration (github.com/apps/vercel).
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
 
 jobs:
   deploy:
