@@ -55,7 +55,7 @@ export function BootScreen({ onDone }: BootProps) {
           </div>
           <div>
             <div className="boot-title">RhinoNet 2000</div>
-            <div className="boot-sub">Pocket Edition · build v1</div>
+            <div className="boot-sub">Pocket Edition · build 0.8</div>
           </div>
         </div>
 
