@@ -1324,20 +1324,32 @@
   margin: 0 0 0.25rem;
   font-size: 1rem;
   text-decoration: underline;
+  color: #1a1814;
 }
 
 .jobs-pay {
   font-weight: 700;
   font-style: italic;
   margin: 0.35rem 0;
+  color: #3a3428;
+}
+
+.jobs-ad p {
+  color: #1a1814;
 }
 
 .jobs-ad button {
   border: 1px solid #1a1814;
-  background: #f4efe4;
+  background: #e8e0d0;
+  color: #1a1814;
   padding: 0.25rem 0.55rem;
   cursor: pointer;
   font-family: inherit;
+}
+
+.jobs-ad button:disabled {
+  color: #5a4838;
+  background: #d4cbb8;
 }
 
 /* --- Chat: AIM --- */
