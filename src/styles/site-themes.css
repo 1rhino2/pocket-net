@@ -140,15 +140,15 @@
 }
 
 .browser-content .site-jobs {
-  --site-bg: #f0ebe0;
+  --site-bg: #ddd4c4;
   --site-text: #2a2420;
   --site-accent: #8b4513;
-  --site-panel: #faf6f0;
-  --site-border: #c8b8a0;
-  --site-muted: #6a5a48;
+  --site-panel: #f5f0e6;
+  --site-border: #8a7860;
+  --site-muted: #5a4838;
   font-family: Times New Roman, Times, serif;
   padding: 0;
-  background: #f0ebe0;
+  background: #ddd4c4;
 }
 
 .browser-content .site-chat {

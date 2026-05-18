@@ -10,7 +10,7 @@
 .browser-content:has(.site-mail) { background: #c0c0c0; }
 .browser-content:has(.site-weather) { background: #0a2848; }
 .browser-content:has(.site-wiki) { background: #f8f9fa; }
-.browser-content:has(.site-jobs) { background: #f0ebe0; }
+.browser-content:has(.site-jobs) { background: #ddd4c4; }
 .browser-content:has(.site-chat) { background: #ffffcc; }
 .browser-content:has(.site-hack) { background: #000; }
 .browser-content:has(.site-map) { background: #061018; }
@@ -155,8 +155,17 @@
 
 .browser-content .site-jobs {
   padding: 0;
-  background: #f0ebe0;
+  background: #ddd4c4;
   color: #2a2420;
+}
+
+.browser-content .site-jobs .jobs-header,
+.browser-content .site-jobs .jobs-header p {
+  color: #2a2420;
+}
+
+.browser-content .site-jobs .jobs-header p {
+  color: #4a4038;
 }
 
 .browser-content .site-jobs p,
