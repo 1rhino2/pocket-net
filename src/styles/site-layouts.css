@@ -1280,25 +1280,31 @@
   margin: 0.35rem 0 0;
 }
 
-/* --- Jobs: classifieds --- */
+/* --- Jobs: classifieds (newsprint, not blank white) --- */
 .site-jobs {
-  background: #f4efe4;
+  background: #ddd4c4;
   color: #1a1814;
   font-family: Times New Roman, Times, serif;
   padding: 0;
+  min-height: 100%;
 }
 
 .jobs-header {
   text-align: center;
   border-bottom: 3px double #1a1814;
   padding: 0.75rem;
-  background: #fff;
+  background: #e8e0d0;
+}
+
+.jobs-header p {
+  color: #4a4038;
 }
 
 .jobs-columns {
   column-count: 2;
   column-gap: 1rem;
   padding: 0.75rem;
+  background: #d4cbb8;
 }
 
 @media (min-width: 520px) {
@@ -1310,7 +1316,8 @@
   border: 2px solid #1a1814;
   padding: 0.55rem;
   margin-bottom: 0.65rem;
-  background: #fff;
+  background: #f5f0e6;
+  box-shadow: 2px 2px 0 #8a7860;
 }
 
 .jobs-ad h2 {
