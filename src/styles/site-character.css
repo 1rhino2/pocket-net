@@ -728,3 +728,11 @@
 .readme-cmd {
   border: 1px dashed #404040;
 }
+
+/* Light hour-chapter panels: keep tags readable (site-color-fixes loads before this file) */
+.browser-content .site-hour-chapter[data-layout='dossier'] .hour-folder .hour-tag,
+.browser-content .site-hour-chapter[data-layout='zine'] .hour-zine .hour-tag,
+.browser-content .site-hour-chapter[data-layout='casefile'] .hour-case .hour-tag {
+  color: #5a4838;
+  opacity: 1;
+}
