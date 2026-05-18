@@ -153,26 +153,37 @@
   border-color: #a2a9b1;
 }
 
-.browser-content .site-jobs {
+/* Beat generic .site { color: var(--site-text) } (light pocket-net default) */
+.browser-content .site.site-jobs {
   padding: 0;
   background: #ddd4c4;
   color: #2a2420;
 }
 
-.browser-content .site-jobs .jobs-header,
-.browser-content .site-jobs .jobs-header p {
-  color: #2a2420;
+.browser-content .site.site-jobs h1 {
+  color: #1a1814;
 }
 
-.browser-content .site-jobs .jobs-header p {
+.browser-content .site.site-jobs .jobs-header p {
   color: #4a4038;
 }
 
-.browser-content .site-jobs p,
-.browser-content .site-jobs h1,
-.browser-content .site-jobs h2,
-.browser-content .site-jobs .jobs-listing {
-  color: inherit;
+.browser-content .site.site-jobs .jobs-ad,
+.browser-content .site.site-jobs .jobs-ad h2,
+.browser-content .site.site-jobs .jobs-ad p,
+.browser-content .site.site-jobs .jobs-ad .jobs-pay {
+  color: #1a1814;
+}
+
+.browser-content .site.site-jobs .jobs-ad button {
+  color: #1a1814;
+  background: #e8e0d0;
+  border: 1px solid #1a1814;
+}
+
+.browser-content .site.site-jobs .jobs-ad button:disabled {
+  color: #5a4838;
+  background: #d4cbb8;
 }
 
 .browser-content .site-chat {
