@@ -177,6 +177,15 @@
   color: inherit;
 }
 
+.browser-content .site-chat .chat-who,
+.browser-content .site-chat .chat-buddy.offline {
+  color: #5f6368;
+}
+
+.browser-content .site-chat .chat-log {
+  color: #1a1814;
+}
+
 /* --- Dark layout shells --- */
 .browser-content .site-forum {
   padding: 0;
@@ -404,6 +413,86 @@
 }
 
 /* Nodes */
+.browser-content .site.site-node[data-layout='card'],
+.browser-content .site.site-node[data-layout='fax'],
+.browser-content .site.site-node[data-layout='telegram'],
+.browser-content .site.site-node[data-layout='receipt'],
+.browser-content .site.site-node[data-layout='report'],
+.browser-content .site.site-node[data-layout='broadsheet'],
+.browser-content .site.site-node[data-layout='label'],
+.browser-content .site.site-node[data-layout='ticket'],
+.browser-content .site.site-node[data-layout='manifest'] {
+  color: #2a2018;
+}
+
+.browser-content .site.site-node[data-layout='card'] .node-sheet,
+.browser-content .site.site-node[data-layout='fax'] .node-fax-page,
+.browser-content .site.site-node[data-layout='telegram'] .node-telegram-slip,
+.browser-content .site.site-node[data-layout='receipt'] .node-receipt-slip,
+.browser-content .site.site-node[data-layout='report'] .node-report-body,
+.browser-content .site.site-node[data-layout='broadsheet'] .node-broadsheet,
+.browser-content .site.site-node[data-layout='label'] .node-label,
+.browser-content .site.site-node[data-layout='ticket'] .node-ticket,
+.browser-content .site.site-node[data-layout='manifest'] .node-manifest {
+  color: #1a1814;
+}
+
+.browser-content .site.site-node[data-layout='card'] .node-sheet .node-url,
+.browser-content .site.site-node[data-layout='card'] .node-sheet .node-footnote,
+.browser-content .site.site-node[data-layout='card'] .node-sheet .node-tag-pill,
+.browser-content .site.site-node[data-layout='fax'] .node-fax-page .node-url,
+.browser-content .site.site-node[data-layout='fax'] .node-fax-page .node-footnote,
+.browser-content .site.site-node[data-layout='fax'] .node-fax-page .node-tag-pill,
+.browser-content .site.site-node[data-layout='telegram'] .node-telegram-slip .node-url,
+.browser-content .site.site-node[data-layout='telegram'] .node-telegram-slip .node-footnote,
+.browser-content .site.site-node[data-layout='telegram'] .node-telegram-slip .node-tag-pill,
+.browser-content .site.site-node[data-layout='receipt'] .node-receipt-slip .node-url,
+.browser-content .site.site-node[data-layout='receipt'] .node-receipt-slip .node-footnote,
+.browser-content .site.site-node[data-layout='receipt'] .node-receipt-slip .node-tag-pill,
+.browser-content .site.site-node[data-layout='report'] .node-report-body .node-url,
+.browser-content .site.site-node[data-layout='report'] .node-report-body .node-footnote,
+.browser-content .site.site-node[data-layout='report'] .node-report-body .node-tag-pill,
+.browser-content .site.site-node[data-layout='broadsheet'] .node-broadsheet .node-url,
+.browser-content .site.site-node[data-layout='broadsheet'] .node-broadsheet .node-footnote,
+.browser-content .site.site-node[data-layout='broadsheet'] .node-broadsheet .node-tag-pill,
+.browser-content .site.site-node[data-layout='label'] .node-label .node-url,
+.browser-content .site.site-node[data-layout='label'] .node-label .node-footnote,
+.browser-content .site.site-node[data-layout='label'] .node-label .node-tag-pill,
+.browser-content .site.site-node[data-layout='ticket'] .node-ticket .node-url,
+.browser-content .site.site-node[data-layout='ticket'] .node-ticket .node-footnote,
+.browser-content .site.site-node[data-layout='ticket'] .node-ticket .node-tag-pill,
+.browser-content .site.site-node[data-layout='manifest'] .node-manifest .node-url,
+.browser-content .site.site-node[data-layout='manifest'] .node-manifest .node-footnote,
+.browser-content .site.site-node[data-layout='manifest'] .node-manifest .node-tag-pill {
+  color: #5a4838;
+  opacity: 1;
+}
+
+.browser-content .site.site-node[data-layout='card'] .node-sheet .node-quote,
+.browser-content .site.site-node[data-layout='fax'] .node-fax-page .node-quote,
+.browser-content .site.site-node[data-layout='telegram'] .node-telegram-slip .node-quote,
+.browser-content .site.site-node[data-layout='receipt'] .node-receipt-slip .node-quote,
+.browser-content .site.site-node[data-layout='report'] .node-report-body .node-quote,
+.browser-content .site.site-node[data-layout='broadsheet'] .node-broadsheet .node-quote,
+.browser-content .site.site-node[data-layout='label'] .node-label .node-quote,
+.browser-content .site.site-node[data-layout='ticket'] .node-ticket .node-quote,
+.browser-content .site.site-node[data-layout='manifest'] .node-manifest .node-quote {
+  color: #3a3428;
+  opacity: 1;
+}
+
+.browser-content .site.site-node[data-layout='card'] .node-sheet h1,
+.browser-content .site.site-node[data-layout='fax'] .node-fax-page h1,
+.browser-content .site.site-node[data-layout='telegram'] .node-telegram-slip h1,
+.browser-content .site.site-node[data-layout='receipt'] .node-receipt-slip h1,
+.browser-content .site.site-node[data-layout='report'] .node-report-body h1,
+.browser-content .site.site-node[data-layout='broadsheet'] .node-broadsheet h1,
+.browser-content .site.site-node[data-layout='label'] .node-label h1,
+.browser-content .site.site-node[data-layout='ticket'] .node-ticket h1,
+.browser-content .site.site-node[data-layout='manifest'] .node-manifest h1 {
+  color: var(--site-accent);
+}
+
 .browser-content .site-node .lead {
   color: var(--site-muted, #708898);
 }
@@ -412,13 +501,63 @@
 .browser-content .site-node[data-layout='card'] .lead,
 .browser-content .site-node[data-layout='telegram'] .lead,
 .browser-content .site-node[data-layout='report'] .lead,
-.browser-content .site-node[data-layout='receipt'] .lead {
-  color: inherit;
-  opacity: 0.85;
+.browser-content .site-node[data-layout='receipt'] .lead,
+.browser-content .site-node[data-layout='broadsheet'] .lead,
+.browser-content .site-node[data-layout='label'] .lead,
+.browser-content .site-node[data-layout='ticket'] .lead,
+.browser-content .site-node[data-layout='manifest'] .lead {
+  color: #5a4838;
+  opacity: 1;
 }
 
 .browser-content .site-node .node-actions .btn {
   border-color: currentColor;
+}
+
+/* Shift / map / radio / archive: do not wash out leads on light sub-panels */
+.browser-content .site-shift .shift-drawer-panel,
+.browser-content .site-shift .shift-drawer-panel .lead,
+.browser-content .site-shift .shift-index-card,
+.browser-content .site-shift .shift-index-card span,
+.browser-content .site-shift .shift-index-card small {
+  opacity: 1;
+}
+
+.browser-content .site-chronicle .chronicle-polaroid small {
+  color: #5a4830;
+}
+
+/* Hour chapters: light inner folders (beats site-character opacity) */
+.browser-content .site-hour-chapter[data-layout='dossier'] .hour-folder .hour-route,
+.browser-content .site-hour-chapter[data-layout='dossier'] .hour-folder .hour-notes-lead,
+.browser-content .site-hour-chapter[data-layout='dossier'] .hour-folder .hour-notes,
+.browser-content .site-hour-chapter[data-layout='dossier'] .hour-folder .hour-routes,
+.browser-content .site-hour-chapter[data-layout='zine'] .hour-zine .hour-route,
+.browser-content .site-hour-chapter[data-layout='zine'] .hour-zine .hour-notes-lead,
+.browser-content .site-hour-chapter[data-layout='zine'] .hour-zine .hour-notes,
+.browser-content .site-hour-chapter[data-layout='zine'] .hour-zine .hour-routes,
+.browser-content .site-hour-chapter[data-layout='casefile'] .hour-case .hour-route,
+.browser-content .site-hour-chapter[data-layout='casefile'] .hour-case .hour-notes-lead,
+.browser-content .site-hour-chapter[data-layout='casefile'] .hour-case .hour-notes,
+.browser-content .site-hour-chapter[data-layout='casefile'] .hour-case .hour-routes {
+  color: #4a4038;
+  opacity: 1;
+}
+
+.browser-content .site-hour-chapter[data-layout='casefile'] .hour-case .hour-trace {
+  opacity: 1;
+  color: #2a2420;
+}
+
+.browser-content .site-hour-chapter[data-layout='casefile'] .hour-case .hour-trace-meta {
+  color: #5a4838;
+  opacity: 1;
+}
+
+.browser-content .site-hour-chapter[data-layout='dossier'] .hour-folder .hour-trace-meta,
+.browser-content .site-hour-chapter[data-layout='zine'] .hour-zine .hour-trace-meta {
+  color: #5a4838;
+  opacity: 1;
 }
 
 /* Shift node grid on hour pages */
