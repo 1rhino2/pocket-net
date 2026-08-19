@@ -1,5 +1,5 @@
 import type { GameSnapshot, GameStats } from '../game/gameTypes';
-import { HOLLOW_CLUE_PAGES } from '../content/index';
+import { HOLLOW_CLUE_PAGES, SIGNAL_CLUE_PAGES } from '../content/index';
 
 export type QuestContext = {
   stats: GameStats;
@@ -257,11 +257,33 @@ export const QUESTS: QuestDef[] = [
     tier: 'legend',
     check: (c) => c.discovered.includes('hollow_night_solved'),
   },
+  {
+    id: 'q_signal_read',
+    title: 'Night watch',
+    blurb: 'Open five of the pages that track the signal on the overnight lines.',
+    reward: 90,
+    tier: 'deep',
+    check: (c) => c.visitedNodes.filter((u) => SIGNAL_URLS.has(u)).length >= 5,
+  },
+  {
+    id: 'q_signal_solved',
+    title: 'The Lighthouse',
+    blurb: 'Work out what the linemen called it, and open the sealed decode.',
+    reward: 200,
+    integrity: 5,
+    tier: 'legend',
+    check: (c) => c.discovered.includes('signal_solved'),
+  },
 ];
 
 /** Hollow Night clue pages only, so a second arc cannot inflate this count */
 const HOLLOW_URLS = new Set(
   HOLLOW_CLUE_PAGES.map((p) => `rn:n-${p.slug}`),
+);
+
+/** the signal arc's own clue pages, counted separately */
+const SIGNAL_URLS = new Set(
+  SIGNAL_CLUE_PAGES.map((p) => `rn:n-${p.slug}`),
 );
 
 export function questContext(s: GameSnapshot): QuestContext {

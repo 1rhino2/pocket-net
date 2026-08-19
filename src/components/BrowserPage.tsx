@@ -24,6 +24,7 @@ import { SiteNode } from './sites/SiteNode';
 import { isHourUrl, isNodeUrl } from '../types';
 import { SiteChronicle } from './sites/SiteChronicle';
 import { SiteHourChapter } from './sites/SiteHourChapter';
+import { SiteAero } from './sites/SiteAero';
 
 type Props = {
   url: NetUrl;
@@ -74,6 +75,8 @@ export function BrowserPage({ url, onNavigate }: Props) {
       return <SiteShift onNavigate={onNavigate} />;
     case 'rn:chronicle':
       return <SiteChronicle onNavigate={onNavigate} />;
+    case 'rn:aero':
+      return <SiteAero onNavigate={onNavigate} />;
     case 'rn:ghost':
     case 'rn:bunker':
     case 'rn:cache':

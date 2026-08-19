@@ -9,7 +9,13 @@ export type CastId =
   | 'localhost_legend'
   | 'soup_judge'
   | 'pvo_operations'
-  | 'anon';
+  | 'anon'
+  | 'baro_hank'
+  | 'disk_daemon'
+  | 'swap_meet'
+  | 'town_annals'
+  | 'carrier_wave'
+  | 'aero_prophet';
 
 /**
  * One page somebody wrote. Every field here is typed by hand, there is no
