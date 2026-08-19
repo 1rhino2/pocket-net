@@ -20,4 +20,5 @@ export const BROWSER_BOOKMARKS: BrowserPlace[] = [
   { url: 'rn:forum', label: 'Forum' },
   { url: 'rn:radio', label: 'Radio' },
   { url: 'rn:archive', label: 'Archive' },
+  { url: 'rn:aero', label: 'Aqua' },
 ];

@@ -29,6 +29,7 @@ export const NET_SITES: NetSiteEntry[] = [
   { url: 'rn:archive', title: 'Packet Archive', desc: 'Weekly transmissions and drifting lore.', tag: 'lore', category: 'meta' },
   { url: 'rn:shift', title: 'Net Index', desc: 'Card catalog of the net. Every page on it was written by a person.', tag: 'index', category: 'meta' },
   { url: 'rn:chronicle', title: 'Explore', desc: 'Named story threads, mail, wiki, and search - wander in any order.', tag: 'explore', category: 'meta' },
+  { url: 'rn:aero', title: 'Aqua Concept', desc: 'A homepage from about five years ahead. All glass and water and green.', tag: 'concept', category: 'meta' },
 ];
 
 export function sitesByCategory(cat: NetSiteEntry['category']) {
