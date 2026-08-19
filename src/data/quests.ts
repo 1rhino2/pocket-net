@@ -1,4 +1,5 @@
 import type { GameSnapshot, GameStats } from '../game/gameTypes';
+import { CLUE_PAGES } from '../content/index';
 
 export type QuestContext = {
   stats: GameStats;
@@ -239,7 +240,29 @@ export const QUESTS: QuestDef[] = [
     tier: 'legend',
     check: (c) => hours(c, 5),
   },
+  {
+    id: 'q_hollow_read',
+    title: 'Read the night',
+    blurb: 'Open six of the pages that describe what happened on 11 March 1999.',
+    reward: 90,
+    tier: 'deep',
+    check: (c) => c.visitedNodes.filter((u) => HOLLOW_URLS.has(u)).length >= 6,
+  },
+  {
+    id: 'q_hollow_solved',
+    title: 'The Hollow Night',
+    blurb: 'Work out what she called the copy, and open the archive recovery page.',
+    reward: 200,
+    integrity: 5,
+    tier: 'legend',
+    check: (c) => c.discovered.includes('hollow_night_solved'),
+  },
 ];
+
+/** the pages carrying a clue, so the reading quest counts real progress */
+const HOLLOW_URLS = new Set(
+  CLUE_PAGES.map((p) => `rn:n-${p.slug}`),
+);
 
 export function questContext(s: GameSnapshot): QuestContext {
   return {

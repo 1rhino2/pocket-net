@@ -1,8 +1,7 @@
-/** Re-export hand-built node catalog (480 permanent + 56 drift). */
+/** Re-export the authored node catalog. Counts come from the pages, never from a literal. */
 export {
   PERMANENT_NODES,
   PERMANENT_NODE_COUNT,
-  NODES_PER_CHAPTER,
   DRIFT_PAGES,
   DRIFT_NODE_COUNT,
   permanentNodesForChapter,

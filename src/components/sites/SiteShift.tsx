@@ -89,7 +89,7 @@ export function SiteShift({ onNavigate }: Props) {
             </>
           ) : (
             <>
-              <p className="shift-drawer-note">Fifty-six fixed drift shelves · hand-filed, stable URLs.</p>
+              <p className="shift-drawer-note">The odd corners: stubs, dead ends, and one page that never did render.</p>
               <div className="shift-cards shift-cards-drift">
                 {nodes.slice(0, 14).map((n, i) => (
                   <button

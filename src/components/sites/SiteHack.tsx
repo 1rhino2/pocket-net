@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { hackPhrases } from '../../data/procedural';
+import { hackPhrases } from '../../data/dailyWire';
 import { todayKey } from '../../lib/seed';
 import { useGame } from '../../game/GameContext';
 

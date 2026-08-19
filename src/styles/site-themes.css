@@ -1,17 +1,33 @@
 /* Per-site and per-chapter themes. Scoped to browser content only. */
-.browser-content .site:not(.site-portal):not(.secret) {
-  --site-bg: var(--bg);
-  --site-text: var(--text);
-  --site-accent: var(--accent);
-  --site-panel: var(--panel);
-  --site-border: var(--border);
-  --site-muted: var(--muted);
+/*
+ * :where() so this contributes no specificity beyond .browser-content .site.
+ *
+ * It used to read :not(.site-portal):not(.secret), which scores higher than
+ * every per-site skin below it, so every site on the net resolved to these
+ * defaults and the individual skins never applied. That is why everything
+ * looked the same. The whole point of this file is that they should not.
+ */
+.browser-content .site:where(:not(.site-portal)):where(:not(.secret)) {
+  /* period defaults for a site that does not define its own skin: a plain
+     white page with black text and blue headings, which is what you got */
+  --site-bg: #ffffff;
+  --site-text: #000000;
+  --site-accent: #000080;
+  --site-panel: #f0f0f0;
+  --site-border: #808080;
+  --site-muted: #444444;
   background: var(--site-bg);
   color: var(--site-text);
   min-height: 100%;
   padding: 1rem 1.1rem 1.5rem;
 }
-.browser-content .site h1 { color: var(--site-accent); }
+/*
+ * Direct children only. This used to hit every h1 anywhere inside a site, so a
+ * banner that set its own white-on-navy heading lost to the site accent and
+ * came out navy on navy. A site colours its own headings, not the ones inside
+ * components that have already styled themselves.
+ */
+.browser-content .site > h1 { color: var(--site-accent); }
 
 .browser-content .site .lead {
   color: var(--site-muted);
