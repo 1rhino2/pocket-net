@@ -6,34 +6,13 @@ import { SEARCH_DOCS } from './searchIndex';
 import { chronicleMailActive, chronicleSearchDocs, chronicleWikiActive, getHourChapter } from './chronicle24';
 import {
   DRIFT_PAGES,
+  PERMANENT_NODES,
   driftSearchDocs,
   handbuiltNodePage,
   permanentSearchDocs,
 } from './nodeCatalog';
-import { pick, pickMany, playHour, playHourBucket, seededRng, slugFromSeed, todayKey } from '../lib/seed';
-
-const ADJ = [
-  'sleepy', 'loyal', 'frayed', 'polite', 'hollow', 'bright', 'static', 'nested', 'forgotten', 'indexed',
-  'sandboxed', 'nocturnal', 'packetized', 'honest', 'suspicious', 'velvet', 'rusty', 'amber', 'cobalt',
-  'quiet', 'loud', 'gentle', 'bitter', 'sweet', 'frozen', 'molten', 'digital', 'analog', 'phantom',
-  'loyal', 'rogue', 'tender', 'grim', 'lucky', 'cursed', 'holy', 'feral', 'cosmic', 'local',
-] as const;
-
-const NOUN = [
-  'modem', 'relay', 'operator', 'forum', 'hat', 'cache', 'quest', 'stamp', 'window', 'tab',
-  'signal', 'archive', 'coin', 'integrity', 'handset', 'packet', 'socket', 'daemon', 'lint', 'boot',
-  'mirror', 'cable', 'ghost', 'soup', 'regex', 'mall', 'tower', 'bunker', 'ledger', 'whisper',
-  'beacon', 'fossil', 'ripple', 'kernel', 'banner', 'cipher', 'mart', 'wiki', 'mail', 'map',
-] as const;
-
-const VERB = [
-  'whispers', 'indexes', 'refunds', 'pings', 'folds', 'boots', 'archives', 'lints', 'hums', 'drifts',
-  'mutters', 'glows', 'stalls', 'rewrites', 'forgets', 'remembers', 'blinks', 'overflows', 'waits',
-] as const;
-
-const PLACE = [
-  'rn:map', 'rn:archive', 'rn:discover', 'rn:shift', 'rn:mail', 'rn:wiki', 'rn:search', 'rn:chronicle',
-] as const;
+import { pick, pickMany, playHour, playHourBucket, seededRng, todayKey } from '../lib/seed';
+import { FORUM_POSTS, PULSE_LINES, WIKI_FRAGMENTS, WIRE_MAIL } from '../content/wire';
 
 export type WikiFragment = {
   id: string;
@@ -92,10 +71,6 @@ export type PulseEvent = {
   action?: string;
 };
 
-function phrase(rng: () => number) {
-  return `${pick(rng, ADJ)} ${pick(rng, NOUN)}`;
-}
-
 export function shiftMissionsForHour(
   bucket = playHourBucket(0),
   baselines: Record<ShiftMissionKind, number>,
@@ -121,7 +96,9 @@ export function shiftMissionsForHour(
             kind === 'discover' ? 3 + Math.floor(rng() * 4) :
               2 + Math.floor(rng() * 5);
 
-    const p = phrase(rng);
+    // missions used to ask you to search a generated phrase like "cobalt tower",
+    // which matched nothing. pull a real search term off a real page instead.
+    const p = pick(rng, PERMANENT_NODES).searchQuery;
     let title = '';
     let blurb = '';
     let targetNode: string | undefined;
@@ -232,6 +209,8 @@ export function microNodesForHour(_bucket = playHourBucket(0)): MicroNode[] {
 export type MicroNodePage = {
   title: string;
   tag: string;
+  author?: string;
+  updated?: string;
   layout: import('./nodes/handbuiltTypes').NodeLayout;
   paragraphs: string[];
   chapter?: number;
@@ -247,6 +226,8 @@ export function microNodePage(url: string): MicroNodePage | null {
   return {
     title: built.title,
     tag: built.tag,
+    author: built.author,
+    updated: built.updated,
     layout: built.layout,
     paragraphs: built.paragraphs,
     chapter: built.chapter,
@@ -259,93 +240,74 @@ export function microNodePage(url: string): MicroNodePage | null {
 
 export function hourlyMail(bucket = playHourBucket(0)): MailMessage[] {
   const rng = seededRng(`hmail-${bucket}`);
-  return Array.from({ length: 8 }, (_, i) => {
-    const p = phrase(rng);
-    return {
-      id: `${bucket}-m${i}`,
-      from: `${pick(rng, ADJ)}.ops@hour.rn`,
-      subject: `[${bucket}] ${p}`,
-      preview: `Play-hour drift ${i + 1}`,
-      body:
-        `Operator,\n\n` +
-        `Play bucket ${bucket}. Signal "${p}" crossed the net.\n` +
-        `Open rn:shift for contracts. Nodes: rn:n-* (56 this play hour).\n\n` +
-        `Search: ${p}\n\n- Hourly ops`,
-    };
-  });
+  return pickMany(rng, [...WIRE_MAIL], 4).map((m, i) => ({
+    id: `${bucket}-m${i}`,
+    from: m.from,
+    subject: m.subject,
+    preview: m.preview,
+    body: m.body,
+  }));
 }
 
 export function hourlyWiki(bucket = playHourBucket(0)): WikiFragment[] {
   const rng = seededRng(`hwiki-${bucket}`);
-  return Array.from({ length: 14 }, (_, i) => {
-    const p = phrase(rng);
-    return {
-      id: `${bucket}-w${i}`,
-      title: `${p} (${bucket})`,
-      paragraphs: [
-        `Drift fragment ${i + 1} for ${bucket}.`,
-        `The ${p} ${pick(rng, VERB)} when operators complete shift missions.`,
-        `Cross-link: ${pick(rng, PLACE)} and micro nodes rn:n-*.`,
-      ],
-    };
-  });
+  return pickMany(rng, [...WIKI_FRAGMENTS], 6).map((f, i) => ({
+    id: `${bucket}-w${i}`,
+    title: f.title,
+    paragraphs: [...f.paragraphs],
+  }));
 }
 
 export function hourlySearchDocs(bucket = playHourBucket(0), nodes = microNodesForHour(bucket)): SearchDoc[] {
-  const rng = seededRng(`hsearch-${bucket}`);
-  const words = pickMany(rng, [...ADJ, ...NOUN], 24);
-  const generic = words.map((w, i) => ({
-    id: `${bucket}-s${i}`,
-    title: `${w} - ${bucket} index`,
-    url: i % 4 === 0 ? 'rn:shift' : (`rn:n-${slugFromSeed(`hs-${bucket}-${i}`)}` as string),
-    snippet: `Play-hour index entry for "${w}".`,
-    tags: [w, bucket, 'hourly', 'shift'],
-    body: `Filed at ${bucket}. Try rn:shift and search ${w} again next play hour.`,
-  }));
-  const nodeDocs: SearchDoc[] = nodes.map((n, i) => ({
+  // there used to be 24 docs here built from single words, titled things like
+  // "cobalt - play-3 index". they matched searches and led nowhere. gone.
+  return nodes.map((n, i) => ({
     id: `${bucket}-n${i}`,
     title: n.title,
     url: n.url,
     snippet: n.teaser,
     tags: [n.tag, n.searchQuery, 'node', bucket],
-    body: n.teaser + ` Open ${n.url} to log discovery.`,
+    body: n.teaser,
   }));
-  return [...generic, ...nodeDocs];
 }
 
 export function hourlyForumThreads(bucket = playHourBucket(0)): ForumThread[] {
   const rng = seededRng(`hforum-${bucket}`);
-  return Array.from({ length: 10 }, (_, i) => {
-    const p = phrase(rng);
-    return {
-      id: `${bucket}-f${i}`,
-      user: `${pick(rng, ADJ)}_${pick(rng, NOUN)}`,
-      title: `${p}? (${bucket})`,
-      body: `Posting at ${bucket}. ${pick(rng, VERB)} ${pick(rng, NOUN)}. Anyone else seeing new rn:n- nodes?`,
-      when: bucket,
-    };
-  });
+  return pickMany(rng, [...FORUM_POSTS], 8).map((t, i) => ({
+    id: `${bucket}-f${i}`,
+    user: t.user,
+    title: t.title,
+    body: t.body,
+    when: bucket,
+  }));
 }
 
 export function pulseEvents(playMs = 0): PulseEvent[] {
   const slot = Math.floor(playMs / (5 * 60 * 1000));
   const pulse = `play-${slot}`;
   const rng = seededRng(`pulse-${pulse}`);
-  return Array.from({ length: 4 }, (_, i) => ({
+  const places = ['rn:shift', 'rn:discover', 'rn:archive', 'rn:chronicle'];
+  return pickMany(rng, [...PULSE_LINES], 4).map((line, i) => ({
     id: `pulse-${pulse}-${i}`,
-    line: `Live: ${phrase(rng)} ${pick(rng, VERB)} near ${pick(rng, PLACE)}.`,
-    action: i === 0 ? 'rn:shift' : pick(rng, PLACE),
+    line,
+    action: places[i % places.length],
   }));
 }
 
 export function mergedMail(day = todayKey(), playMs = 0) {
   const bucket = playHourBucket(playMs);
-  return [...dailyMail(day), ...hourlyMail(bucket), ...chronicleMailActive(playMs)];
+  const all = [...dailyMail(day), ...hourlyMail(bucket), ...chronicleMailActive(playMs)];
+  // daily and hourly draw from the same written pool, so the inbox can pick the
+  // same letter twice. keep the first copy.
+  const seen = new Set<string>();
+  return all.filter((m) => (seen.has(m.subject) ? false : (seen.add(m.subject), true)));
 }
 
 export function mergedWiki(day = todayKey(), playMs = 0) {
   const bucket = playHourBucket(playMs);
-  return [...dailyWikiFragments(day), ...hourlyWiki(bucket), ...chronicleWikiActive(playMs)];
+  const all = [...dailyWikiFragments(day), ...hourlyWiki(bucket), ...chronicleWikiActive(playMs)];
+  const seen = new Set<string>();
+  return all.filter((w) => (seen.has(w.title) ? false : (seen.add(w.title), true)));
 }
 
 export function mergedSearchDocs(day = todayKey(), playMs = 0): SearchDoc[] {
@@ -359,8 +321,4 @@ export function mergedSearchDocs(day = todayKey(), playMs = 0): SearchDoc[] {
     ...driftSearchDocs(),
     ...chronicleSearchDocs(playMs),
   ];
-}
-
-export function discoveryGoalEstimate() {
-  return 15000;
 }

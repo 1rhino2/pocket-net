@@ -11,133 +11,293 @@ type Props = {
 
 type NodePage = NonNullable<ReturnType<typeof microNodePage>>;
 
-function NodeExtras({ page }: { page: NodePage }) {
+/*
+ * Every layout used to be the same prose in a different coloured box, under a
+ * fixed label that had nothing to do with the page: an equipment inventory
+ * came out headed CARGO MANIFEST, a guestbook came out headed ADMIT ONE.
+ *
+ * Now the form actually shapes the document. A fax gets a routing block and a
+ * page count, a BBS post gets a message header and a quoted body, a telegram
+ * loses its lowercase, a manifest renders its bullets as a real table, a
+ * blotter hangs its timestamps in the margin. The header text is built from
+ * the page's own author, tag and date rather than a hardcoded string.
+ */
+
+function Byline({ page }: { page: NodePage }) {
+  if (!page.author && !page.updated) return null;
   return (
-    <>
-      {page.quote ? <blockquote className='node-quote'>{page.quote}</blockquote> : null}
-      {page.bullets && page.bullets.length > 0 ? (
-        <ul className='node-bullets'>
-          {page.bullets.map((b) => (
-            <li key={b}>{b}</li>
-          ))}
-        </ul>
-      ) : null}
-      {page.footnote ? <p className='node-footnote'>{page.footnote}</p> : null}
-    </>
+    <p className='node-byline'>
+      {page.author ? <span className='node-byline-who'>{page.author}</span> : null}
+      {page.updated ? <span className='node-byline-when'>last updated {page.updated}</span> : null}
+    </p>
   );
 }
 
-function NodeCore({
-  page,
-  url,
-  onNavigate,
-}: {
-  page: NodePage;
-  url: NodeNetUrl;
-  onNavigate: (url: NetUrl) => void;
-}) {
+function Prose({ page }: { page: NodePage }) {
+  return (
+    <div className='node-prose'>
+      {page.paragraphs.map((para, i) => (
+        <p key={i}>{para}</p>
+      ))}
+    </div>
+  );
+}
+
+/** bullets as a plain list, the default for most forms */
+function Bullets({ page }: { page: NodePage }) {
+  if (!page.bullets || page.bullets.length === 0) return null;
+  return (
+    <ul className='node-bullets'>
+      {page.bullets.map((b) => (
+        <li key={b}>{b}</li>
+      ))}
+    </ul>
+  );
+}
+
+/**
+ * A manifest's bullets are records, not prose. Split on the first colon so the
+ * label and the value land in their own columns and the numbers line up, which
+ * is the entire reason a manifest is a table and not a list.
+ */
+function ManifestTable({ page }: { page: NodePage }) {
+  if (!page.bullets || page.bullets.length === 0) return null;
+  return (
+    <table className='node-manifest-table'>
+      <tbody>
+        {page.bullets.map((b) => {
+          const at = b.indexOf(':');
+          const label = at > 0 ? b.slice(0, at) : b;
+          const value = at > 0 ? b.slice(at + 1).trim() : '';
+          return (
+            <tr key={b}>
+              <th scope='row'>{label}</th>
+              <td>{value}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
+}
+
+function Tail({ page, url, onNavigate }: { page: NodePage; url: NodeNetUrl; onNavigate: (u: NetUrl) => void }) {
   return (
     <>
-      <span className='node-tag-pill'>{page.tag}</span>
-      <h1>{page.title}</h1>
+      {page.footnote ? <p className='node-footnote'>{page.footnote}</p> : null}
       <p className='node-url'>{url}</p>
-      <div className='node-prose'>
-        {page.paragraphs.map((para, i) => (
-          <p key={i}>{para}</p>
-        ))}
-      </div>
-      <NodeExtras page={page} />
       <div className='row node-actions'>
-        <button type='button' className='btn btn-primary' onClick={() => onNavigate('rn:shift')}>
+        <button type='button' className='btn' onClick={() => onNavigate('rn:shift')}>
           Net Index
         </button>
         <button type='button' className='btn' onClick={() => onNavigate('rn:search')}>
           Search
         </button>
-        <button type='button' className='btn' onClick={() => onNavigate('rn:discover')}>
-          Discovery Log
-        </button>
       </div>
     </>
   );
 }
 
-function NodeShell({
-  layout,
-  page,
-  url,
-  onNavigate,
-  chapterAttr,
-}: {
+function NodeShell({ layout, page, url, onNavigate, chapterAttr }: {
   layout: NodeLayout;
   page: NodePage;
   url: NodeNetUrl;
   onNavigate: (url: NetUrl) => void;
   chapterAttr: Record<string, string>;
 }) {
-  const core = <NodeCore page={page} url={url} onNavigate={onNavigate} />;
-
-  if (layout === 'drift') {
-    return (
-      <div className='site site-node' {...chapterAttr} data-drift='true' data-layout='drift'>
-        <div className='node-drift-wrap'>
-          <span className='node-drift-badge'>FIXED DRIFT SHELF</span>
-          {core}
-        </div>
-      </div>
-    );
-  }
-
-  const wrap = (className: string, extra?: ReactNode) => (
-    <div className={className}>
-      {extra}
-      {core}
-    </div>
-  );
+  const who = page.author ?? 'unknown';
+  const when = page.updated ?? '';
+  const tail = <Tail page={page} url={url} onNavigate={onNavigate} />;
+  const quote = page.quote ? <blockquote className='node-quote'>{page.quote}</blockquote> : null;
 
   let inner: ReactNode;
+
   switch (layout) {
     case 'fax':
-      inner = wrap('node-fax-page');
-      break;
-    case 'bbs':
-      inner = wrap('node-bbs-screen', <div className='node-bbs-bar'>RHINONET BBS · READ ONLY</div>);
-      break;
-    case 'telegram':
-      inner = wrap('node-telegram-slip');
-      break;
-    case 'receipt':
-      inner = wrap('node-receipt-slip', <div className='node-receipt-store'>RHINONET ROUTE CO.</div>);
-      break;
-    case 'report':
       inner = (
-        <>
-          <div className='node-report-head'>Field report · {page.tag}</div>
-          <div className='node-report-body'>{core}</div>
-        </>
+        <div className='node-fax-page'>
+          <div className='node-fax-rule' aria-hidden />
+          <dl className='node-fax-head'>
+            <div><dt>FROM</dt><dd>{who}</dd></div>
+            <div><dt>DATE</dt><dd>{when}</dd></div>
+            <div><dt>RE</dt><dd>{page.title}</dd></div>
+          </dl>
+          <Prose page={page} />
+          <Bullets page={page} />
+          {quote}
+          {tail}
+        </div>
       );
       break;
-    case 'broadsheet':
-      inner = wrap('node-broadsheet', <div className='node-broadsheet-mast'>RHINONET DISPATCH</div>);
-      break;
-    case 'warrant':
-      inner = wrap('node-warrant', <div className='node-warrant-seal'>ROUTING WARRANT</div>);
-      break;
-    case 'label':
-      inner = wrap('node-label', <div className='node-label-barcode'>||||| |||| |||||</div>);
-      break;
-    case 'ticket':
-      inner = wrap('node-ticket', <div className='node-ticket-stub'>ADMIT ONE · ROUTE</div>);
-      break;
+
     case 'manifest':
-      inner = wrap('node-manifest', <div className='node-manifest-header'>CARGO MANIFEST</div>);
+      inner = (
+        <div className='node-manifest'>
+          <div className='node-manifest-header'>
+            <strong>{page.title}</strong>
+            <span>{when}</span>
+          </div>
+          <Prose page={page} />
+          <ManifestTable page={page} />
+          {quote}
+          {tail}
+        </div>
+      );
       break;
+
+    case 'bbs':
+      inner = (
+        <div className='node-bbs-screen'>
+          <div className='node-bbs-bar'>
+            <span>Msg from {who}</span>
+            <span>{when}</span>
+          </div>
+          <h1 className='node-bbs-subject'>{page.title}</h1>
+          <Prose page={page} />
+          <Bullets page={page} />
+          {quote}
+          {tail}
+        </div>
+      );
+      break;
+
+    case 'telegram':
+      /* caps and STOP live in the copy itself, the form just stops fighting it */
+      inner = (
+        <div className='node-telegram-slip'>
+          <div className='node-telegram-head'>
+            <span>RHINONET TELEGRAM</span>
+            <span>{when}</span>
+          </div>
+          <h1>{page.title}</h1>
+          <Prose page={page} />
+          <Bullets page={page} />
+          {tail}
+        </div>
+      );
+      break;
+
     case 'blotter':
-      inner = wrap('node-blotter', <div className='node-blotter-header'>DESK BLOTTER</div>);
+      inner = (
+        <div className='node-blotter'>
+          <div className='node-blotter-header'>
+            <strong>{page.title}</strong>
+            <span>{who} · {when}</span>
+          </div>
+          <Prose page={page} />
+          <Bullets page={page} />
+          {quote}
+          {tail}
+        </div>
+      );
       break;
+
+    case 'report':
+      inner = (
+        <div className='node-report'>
+          <div className='node-report-head'>{page.tag}</div>
+          <div className='node-report-body'>
+            <h1>{page.title}</h1>
+            <Byline page={page} />
+            <Prose page={page} />
+            <Bullets page={page} />
+            {quote}
+            {tail}
+          </div>
+        </div>
+      );
+      break;
+
+    case 'broadsheet':
+      inner = (
+        <div className='node-broadsheet'>
+          <div className='node-broadsheet-mast'>{page.title}</div>
+          <Byline page={page} />
+          <Prose page={page} />
+          <Bullets page={page} />
+          {quote}
+          {tail}
+        </div>
+      );
+      break;
+
+    case 'warrant':
+      inner = (
+        <div className='node-warrant'>
+          <div className='node-warrant-seal'>RESTRICTED</div>
+          <h1>{page.title}</h1>
+          <Byline page={page} />
+          <Prose page={page} />
+          {quote}
+          <Bullets page={page} />
+          {tail}
+        </div>
+      );
+      break;
+
+    case 'ticket':
+      inner = (
+        <div className='node-ticket'>
+          <div className='node-ticket-stub'>{page.tag}</div>
+          <h1>{page.title}</h1>
+          <Byline page={page} />
+          <Prose page={page} />
+          <Bullets page={page} />
+          {tail}
+        </div>
+      );
+      break;
+
+    case 'receipt':
+      inner = (
+        <div className='node-receipt-slip'>
+          <div className='node-receipt-store'>{page.title}</div>
+          <Prose page={page} />
+          <Bullets page={page} />
+          {tail}
+        </div>
+      );
+      break;
+
+    case 'label':
+      inner = (
+        <div className='node-label'>
+          <div className='node-label-barcode' aria-hidden>||||| |||| ||| ||||| ||</div>
+          <h1>{page.title}</h1>
+          <Byline page={page} />
+          <Prose page={page} />
+          <Bullets page={page} />
+          {quote}
+          {tail}
+        </div>
+      );
+      break;
+
+    case 'drift':
+      inner = (
+        <div className='node-drift-wrap'>
+          <h1>{page.title}</h1>
+          <Byline page={page} />
+          <Prose page={page} />
+          <Bullets page={page} />
+          {tail}
+        </div>
+      );
+      break;
+
     case 'card':
     default:
-      inner = wrap('node-sheet');
+      inner = (
+        <div className='node-sheet'>
+          <span className='node-tag-pill'>{page.tag}</span>
+          <h1>{page.title}</h1>
+          <Byline page={page} />
+          <Prose page={page} />
+          {quote}
+          <Bullets page={page} />
+          {tail}
+        </div>
+      );
       break;
   }
 
@@ -158,10 +318,10 @@ export function SiteNode({ url, onNavigate }: Props) {
 
   if (!page) {
     return (
-      <div className='site site-node' data-drift='true'>
+      <div className='site site-node' data-layout='drift'>
         <div className='node-drift-wrap'>
-          <h1>Unknown node</h1>
-          <p className='lead'>This route is not in the net index.</p>
+          <h1>Not Found</h1>
+          <p className='lead'>The requested address was not found on this server.</p>
           <button type='button' className='btn' onClick={() => onNavigate('rn:shift')}>
             Net Index
           </button>
