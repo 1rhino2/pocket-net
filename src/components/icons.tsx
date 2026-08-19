@@ -123,3 +123,31 @@ export function IconGauge({ size = 20, className, ...rest }: IconProps) {
     </svg>
   );
 }
+
+export function IconFolder({ size = 22, className, ...rest }: IconProps) {
+  return (
+    <svg {...baseProps(size)} className={className} {...rest}>
+      <path d="M3 7a1 1 0 0 1 1-1h5l2 2h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function IconChatDots({ size = 22, className, ...rest }: IconProps) {
+  return (
+    <svg {...baseProps(size)} className={className} {...rest}>
+      <path d="M4 6a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 3v-3H5a1 1 0 0 1-1-1z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      <circle cx="9" cy="10.5" r="1" fill="currentColor" />
+      <circle cx="12" cy="10.5" r="1" fill="currentColor" />
+      <circle cx="15" cy="10.5" r="1" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function IconBrush({ size = 22, className, ...rest }: IconProps) {
+  return (
+    <svg {...baseProps(size)} className={className} {...rest}>
+      <path d="M14 4l6 6-7 7-4 1 1-4z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M4 20c1-3 3-4 5-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}

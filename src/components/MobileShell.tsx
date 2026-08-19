@@ -20,13 +20,28 @@ import {
   IconKeyboard,
   IconScreen,
   IconSearch,
+  IconFolder,
+  IconChatDots,
+  IconBrush,
 } from './icons';
 import { NotepadView } from './NotepadView';
 import { RadioDock } from './RadioDock';
 import { TerminalView } from './TerminalView';
+import { GamesView } from './apps/GamesView';
+import { MessengerView } from './apps/MessengerView';
+import { FilesView } from './apps/FilesView';
+import { PaintView } from './apps/PaintView';
 import type { DesktopWindow, NetUrl, WindowId } from '../types';
 
-export type MobileRoute = 'home' | 'browser' | 'notepad' | 'terminal';
+export type MobileRoute =
+  | 'home'
+  | 'browser'
+  | 'notepad'
+  | 'terminal'
+  | 'games'
+  | 'messenger'
+  | 'files'
+  | 'paint';
 
 type Props = {
   snapshot: GameSnapshot;
@@ -70,6 +85,12 @@ function MobileGlyph({ icon, size }: { icon: MobileIcon; size: number }) {
       return <IconGauge size={size} className={cls} />;
     case 'keyboard':
       return <IconKeyboard size={size} className={cls} />;
+    case 'folder':
+      return <IconFolder size={size} className={cls} />;
+    case 'chat':
+      return <IconChatDots size={size} className={cls} />;
+    case 'brush':
+      return <IconBrush size={size} className={cls} />;
     default:
       return <IconGlobe size={size} className={cls} />;
   }
@@ -140,9 +161,7 @@ export function MobileShell({
     }
     if (launch.kind === 'window') {
       openWindow(launch.id);
-      if (launch.id === 'browser') setRoute('browser');
-      if (launch.id === 'notepad') setRoute('notepad');
-      if (launch.id === 'terminal') setRoute('terminal');
+      setRoute(launch.id);
       return;
     }
     openWindow('browser', launch.url);
@@ -160,14 +179,20 @@ export function MobileShell({
     setRoute('home');
   }
 
+  const APP_TITLES: Record<Exclude<MobileRoute, 'home' | 'browser'>, string> = {
+    notepad: 'Notepad',
+    terminal: 'Terminal',
+    games: 'Games',
+    messenger: 'PocketPager',
+    files: 'My Computer',
+    paint: 'PixelPaint',
+  };
   const appBarTitle =
     route === 'browser'
       ? browserScreenTitle(url)
-      : route === 'notepad'
-        ? 'Notepad'
-        : route === 'terminal'
-          ? 'Terminal'
-          : '';
+      : route === 'home'
+        ? ''
+        : APP_TITLES[route];
 
   function renderAppTile(app: MobileAppDef, variant: 'home' | 'sheet') {
     const warn = app.tone === 'warn';
@@ -345,6 +370,10 @@ export function MobileShell({
             ) : null}
             {route === 'notepad' ? <NotepadView /> : null}
             {route === 'terminal' ? <TerminalView onOpenBrowser={(u) => runLaunch({ kind: 'browser', url: u })} /> : null}
+            {route === 'games' ? <GamesView /> : null}
+            {route === 'messenger' ? <MessengerView onOpenBrowser={(u) => runLaunch({ kind: 'browser', url: u })} /> : null}
+            {route === 'files' ? <FilesView onOpenBrowser={(u) => runLaunch({ kind: 'browser', url: u })} /> : null}
+            {route === 'paint' ? <PaintView /> : null}
           </div>
           <div className="mobile-os-footer mobile-os-footer-stage">
             <div className="mobile-os-player-slot">

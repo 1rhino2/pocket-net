@@ -36,7 +36,14 @@ export type NodeNetUrl = `rn:n-${string}`;
 
 export type NetUrl = StaticNetUrl | NodeNetUrl | HourNetUrl | ChronicleNetUrl;
 
-export type WindowId = 'browser' | 'notepad' | 'terminal';
+export type WindowId =
+  | 'browser'
+  | 'notepad'
+  | 'terminal'
+  | 'games'
+  | 'messenger'
+  | 'files'
+  | 'paint';
 
 export type DesktopWindow = {
   id: WindowId;

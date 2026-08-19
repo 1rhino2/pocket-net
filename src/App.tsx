@@ -2,12 +2,16 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { browserTitle } from './browserTitle';
 import { BootScreen } from './components/BootScreen';
 import { BrowserShell } from './components/BrowserShell';
-import { IconDoc, IconFlask, IconGlobe, IconScreen } from './components/icons';
+import { IconDoc, IconFlask, IconGlobe, IconScreen, IconJoystick, IconChatDots, IconFolder, IconBrush } from './components/icons';
 import { HandsetDevFrame } from './components/HandsetDevFrame';
 import { MobileShell, type MobileRoute } from './components/MobileShell';
 import { NotepadView } from './components/NotepadView';
 import { StartMenu } from './components/StartMenu';
 import { TerminalView } from './components/TerminalView';
+import { GamesView } from './components/apps/GamesView';
+import { MessengerView } from './components/apps/MessengerView';
+import { FilesView } from './components/apps/FilesView';
+import { PaintView } from './components/apps/PaintView';
 import { VirusModal } from './components/VirusModal';
 import { RadioDock } from './components/RadioDock';
 import { WindowFrame } from './components/WindowFrame';
@@ -55,7 +59,15 @@ function clampPos(x: number, y: number, w: number, h: number) {
   };
 }
 
-function windowSizeFor(kind: 'browser' | 'notepad' | 'terminal'): { w: number; h: number } {
+// desktop default size for the simple app windows (games, messenger, etc)
+const APP_WINDOW_SIZE: Record<'games' | 'messenger' | 'files' | 'paint', { w: number; h: number }> = {
+  games: { w: 620, h: 560 },
+  messenger: { w: 460, h: 560 },
+  files: { w: 660, h: 500 },
+  paint: { w: 700, h: 560 },
+};
+
+function windowSizeFor(kind: WindowId): { w: number; h: number } {
   const vw = window.innerWidth;
   const vh = window.innerHeight;
   const narrow = vw <= MOBILE_MAX_W;
@@ -88,6 +100,19 @@ function windowSizeFor(kind: 'browser' | 'notepad' | 'terminal'): { w: number; h
         return { w, h };
       }
       return { w: 680, h: 480 };
+    default: {
+      // games, messenger, files, paint: fill the screen when narrow, fixed size otherwise
+      if (narrow) {
+        const w = Math.min(usableW, vw - 8);
+        const h = Math.min(Math.max(300, Math.floor(usableH * 0.94)), usableH);
+        return { w, h };
+      }
+      const size = APP_WINDOW_SIZE[kind as keyof typeof APP_WINDOW_SIZE];
+      return {
+        w: Math.min(size.w, Math.floor(vw * 0.94)),
+        h: Math.min(size.h, Math.floor(vh * 0.82)),
+      };
+    }
   }
 }
 
@@ -188,9 +213,7 @@ export function App() {
       const vh = window.innerHeight;
       setWindows((ws) =>
         ws.map((w) => {
-          const kind: 'browser' | 'notepad' | 'terminal' =
-            w.id === 'browser' ? 'browser' : w.id === 'notepad' ? 'notepad' : 'terminal';
-          const cap = windowSizeFor(kind);
+          const cap = windowSizeFor(w.id);
           const nw = Math.max(260, Math.min(cap.w, vw - chrome.pad * 2));
           const nh = Math.max(160, Math.min(cap.h, vh - chrome.menubar - chrome.dock - chrome.pad));
           const c = clampPos(w.x, w.y, nw, nh);
@@ -261,35 +284,26 @@ export function App() {
         ];
       }
 
-      if (kind === 'notepad') {
-        const { w: nw, h: nh } = windowSizeFor('notepad');
-        const c = initialOpenPos(nw, nh);
-        return [
-          ...ws,
-          {
-            id: 'notepad',
-            title: 'Notepad',
-            x: c.x,
-            y: c.y,
-            w: nw,
-            h: nh,
-            minimized: false,
-            z: mx + 1,
-          },
-        ];
-      }
-
-      const { w: tw, h: th } = windowSizeFor('terminal');
-      const c = initialOpenPos(tw, th);
+      // every non-browser window opens the same way, just a different title
+      const titleMap: Record<Exclude<WindowId, 'browser'>, string> = {
+        notepad: 'Notepad',
+        terminal: 'Terminal',
+        games: 'Games',
+        messenger: 'PocketPager',
+        files: 'My Computer',
+        paint: 'PixelPaint',
+      };
+      const { w: aw, h: ah } = windowSizeFor(kind);
+      const c = initialOpenPos(aw, ah);
       return [
         ...ws,
         {
-          id: 'terminal',
-          title: 'Terminal',
+          id: kind,
+          title: titleMap[kind as Exclude<WindowId, 'browser'>],
           x: c.x,
           y: c.y,
-          w: tw,
-          h: th,
+          w: aw,
+          h: ah,
           minimized: false,
           z: mx + 1,
         },
@@ -398,6 +412,34 @@ export function App() {
               <div className="d-icon-label">Terminal</div>
             </button>
 
+            <button type="button" className="d-icon" onClick={() => openWindow('games')}>
+              <div className="d-icon-tile" aria-hidden>
+                <IconJoystick size={24} className="icon-svg" />
+              </div>
+              <div className="d-icon-label">Games</div>
+            </button>
+
+            <button type="button" className="d-icon" onClick={() => openWindow('messenger')}>
+              <div className="d-icon-tile" aria-hidden>
+                <IconChatDots size={24} className="icon-svg" />
+              </div>
+              <div className="d-icon-label">PocketPager</div>
+            </button>
+
+            <button type="button" className="d-icon" onClick={() => openWindow('files')}>
+              <div className="d-icon-tile" aria-hidden>
+                <IconFolder size={24} className="icon-svg" />
+              </div>
+              <div className="d-icon-label">My Computer</div>
+            </button>
+
+            <button type="button" className="d-icon" onClick={() => openWindow('paint')}>
+              <div className="d-icon-tile" aria-hidden>
+                <IconBrush size={24} className="icon-svg" />
+              </div>
+              <div className="d-icon-label">PixelPaint</div>
+            </button>
+
             <button type="button" className="d-icon" onClick={() => setVirusOpen(true)}>
               <div className="d-icon-tile" aria-hidden>
                 <IconFlask size={24} className="icon-svg" />
@@ -437,29 +479,22 @@ export function App() {
               );
             }
 
-            if (w.id === 'notepad') {
-              return (
-                <WindowFrame
-                  key={w.id}
-                  title={w.title}
-                  x={w.x}
-                  y={w.y}
-                  w={w.w}
-                  h={w.h}
-                  z={w.z}
-                  minimized={w.minimized}
-                  onMove={(x, y) => {
-                    const c = clampPos(x, y, w.w, w.h);
-                    patchWindow(w.id, { x: c.x, y: c.y });
-                  }}
-                  onFocus={() => focusWindow(w.id)}
-                  onMinimize={() => patchWindow(w.id, { minimized: true })}
-                  onClose={() => closeWindow(w.id)}
-                >
-                  <NotepadView />
-                </WindowFrame>
+            // every other window shares the frame, content chosen by id
+            const openBrowser = (u: NetUrl) => openWindow('browser', u);
+            const content =
+              w.id === 'notepad' ? (
+                <NotepadView />
+              ) : w.id === 'games' ? (
+                <GamesView />
+              ) : w.id === 'messenger' ? (
+                <MessengerView onOpenBrowser={openBrowser} />
+              ) : w.id === 'files' ? (
+                <FilesView onOpenBrowser={openBrowser} />
+              ) : w.id === 'paint' ? (
+                <PaintView />
+              ) : (
+                <TerminalView onOpenBrowser={openBrowser} />
               );
-            }
 
             return (
               <WindowFrame
@@ -479,11 +514,7 @@ export function App() {
                 onMinimize={() => patchWindow(w.id, { minimized: true })}
                 onClose={() => closeWindow(w.id)}
               >
-                <TerminalView
-                  onOpenBrowser={(u) => {
-                    openWindow('browser', u);
-                  }}
-                />
+                {content}
               </WindowFrame>
             );
           })}
@@ -493,8 +524,7 @@ export function App() {
             onClose={() => setStartOpen(false)}
             onOpen={(kind, url) => {
               if (kind === 'browser') openWindow('browser', url);
-              if (kind === 'notepad') openWindow('notepad');
-              if (kind === 'terminal') openWindow('terminal');
+              else openWindow(kind);
             }}
           />
 
