@@ -6,10 +6,16 @@ import { hourKey } from '../../lib/seed';
 
 type Post = { id: string; user: string; title: string; body: string; when: string };
 
+/*
+ * These three are the board as it stands when you arrive. They used to be a
+ * router joke, a tabs-versus-spaces bit, and a post from cache_me_outside,
+ * which is a 2017 meme handle sitting in a net set in 1999. Rewritten in the
+ * voices the rest of the net uses.
+ */
 const SEED: Post[] = [
-  { id: 'p1', user: 'modem_mary', title: 'Is soup a beverage?', body: 'I need this settled before dinner. My router agrees with me but it is biased.', when: '1999-12-31' },
-  { id: 'p2', user: 'cache_me_outside', title: 'Tabs vs spaces vs emotional damage', body: 'I use spaces but only because my IDE bullied me. Seeking support group.', when: '2000-01-03' },
-  { id: 'p3', user: 'localhost_legend', title: 'RhinoNet feels small?', body: 'That is the point. Big internet is loud. This one fits in a backpack.', when: '2000-01-07' },
+  { id: 'p1', user: 'modem_mary', title: 'the console line is answered all night', body: 'New subscribers keep being told there is nobody on overnight. There is. Let it ring past six, I am in the room with the loud equipment.', when: '1999-12-31' },
+  { id: 'p2', user: 'soup_judge', title: 'is soup a beverage', body: 'raised at the diner on friday and it got heated in a way i did not predict. my position is that it depends entirely on whether you are holding a spoon.', when: '2000-01-03' },
+  { id: 'p3', user: 'localhost_legend', title: 'this net is small and thats GOOD', body: 'my cousin has the big internet at his house and its just adverts and pages that want you to sign up for stuff. here i know who everyone is. i think thats better?? maybe im wrong', when: '2000-01-07' },
 ];
 
 function loadPosts(): Post[] {
