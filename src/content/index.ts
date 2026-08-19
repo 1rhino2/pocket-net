@@ -8,6 +8,8 @@ import { SOUP_PAGES } from './pages/soupJudge';
 import { LEGEND_PAGES } from './pages/legend';
 import { AURORA_PAGES } from './pages/aurora';
 import { MONK_PAGES } from './pages/lintMonk';
+import { TEXTURE_PAGES } from './pages/netTexture';
+import { ANGEL_PAGES } from './pages/angel';
 
 /**
  * Every page on the permanent net, in one list, all of it typed by hand.
@@ -23,6 +25,8 @@ export const AUTHORED_PAGES: AuthoredPage[] = [
   ...LEGEND_PAGES,
   ...AURORA_PAGES,
   ...MONK_PAGES,
+  ...TEXTURE_PAGES,
+  ...ANGEL_PAGES,
   ...DRIFT_AUTHORED,
 ];
 

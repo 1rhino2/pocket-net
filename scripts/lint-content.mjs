@@ -42,6 +42,8 @@ const BOILERPLATE = new Set([
   'page 2 of 2',
   'this transmission is confirmed complete',
   'no response is requested',
+  // this really was on everybody's page, varying it would be the lie
+  'best viewed at 800x600',
 ]);
 
 const problems = [];
