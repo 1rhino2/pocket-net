@@ -36,8 +36,14 @@ export type AuthoredPage = {
   bullets?: string[];
   footnote?: string;
   related?: { label: string; url: NetUrl }[];
-  /** marks a page as carrying a Hollow Night clue, used by the payoff check */
+  /** marks a page as carrying a clue, used by the payoff check */
   clue?: string;
+  /**
+   * which mystery a clue belongs to. left off = the original Hollow Night arc,
+   * so old pages keep working. a clue page has to name its arc or its progress
+   * lands in the wrong quest count.
+   */
+  arc?: 'hollow' | 'signal';
   /** drift pages are the odd corners: dead ends, stubs, one broken page */
   drift?: boolean;
   /**
@@ -52,6 +58,10 @@ export type AuthoredPage = {
     nudge: string;
     reward: number;
     discoveryId: string;
+    /** badge to grant on open. defaults to the Hollow Night one if left off */
+    achievement?: { id: string; title: string };
+    /** the toast shown on a fresh solve, defaults to the archive line */
+    revealToast?: string;
   };
   /** what the page says once it is open */
   unlocked?: {

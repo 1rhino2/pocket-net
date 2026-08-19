@@ -21,6 +21,8 @@ export type NodeLock = {
   nudge: string;
   reward: number;
   discoveryId: string;
+  achievement?: { id: string; title: string };
+  revealToast?: string;
 };
 
 export type NodeUnlocked = {

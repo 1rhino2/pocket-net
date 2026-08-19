@@ -41,8 +41,10 @@ function VaultLock({ page }: { page: NonNullable<ReturnType<typeof microNodePage
     const isNew = recordDiscovery(lock.discoveryId);
     if (isNew) {
       addCredits(lock.reward);
-      unlockAchievement('hollow_night', 'The Hollow Night');
-      setToast(`Archive recovery open. +${lock.reward} RC`, 4200);
+      const badge = lock.achievement ?? { id: 'hollow_night', title: 'The Hollow Night' };
+      unlockAchievement(badge.id, badge.title);
+      const line = lock.revealToast ?? 'Archive recovery open';
+      setToast(`${line}. +${lock.reward} RC`, 4200);
     }
   }
 
