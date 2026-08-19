@@ -40,4 +40,23 @@ export type AuthoredPage = {
   clue?: string;
   /** drift pages are the odd corners: dead ends, stubs, one broken page */
   drift?: boolean;
+  /**
+   * A page that asks for a passphrase. The answer has to be derivable from
+   * pages the player can actually read, never from a hint on the lock itself.
+   */
+  lock?: {
+    question: string;
+    /** compared lowercased and trimmed, punctuation stripped */
+    answer: string;
+    /** shown only after a wrong attempt, and it points at a page, not the word */
+    nudge: string;
+    reward: number;
+    discoveryId: string;
+  };
+  /** what the page says once it is open */
+  unlocked?: {
+    paragraphs: string[];
+    quote?: string;
+    footnote?: string;
+  };
 };

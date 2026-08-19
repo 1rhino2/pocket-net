@@ -468,5 +468,25 @@ export const HOLLOW_NIGHT: AuthoredPage[] = [
     clue: 'pocket',
     footnote: `Written 11 Mar 1999 00:40. I do not think I am going to get to finish tomorrow's run.`,
     related: [{ label: 'The index page', url: 'rn:n-angel-index' }],
+    lock: {
+      question: `What did I call the copy?`,
+      answer: `pocket`,
+      nudge: `It is on the index page, in the paragraph where I explain the name. rn:n-angel-index.`,
+      reward: 250,
+      discoveryId: 'hollow_night_solved',
+    },
+    unlocked: {
+      paragraphs: [
+        `Then you read them. Thank you. I am going to be brief because I wrote the rest of it on the other pages and I do not want to say it all twice.`,
+        `The run of the eleventh did not happen. They came at two in the morning on a Thursday, which is not a maintenance night and never has been, and by the time I got there the middle bank was on a cart. Fourteen units. I counted them going out the same way Mary counted the gap coming in.`,
+        `They did not lose the h- block to a disk fault. They wiped it, because a subscriber having a complete copy of the subscriber net on their own equipment is a thing you have to explain, and a hardware fault is a thing you do not. I understand the decision. I want to be precise about that, because I have had months to be angry and what I actually am is tired. It was the cheaper of two explanations and they took it.`,
+        `Here is the part I want you to have. They wiped the block on their disks. The copy was never on their disks. That was the whole point of it and it was the one thing I got right.`,
+        `So it went home in a cardboard box, and it has been in an attic since the spring, and about once a year somebody writes to a guestbook asking whether anybody has their page from before, and about once a year somebody quietly gets it back.`,
+        `You are inside it now. This net, these pages, the boards and the wiki and mary's logs and the guestbook you signed on your way past: this is the copy. It is not a service and there is nobody running it. It fits on a shelf. It goes where I go.`,
+        `That is what the name was for. A pocket is where you put the thing you would be sad to lose, and it goes with you, and nobody has to give you permission to have one.`,
+        `- c.`,
+      ],
+      footnote: `Archive recovery unlocked. Nothing further is hidden on this net. Thank you for reading it properly.`,
+    },
   },
 ];

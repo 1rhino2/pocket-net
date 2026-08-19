@@ -15,6 +15,20 @@ export type NodeLayout =
   | 'blotter'
   | 'drift';
 
+export type NodeLock = {
+  question: string;
+  answer: string;
+  nudge: string;
+  reward: number;
+  discoveryId: string;
+};
+
+export type NodeUnlocked = {
+  paragraphs: string[];
+  quote?: string;
+  footnote?: string;
+};
+
 export type HandbuiltNodePage = {
   title: string;
   tag: string;
@@ -23,6 +37,8 @@ export type HandbuiltNodePage = {
   author?: string;
   /** last-updated stamp as shown on the page */
   updated?: string;
+  lock?: NodeLock;
+  unlocked?: NodeUnlocked;
   paragraphs: string[];
   chapter?: number;
   isDrift?: boolean;
@@ -39,6 +55,8 @@ export type HandbuiltNodeMeta = {
   tag: string;
   author?: string;
   updated?: string;
+  lock?: NodeLock;
+  unlocked?: NodeUnlocked;
   teaser: string;
   searchQuery: string;
   chapter: number;
