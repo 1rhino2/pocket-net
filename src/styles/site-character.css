@@ -117,7 +117,7 @@
 
 .arcade-btn {
   border: 3px outset #ff80a0;
-  background: #ff4080;
+  background: #c2005a;
   color: #fff;
   font-family: Impact, sans-serif;
   font-size: 1rem;
@@ -137,7 +137,7 @@
 }
 
 .arcade-btn-start {
-  background: #40c040;
+  background: #1f7a1f;
   border-color: #80ff80;
 }
 
