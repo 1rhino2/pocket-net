@@ -16,6 +16,8 @@ import { SWAP_PAGES } from './pages/swapMeet';
 import { ANNALS_PAGES } from './pages/townAnnals';
 import { AERO_PAGES } from './pages/aeroProphet';
 import { SIGNAL_PAGES } from './pages/theSignal';
+import { DRIFT_EXTRA } from './pages/driftExtra';
+import { EXTRA_PAGES } from './pages/threadExtras';
 
 /**
  * Every page on the permanent net, in one list, all of it typed by hand.
@@ -40,6 +42,8 @@ export const AUTHORED_PAGES: AuthoredPage[] = [
   ...AERO_PAGES,
   ...SIGNAL_PAGES,
   ...DRIFT_AUTHORED,
+  ...DRIFT_EXTRA,
+  ...EXTRA_PAGES,
 ];
 
 export { CAST };
