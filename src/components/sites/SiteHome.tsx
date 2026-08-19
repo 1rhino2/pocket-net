@@ -2,7 +2,7 @@ import { useMemo, useState, type FormEvent } from 'react';
 import { CHRONICLE_HOURS } from '../../data/chronicle24';
 import { pulseEvents } from '../../data/contentEngine';
 import { NET_SITES, type NetSiteEntry } from '../../data/netSites';
-import { dailyRumors } from '../../data/procedural';
+import { dailyRumors } from '../../data/dailyWire';
 import { useGame } from '../../game/GameContext';
 import { readRecent, setPendingSearch } from '../../lib/browserNav';
 import { formatPlayMs, pickMany, playHour, playHourBucket, seededRng, todayKey } from '../../lib/seed';

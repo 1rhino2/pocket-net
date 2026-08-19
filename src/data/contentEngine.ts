@@ -1,7 +1,7 @@
 import type { MailMessage } from './mailMessages';
 import type { SearchDoc } from './searchIndex';
-import { dailyMail, dailyWikiFragments } from './procedural';
-import { dailySearchDocs } from './procedural';
+import { dailyMail, dailyWikiFragments } from './dailyWire';
+import { dailySearchDocs } from './dailyWire';
 import { SEARCH_DOCS } from './searchIndex';
 import { chronicleMailActive, chronicleSearchDocs, chronicleWikiActive, getHourChapter } from './chronicle24';
 import {
