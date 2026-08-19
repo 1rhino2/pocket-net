@@ -27,7 +27,7 @@ export const NET_SITES: NetSiteEntry[] = [
   { url: 'rn:readme', title: 'Readme', desc: 'Build notes and changelog.', tag: 'meta', category: 'meta' },
   { url: 'rn:discover', title: 'Discovery Log', desc: 'Journal of sites, secrets, stamps, and signals.', tag: 'journal', category: 'meta' },
   { url: 'rn:archive', title: 'Packet Archive', desc: 'Weekly transmissions and drifting lore.', tag: 'lore', category: 'meta' },
-  { url: 'rn:shift', title: 'Net Index', desc: '536 hand-filed routes: 480 permanent threads plus 56 drift shelves.', tag: 'index', category: 'meta' },
+  { url: 'rn:shift', title: 'Net Index', desc: 'Card catalog of the net. Every page on it was written by a person.', tag: 'index', category: 'meta' },
   { url: 'rn:chronicle', title: 'Explore', desc: 'Named story threads, mail, wiki, and search - wander in any order.', tag: 'explore', category: 'meta' },
 ];
 

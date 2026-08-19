@@ -1,0 +1,581 @@
+/*
+ * documents.css - the rn: pages, as actual documents.
+ *
+ * The joke of the early web is that nobody agreed on anything, so a fax, a BBS
+ * post and a personal homepage looked nothing like each other. The old build
+ * threw that away: every layout was the same dark card with a different label
+ * glued on top.
+ *
+ * One rule per form here, and each one is allowed to be ugly in its own
+ * period-correct way. The BBS really is black with amber text, because that is
+ * what a terminal looked like. Nothing else is.
+ */
+
+.site-node {
+  background: transparent;
+  padding: 0;
+}
+
+.site-node h1 {
+  font-family: var(--font-doc);
+  font-size: 26px;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 1.2;
+  margin: 0 0 6px;
+  text-transform: none;
+}
+
+.node-prose p {
+  margin: 0 0 12px;
+}
+
+.node-byline {
+  color: #333;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  margin: 0 0 14px;
+}
+
+.node-byline-who {
+  font-weight: bold;
+}
+
+.node-byline-who + .node-byline-when::before {
+  content: ' - ';
+}
+
+.node-url {
+  color: var(--w-gray);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  margin: 18px 0 8px;
+}
+
+.node-footnote {
+  border-top: 1px solid #999;
+  color: #444;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  margin-top: 18px;
+  padding-top: 8px;
+}
+
+.node-quote {
+  border-left: 3px solid #999;
+  color: #222;
+  font-family: var(--font-doc);
+  font-style: italic;
+  margin: 14px 0;
+  padding: 2px 0 2px 12px;
+}
+
+.node-bullets {
+  margin: 0 0 14px;
+  padding-left: 22px;
+}
+
+.node-bullets li {
+  margin-bottom: 4px;
+}
+
+.node-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+/* ------------------------------------------------------------------- card
+   the default personal page. white, Times, blue underlined links. */
+.site-node[data-layout='card'] .node-sheet {
+  background: var(--w-white);
+  border: 0;
+  color: var(--w-black);
+  font-family: var(--font-doc);
+  margin: 0 auto;
+  max-width: 46rem;
+  padding: 22px 26px 26px;
+}
+
+.node-tag-pill {
+  background: var(--w-face);
+  color: var(--w-black);
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+  padding: 1px 6px;
+  text-transform: uppercase;
+  box-shadow:
+    inset 1px 1px 0 var(--w-white),
+    inset -1px -1px 0 var(--w-gray);
+}
+
+/* -------------------------------------------------------------------- fax
+   thermal paper: a scan bar at the top, monospace routing block, the whole
+   sheet sitting a couple of degrees off true because it was fed by a roller */
+.site-node[data-layout='fax'] .node-fax-page {
+  background: #fbfaf5;
+  border: 1px solid #bbb;
+  color: #111;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  margin: 10px auto;
+  max-width: 44rem;
+  padding: 0 26px 24px;
+  position: relative;
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.15);
+}
+
+.node-fax-rule {
+  background: repeating-linear-gradient(
+    90deg,
+    #222 0 3px,
+    #fbfaf5 3px 5px,
+    #666 5px 7px,
+    #fbfaf5 7px 12px
+  );
+  height: 7px;
+  margin: 0 -26px 18px;
+}
+
+.node-fax-head {
+  border-bottom: 2px solid #111;
+  display: grid;
+  gap: 2px;
+  margin: 0 0 16px;
+  padding-bottom: 10px;
+}
+
+.node-fax-head > div {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+}
+
+.node-fax-head dt {
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+
+.node-fax-head dd {
+  margin: 0;
+}
+
+.site-node[data-layout='fax'] h1 {
+  display: none; /* the RE field is the title on a fax */
+}
+
+/* --------------------------------------------------------------- manifest
+   a form. ruled rows, right-aligned figures, nothing decorative. */
+.site-node[data-layout='manifest'] .node-manifest {
+  background: #fdfdf8;
+  border: 1px solid #999;
+  color: #111;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  margin: 10px auto;
+  max-width: 46rem;
+  padding: 0 0 22px;
+}
+
+.node-manifest-header {
+  background: var(--w-face);
+  border-bottom: 1px solid #666;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  padding: 7px 18px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+}
+
+.site-node[data-layout='manifest'] .node-prose,
+.site-node[data-layout='manifest'] .node-footnote,
+.site-node[data-layout='manifest'] .node-url,
+.site-node[data-layout='manifest'] .node-actions,
+.site-node[data-layout='manifest'] .node-quote {
+  margin-left: 18px;
+  margin-right: 18px;
+}
+
+.site-node[data-layout='manifest'] .node-prose {
+  padding-top: 16px;
+}
+
+.node-manifest-table {
+  border-collapse: collapse;
+  margin: 6px 18px 4px;
+  width: calc(100% - 36px);
+}
+
+.node-manifest-table th {
+  border-bottom: 1px solid #ccc;
+  font-weight: normal;
+  padding: 5px 8px 5px 0;
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.node-manifest-table td {
+  border-bottom: 1px solid #ccc;
+  padding: 5px 0;
+  text-align: right;
+  vertical-align: top;
+}
+
+/* -------------------------------------------------------------------- bbs
+   DOS text mode. the one page on this net that is allowed to be dark. */
+.site-node[data-layout='bbs'] .node-bbs-screen {
+  background: #000;
+  border: 2px solid #555;
+  color: #cfcfcf;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.45;
+  margin: 8px auto;
+  max-width: 46rem;
+  padding: 0 0 20px;
+}
+
+.node-bbs-bar {
+  background: #00a8a8;
+  color: #000;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  padding: 3px 12px;
+  font-weight: bold;
+}
+
+.node-bbs-subject {
+  color: #ffff55;
+  font-family: var(--font-mono) !important;
+  font-size: 18px !important;
+  margin: 14px 12px 10px !important;
+}
+
+.site-node[data-layout='bbs'] .node-prose,
+.site-node[data-layout='bbs'] .node-bullets,
+.site-node[data-layout='bbs'] .node-footnote,
+.site-node[data-layout='bbs'] .node-url,
+.site-node[data-layout='bbs'] .node-quote,
+.site-node[data-layout='bbs'] .node-actions {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.site-node[data-layout='bbs'] .node-footnote {
+  border-top: 1px solid #444;
+  color: #00cccc;
+}
+
+.site-node[data-layout='bbs'] .node-quote {
+  border-left: 3px solid #00cccc;
+  color: #55ff55;
+  font-style: normal;
+}
+
+.site-node[data-layout='bbs'] .node-url {
+  color: #777;
+}
+
+/* --------------------------------------------------------------- telegram
+   pasted tape on a form. caps, spaced out, cheap yellow stock. */
+.site-node[data-layout='telegram'] .node-telegram-slip {
+  background: #f7f0d8;
+  border: 1px solid #b3a884;
+  color: #1a1408;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  margin: 10px auto;
+  max-width: 42rem;
+  padding: 0 24px 22px;
+}
+
+.node-telegram-head {
+  border-bottom: 3px double #6a5f3a;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  font-weight: bold;
+  letter-spacing: 0.14em;
+  margin: 0 -24px 16px;
+  padding: 8px 24px;
+}
+
+.site-node[data-layout='telegram'] h1 {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------------- blotter
+   a desk ledger. ruled lines, timestamps hanging into the margin. */
+.site-node[data-layout='blotter'] .node-blotter {
+  background: #fcfbf3;
+  border: 1px solid #b9b3a0;
+  border-left: 3px solid #9a5a4a;
+  color: #16130c;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  margin: 10px auto;
+  max-width: 46rem;
+  padding: 0 0 20px;
+}
+
+.node-blotter-header {
+  border-bottom: 1px solid #b9b3a0;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  padding: 7px 20px;
+}
+
+.site-node[data-layout='blotter'] .node-prose {
+  padding: 14px 20px 0;
+}
+
+/*
+ * Each log line starts with a time. Hanging indent puts the clock in the
+ * margin so the entries line up down the page, which is how a paper log reads
+ * and the whole reason the timestamps are there.
+ */
+.site-node[data-layout='blotter'] .node-prose p {
+  border-bottom: 1px dotted #d8d2bd;
+  margin: 0;
+  padding: 6px 0 6px 4.6rem;
+  text-indent: -4.6rem;
+}
+
+.site-node[data-layout='blotter'] .node-footnote,
+.site-node[data-layout='blotter'] .node-url,
+.site-node[data-layout='blotter'] .node-actions,
+.site-node[data-layout='blotter'] .node-bullets,
+.site-node[data-layout='blotter'] .node-quote {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+/* ----------------------------------------------------------------- report
+   typed and filed. */
+.site-node[data-layout='report'] .node-report {
+  background: var(--w-white);
+  border: 1px solid #aaa;
+  margin: 10px auto;
+  max-width: 46rem;
+}
+
+.node-report-head {
+  background: var(--w-face);
+  border-bottom: 1px solid #888;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  padding: 6px 22px;
+  text-transform: uppercase;
+}
+
+.node-report-body {
+  color: #111;
+  font-family: var(--font-doc);
+  padding: 20px 24px 24px;
+}
+
+/* ------------------------------------------------------------- broadsheet
+   newspaper. big masthead, columns, serif. */
+.site-node[data-layout='broadsheet'] .node-broadsheet {
+  background: #f7f5ee;
+  border: 1px solid #b0aa9a;
+  color: #14120d;
+  font-family: var(--font-doc);
+  margin: 10px auto;
+  max-width: 48rem;
+  padding: 0 26px 24px;
+}
+
+.node-broadsheet-mast {
+  border-bottom: 4px double #14120d;
+  font-family: var(--font-doc);
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin: 0 -26px 4px;
+  padding: 18px 26px 10px;
+  text-align: center;
+}
+
+.site-node[data-layout='broadsheet'] h1 {
+  display: none;
+}
+
+.site-node[data-layout='broadsheet'] .node-byline {
+  border-bottom: 1px solid #b0aa9a;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  text-align: center;
+}
+
+.site-node[data-layout='broadsheet'] .node-prose {
+  column-gap: 26px;
+  column-rule: 1px solid #cfc9b8;
+  columns: 2;
+  text-align: justify;
+}
+
+@media (max-width: 700px) {
+  .site-node[data-layout='broadsheet'] .node-prose {
+    columns: 1;
+  }
+}
+
+/* ---------------------------------------------------------------- warrant
+   restricted. heavy rule, stamp in the corner. */
+.site-node[data-layout='warrant'] .node-warrant {
+  background: #fbf9f2;
+  border: 3px double #5a1e1e;
+  color: #17120f;
+  font-family: var(--font-doc);
+  margin: 12px auto;
+  max-width: 42rem;
+  padding: 22px 26px 24px;
+  position: relative;
+}
+
+.node-warrant-seal {
+  border: 2px solid #5a1010;
+  color: #5a1010;
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.24em;
+  margin-bottom: 14px;
+  padding: 4px 12px;
+  transform: rotate(-3deg);
+}
+
+/* ----------------------------------------------------------------- ticket
+   a stub, perforated down one side. */
+.site-node[data-layout='ticket'] .node-ticket {
+  background: #fdf8ec;
+  border: 1px dashed #9a8f6a;
+  color: #17130a;
+  font-family: var(--font-doc);
+  margin: 12px auto;
+  max-width: 40rem;
+  padding: 18px 24px 22px;
+}
+
+.node-ticket-stub {
+  border-bottom: 1px dashed #9a8f6a;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  margin: 0 -24px 14px;
+  padding: 0 24px 10px;
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------------- receipt
+   narrow till roll. */
+.site-node[data-layout='receipt'] .node-receipt-slip {
+  background: #fffdf7;
+  border: 1px solid #ddd;
+  color: #222;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  margin: 12px auto;
+  max-width: 26rem;
+  padding: 16px 20px 20px;
+}
+
+.node-receipt-store {
+  border-bottom: 1px dashed #999;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* ------------------------------------------------------------------ label
+   shipping label. barcode, boxed. */
+.site-node[data-layout='label'] .node-label {
+  background: var(--w-white);
+  border: 2px solid #111;
+  color: #111;
+  font-family: var(--font-ui);
+  margin: 12px auto;
+  max-width: 40rem;
+  padding: 16px 22px 20px;
+}
+
+.node-label-barcode {
+  font-family: var(--font-mono);
+  font-size: 26px;
+  letter-spacing: -2px;
+  line-height: 1;
+  margin-bottom: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------ drift
+   the odd corners. deliberately plain, sometimes deliberately wrong. */
+.site-node[data-layout='drift'] .node-drift-wrap {
+  background: var(--w-white);
+  border: 1px solid #ccc;
+  color: #111;
+  font-family: var(--font-doc);
+  margin: 10px auto;
+  max-width: 42rem;
+  padding: 20px 24px 22px;
+}
+
+.node-drift-badge {
+  display: none;
+}
+
+/* the lock on the restricted page, and what is behind it */
+.node-vault-lock {
+  border-top: 1px solid #b9a2a2;
+  margin-top: 18px;
+  padding-top: 14px;
+}
+
+.node-vault-lock label {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.node-vault-row {
+  display: flex;
+  gap: 6px;
+}
+
+.node-vault-row .field {
+  flex: 1;
+  max-width: 18rem;
+}
+
+.node-vault-nudge {
+  color: #5a1010;
+  font-family: var(--font-ui);
+  font-size: 11.5px;
+  margin: 8px 0 0;
+}
+
+.node-vault-open p {
+  margin: 0 0 12px;
+}

@@ -2,7 +2,7 @@ import { useMemo, useState, type FormEvent } from 'react';
 import { CHRONICLE_HOURS } from '../../data/chronicle24';
 import { pulseEvents } from '../../data/contentEngine';
 import { NET_SITES, type NetSiteEntry } from '../../data/netSites';
-import { dailyRumors } from '../../data/procedural';
+import { dailyRumors } from '../../data/dailyWire';
 import { useGame } from '../../game/GameContext';
 import { readRecent, setPendingSearch } from '../../lib/browserNav';
 import { formatPlayMs, pickMany, playHour, playHourBucket, seededRng, todayKey } from '../../lib/seed';
@@ -101,27 +101,16 @@ export function SiteHome({ onNavigate }: Props) {
         <span className='portal-status-item'>
           <em>WIRE</em> {formatPlayMs(snapshot.playMs)}
         </span>
-        <span className='portal-status-item'>
-          <em>BUCKET</em> {bucket}
-        </span>
-        <span className='portal-status-item'>
-          <em>RC</em> {snapshot.credits}
-        </span>
+        {/* RC lives in the menubar and bucket is in the operator note. showing
+            either again here was just filling the bar up */}
         <span className='portal-status-item portal-status-grow'>
           <em>FOUND</em> {snapshot.discovered.length} routes
         </span>
       </div>
 
+      {/* there was a second fake window chrome here, dots and all, sitting
+          directly under the real titlebar and repeating what it already said */}
       <header className='portal-hero'>
-        <div className='portal-chrome'>
-          <span className='portal-chrome-dots' aria-hidden>
-            <i />
-            <i />
-            <i />
-          </span>
-          <span className='portal-chrome-title'>RhinoBrowser · New Tab</span>
-        </div>
-
         <div className='portal-hero-body'>
           <div className='portal-brand'>
             <span className='portal-logo' aria-hidden>

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { microNodesForHour } from '../../data/contentEngine';
-import { mapGhostNodes } from '../../data/procedural';
+import { mapGhostNodes } from '../../data/dailyWire';
 import { hourKey, todayKey } from '../../lib/seed';
 import type { NetUrl } from '../../types';
 import { NET_SITES } from '../../data/netSites';

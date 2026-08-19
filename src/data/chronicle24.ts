@@ -184,7 +184,7 @@ function buildChapters(): HourChapterDef[] {
       story: CHRONICLE_STORY_BY_HOUR[h] ?? [
         STORY_LEADS[h]!,
         'This thread is one corner of a very large net. Nothing unlocks later - you can leave and come back whenever.',
-        `Nine notes to pin if you want, plus mail, wiki, search, and twenty permanent routes on the index.`,
+        `Notes to pin if you want, plus mail, wiki, and search. The index lists what is filed under this hour.`,
         `Elsewhere on the net you might search "${nextPhrase}" when curiosity pulls you.`,
       ],
       signals: signalsForHour(h, nodeUrl),

@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { weeklyArchiveEntries } from '../../data/procedural';
+import { weeklyArchiveEntries } from '../../data/dailyWire';
 import { weekKey } from '../../lib/seed';
 import { useGame } from '../../game/GameContext';
 

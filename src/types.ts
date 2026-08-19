@@ -96,7 +96,8 @@ const FULL_URLS = new Set<string>(Object.values(URL_ALIASES));
 export { isHourUrl, type HourNetUrl } from './data/chronicle24';
 
 export function isNodeUrl(url: string): url is NodeNetUrl {
-  return /^rn:n-[a-z0-9]+$/.test(url);
+  // slugs are readable now (rn:n-mary-0314, not rn:n-cf1533b3) so hyphens count
+  return /^rn:n-[a-z0-9-]+$/.test(url);
 }
 
 export function parseUserUrl(raw: string): NetUrl | null {
