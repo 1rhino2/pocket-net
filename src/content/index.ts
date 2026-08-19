@@ -10,6 +10,12 @@ import { AURORA_PAGES } from './pages/aurora';
 import { MONK_PAGES } from './pages/lintMonk';
 import { TEXTURE_PAGES } from './pages/netTexture';
 import { ANGEL_PAGES } from './pages/angel';
+import { HANK_PAGES } from './pages/baroHank';
+import { DAEMON_PAGES } from './pages/diskDaemon';
+import { SWAP_PAGES } from './pages/swapMeet';
+import { ANNALS_PAGES } from './pages/townAnnals';
+import { AERO_PAGES } from './pages/aeroProphet';
+import { SIGNAL_PAGES } from './pages/theSignal';
 
 /**
  * Every page on the permanent net, in one list, all of it typed by hand.
@@ -27,6 +33,12 @@ export const AUTHORED_PAGES: AuthoredPage[] = [
   ...MONK_PAGES,
   ...TEXTURE_PAGES,
   ...ANGEL_PAGES,
+  ...HANK_PAGES,
+  ...DAEMON_PAGES,
+  ...SWAP_PAGES,
+  ...ANNALS_PAGES,
+  ...AERO_PAGES,
+  ...SIGNAL_PAGES,
   ...DRIFT_AUTHORED,
 ];
 
