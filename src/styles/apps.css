@@ -467,3 +467,56 @@
   background: #fff;
 }
 .paint-hint { font-size: 11px; color: #666; margin: 4px 0 0; }
+
+/* ---------- Net Index: contracts drawer ---------- */
+.shift-contract-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.shift-contract-empty { font-size: 13px; opacity: 0.75; padding: 8px; }
+.shift-contract {
+  padding: 8px 10px;
+  background: rgba(0, 0, 0, 0.04);
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.6), inset -1px -1px 0 rgba(0, 0, 0, 0.25);
+}
+.shift-contract.done { opacity: 0.6; }
+.shift-contract-head { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.shift-contract-reward { font-size: 11px; font-weight: bold; color: #006400; white-space: nowrap; }
+.shift-contract-blurb { margin: 2px 0 6px; font-size: 12px; opacity: 0.85; }
+.shift-contract-row { display: flex; align-items: center; gap: 10px; }
+.shift-contract-prog { font-family: monospace; font-size: 12px; }
+.shift-contract-claim {
+  margin-left: auto;
+  padding: 3px 12px;
+  font-size: 11px;
+  cursor: pointer;
+  background: var(--app-face);
+  box-shadow: inset 1px 1px 0 var(--app-light), inset -1px -1px 0 var(--app-dark),
+    inset 2px 2px 0 var(--app-hi), inset -2px -2px 0 var(--app-shadow);
+}
+.shift-contract-claim:disabled { opacity: 0.5; cursor: default; }
+
+/* ---------- Status page: net event banner ---------- */
+.status-event {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 8px 0;
+  padding: 8px 10px;
+  border-left: 4px solid #4a7fb0;
+  background: rgba(74, 127, 176, 0.12);
+}
+.status-event-outage { border-left-color: #c04a2a; background: rgba(192, 74, 42, 0.12); }
+.status-event-holiday { border-left-color: #b08a2a; background: rgba(176, 138, 42, 0.14); }
+.status-event-drama { border-left-color: #4a7fb0; background: rgba(74, 127, 176, 0.12); }
+.status-event-calm { border-left-color: #3a8a3a; background: rgba(58, 138, 58, 0.12); }
+.status-event-tag {
+  font-family: monospace;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 2px 6px;
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.status-event-body strong { display: block; font-size: 13px; }
+.status-event-body p { margin: 2px 0 0; font-size: 12px; opacity: 0.9; }
