@@ -1,0 +1,1224 @@
+/*
+ * os1999.css - the actual art direction.
+ *
+ * What this replaces: everything was green (#3ddc84) on near-black with 8px
+ * rounded corners, which is the default skin of every generated "retro
+ * terminal" project and looks nothing like 1999. A consumer ISP in 1999 was
+ * gray 3D bevels, a teal desktop, web safe colors, Times and Tahoma, blue
+ * underlined links. Hollywood hacker green is a 2010s idea of the past.
+ *
+ * This file is loaded last and owns the OS shell: desktop, menubar, window
+ * frame, taskbar, start menu, browser chrome. It also retires
+ * site-shell-overrides.css and site-color-fixes.css, which were 1049 lines of
+ * patches stacked on a base nobody fixed.
+ *
+ * The bevels are real: two pixels, four shadows, light source top left, which
+ * is how the widgets of the period were actually drawn.
+ */
+
+:root {
+  /* the sixteen colors everybody actually had */
+  --w-face: #c0c0c0;
+  --w-face-lit: #dfdfdf;
+  --w-white: #ffffff;
+  --w-gray: #808080;
+  --w-black: #000000;
+  --w-navy: #000080;
+  --w-teal: #008080;
+  --w-blue: #0000ff;
+  --w-purple: #551a8b;
+  --w-maroon: #800000;
+  --w-olive: #808000;
+  --w-silver: #c0c0c0;
+
+  /* roles */
+  --bg: var(--w-teal);
+  --bg-elev: var(--w-face);
+  --panel: var(--w-face);
+  --panel-2: var(--w-face-lit);
+  --panel-3: var(--w-white);
+  --border: var(--w-gray);
+  --border-strong: var(--w-black);
+  --text: var(--w-black);
+  --muted: #4a4a4a;
+  --muted-2: var(--w-gray);
+  --accent: var(--w-navy);
+  --accent-dim: #000060;
+  --accent-glow: transparent;
+  --amber: var(--w-olive);
+  --danger: var(--w-maroon);
+  --warn: var(--w-olive);
+  --titlebar: var(--w-navy);
+  --shadow: rgba(0, 0, 0, 0.35);
+
+  /* nothing was rounded */
+  --radius-sm: 0;
+  --radius: 0;
+  --radius-lg: 0;
+
+  /* Tahoma is the closest thing to MS Sans Serif that ships everywhere */
+  --font-sans: Tahoma, 'MS Sans Serif', Verdana, Geneva, sans-serif;
+  --font-ui: Tahoma, 'MS Sans Serif', Verdana, Geneva, sans-serif;
+  --font-doc: 'Times New Roman', Times, Georgia, serif;
+  --font-mono: 'Courier New', Courier, monospace;
+
+  --ring: 0 0 0 1px var(--w-black);
+}
+
+/* raised: the standard button and panel edge */
+.bevel-out,
+.menubar,
+.taskbar,
+.window-frame,
+.start-menu,
+.task-start,
+.task-pill,
+.browser-chrome,
+.browser-icon-btn,
+.browser-go,
+.d-icon-tile {
+  box-shadow:
+    inset 1px 1px 0 var(--w-white),
+    inset -1px -1px 0 var(--w-black),
+    inset 2px 2px 0 var(--w-face-lit),
+    inset -2px -2px 0 var(--w-gray);
+}
+
+/* sunken: fields, wells, anything you are meant to read out of */
+.bevel-in,
+.browser-url,
+.browser-content,
+.task-tray,
+.menubar-integrity,
+.browser-statusbar .browser-status-pill,
+.browser-status-url {
+  box-shadow:
+    inset 1px 1px 0 var(--w-gray),
+    inset -1px -1px 0 var(--w-white),
+    inset 2px 2px 0 var(--w-black),
+    inset -2px -2px 0 var(--w-face-lit);
+}
+
+/* ------------------------------------------------------------------ base */
+
+html,
+body {
+  background: var(--w-teal);
+  color: var(--w-black);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  -webkit-font-smoothing: auto;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--font-ui);
+}
+
+a {
+  color: var(--w-blue);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: var(--w-blue);
+}
+
+a:visited {
+  color: var(--w-purple);
+}
+
+:focus-visible {
+  outline: 1px dotted var(--w-black);
+  outline-offset: -3px;
+  box-shadow: none;
+}
+
+/* period scrollbars. the square kind with the bevelled thumb. */
+* {
+  scrollbar-color: var(--w-face) var(--w-face-lit);
+}
+
+*::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: var(--w-face-lit);
+  background-image:
+    linear-gradient(45deg, var(--w-white) 25%, transparent 25%, transparent 75%, var(--w-white) 75%),
+    linear-gradient(45deg, var(--w-white) 25%, transparent 25%, transparent 75%, var(--w-white) 75%);
+  background-size: 2px 2px;
+  background-position: 0 0, 1px 1px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--w-face);
+  box-shadow:
+    inset 1px 1px 0 var(--w-white),
+    inset -1px -1px 0 var(--w-black),
+    inset 2px 2px 0 var(--w-face-lit),
+    inset -2px -2px 0 var(--w-gray);
+}
+
+*::-webkit-scrollbar-corner {
+  background: var(--w-face);
+}
+
+/* -------------------------------------------------------------- desktop */
+
+.desktop,
+.desktop-body {
+  background: var(--w-teal);
+}
+
+/*
+ * A flat teal fill reads as a swatch. Real desktops of the era were dithered
+ * or tiled, so this is a 2px checker in a slightly lighter teal: invisible as
+ * a pattern, but it stops the background looking like a CSS color.
+ */
+.desktop-wallpaper,
+.desktop-body {
+  background-color: #008080;
+  background-image:
+    linear-gradient(45deg, #0a8a8a 25%, transparent 25%, transparent 75%, #0a8a8a 75%),
+    linear-gradient(45deg, #0a8a8a 25%, transparent 25%, transparent 75%, #0a8a8a 75%);
+  background-size: 4px 4px;
+  background-position: 0 0, 2px 2px;
+}
+
+.desktop-icons {
+  gap: 2px;
+}
+
+.d-icon {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: var(--w-white);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  padding: 4px;
+}
+
+.d-icon-tile {
+  background: var(--w-face);
+  border-radius: 0;
+}
+
+.d-icon-label {
+  color: var(--w-white);
+  /* white label on teal needs a hard shadow to stay readable, same as the era */
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.6);
+  font-size: 11px;
+}
+
+.d-icon:focus-visible .d-icon-label,
+.d-icon:hover .d-icon-label {
+  background: var(--w-navy);
+  color: var(--w-white);
+}
+
+/* -------------------------------------------------------------- menubar */
+
+.menubar {
+  background: var(--w-face);
+  border: 0;
+  border-radius: 0;
+  color: var(--w-black);
+  font-size: 11px;
+  min-height: 26px;
+  padding: 2px 4px;
+}
+
+.menubar-brand {
+  color: var(--w-black);
+  font-weight: bold;
+  letter-spacing: 0;
+  padding: 0 6px;
+}
+
+.menubar-item {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: var(--w-black);
+  padding: 3px 8px;
+}
+
+.menubar-item:hover,
+.menubar-item[aria-expanded='true'] {
+  background: var(--w-navy);
+  color: var(--w-white);
+}
+
+.menubar-hud,
+.menubar-status {
+  color: var(--w-black);
+  font-size: 11px;
+}
+
+.menubar-coins {
+  background: var(--w-face);
+  border-radius: 0;
+  color: var(--w-black);
+  padding: 1px 6px;
+  box-shadow:
+    inset 1px 1px 0 var(--w-gray),
+    inset -1px -1px 0 var(--w-white);
+}
+
+.menubar-integrity {
+  background: var(--w-face-lit);
+  border-radius: 0;
+  height: 10px;
+}
+
+.menubar-integrity-fill {
+  background: var(--w-navy);
+  border-radius: 0;
+}
+
+/* --------------------------------------------------------------- window */
+
+.window-frame {
+  background: var(--w-face);
+  border: 0;
+  border-radius: 0;
+  box-shadow:
+    inset 1px 1px 0 var(--w-white),
+    inset -1px -1px 0 var(--w-black),
+    inset 2px 2px 0 var(--w-face-lit),
+    inset -2px -2px 0 var(--w-gray),
+    2px 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.window-titlebar {
+  background: var(--w-navy);
+  border: 0;
+  border-radius: 0;
+  color: var(--w-white);
+  font-size: 11px;
+  font-weight: bold;
+  margin: 3px 3px 0;
+  min-height: 20px;
+  padding: 2px 3px;
+}
+
+.window-title {
+  color: var(--w-white);
+  font-weight: bold;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/*
+ * The traffic light dots were the wrong platform entirely. These are square
+ * title buttons with a glyph, which is what the chrome on this desktop would
+ * have had.
+ */
+.window-lights,
+.win-light {
+  gap: 2px;
+}
+
+.win-close,
+.win-min {
+  background: var(--w-face);
+  border: 0;
+  border-radius: 0;
+  color: var(--w-black);
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: bold;
+  height: 16px;
+  width: 18px;
+  min-width: 18px;
+  padding: 0;
+  box-shadow:
+    inset 1px 1px 0 var(--w-white),
+    inset -1px -1px 0 var(--w-black),
+    inset 2px 2px 0 var(--w-face-lit),
+    inset -2px -2px 0 var(--w-gray);
+}
+
+.win-close:active,
+.win-min:active {
+  box-shadow:
+    inset 1px 1px 0 var(--w-gray),
+    inset -1px -1px 0 var(--w-white),
+    inset 2px 2px 0 var(--w-black),
+    inset -2px -2px 0 var(--w-face-lit);
+}
+
+.window-body {
+  background: var(--w-face);
+  border-radius: 0;
+}
+
+/* -------------------------------------------------------- browser chrome */
+
+.browser-root,
+.browser-page {
+  background: var(--w-face);
+}
+
+.browser-chrome {
+  background: var(--w-face);
+  border: 0;
+  border-radius: 0;
+  gap: 0;
+  padding: 2px;
+}
+
+.browser-toolbar {
+  background: var(--w-face);
+  border: 0;
+  gap: 3px;
+  padding: 2px 3px;
+}
+
+.browser-nav {
+  gap: 1px;
+}
+
+.browser-icon-btn,
+.browser-go {
+  background: var(--w-face);
+  border: 0;
+  border-radius: 0;
+  color: var(--w-black);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  min-height: 22px;
+  padding: 2px 8px;
+}
+
+.browser-icon-btn:active,
+.browser-go:active {
+  box-shadow:
+    inset 1px 1px 0 var(--w-gray),
+    inset -1px -1px 0 var(--w-white),
+    inset 2px 2px 0 var(--w-black),
+    inset -2px -2px 0 var(--w-face-lit);
+}
+
+.browser-icon-btn:disabled {
+  color: var(--w-gray);
+  text-shadow: 1px 1px 0 var(--w-white);
+}
+
+.browser-url {
+  background: var(--w-white);
+  border: 0;
+  border-radius: 0;
+  padding: 2px 3px;
+}
+
+.browser-lock {
+  color: var(--w-gray);
+  font-size: 11px;
+}
+
+.browser-url-input {
+  background: transparent;
+  border: 0;
+  color: var(--w-black);
+  font-family: var(--font-ui);
+  font-size: 12px;
+}
+
+.browser-url-input::placeholder {
+  color: var(--w-gray);
+}
+
+.browser-bookmarks {
+  background: var(--w-face);
+  border: 0;
+  border-top: 1px solid var(--w-face-lit);
+  gap: 0;
+  padding: 2px 4px;
+}
+
+.browser-bookmarks button {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: var(--w-black);
+  font-size: 11px;
+  padding: 2px 7px;
+}
+
+.browser-bookmarks button:hover {
+  box-shadow:
+    inset 1px 1px 0 var(--w-white),
+    inset -1px -1px 0 var(--w-gray);
+}
+
+.browser-bookmarks button:active {
+  box-shadow:
+    inset 1px 1px 0 var(--w-gray),
+    inset -1px -1px 0 var(--w-white);
+}
+
+/* tabs sit on the content and only the active one joins it */
+.browser-tabstrip {
+  background: var(--w-face);
+  border: 0;
+  gap: 2px;
+  padding: 3px 4px 0;
+}
+
+.browser-tab {
+  background: var(--w-face);
+  border: 0;
+  border-radius: 0;
+  color: var(--w-black);
+  font-size: 11px;
+  padding: 3px 10px;
+  box-shadow:
+    inset 1px 1px 0 var(--w-white),
+    inset -1px 0 0 var(--w-black),
+    inset -2px 0 0 var(--w-gray);
+}
+
+.browser-tab[aria-selected='true'],
+.browser-tab.active {
+  background: var(--w-face-lit);
+  font-weight: bold;
+}
+
+.browser-tab-dot {
+  display: none;
+}
+
+.browser-content {
+  background: var(--w-white);
+  border: 0;
+  border-radius: 0;
+  color: var(--w-black);
+  font-family: var(--font-doc);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.browser-statusbar {
+  background: var(--w-face);
+  border: 0;
+  border-radius: 0;
+  color: var(--w-black);
+  font-size: 11px;
+  gap: 3px;
+  padding: 2px 3px;
+}
+
+.browser-status-pill,
+.browser-status-url {
+  background: var(--w-face);
+  border: 0;
+  border-radius: 0;
+  color: var(--w-black);
+  padding: 2px 6px;
+}
+
+/* -------------------------------------------------------------- taskbar */
+
+.taskbar {
+  background: var(--w-face);
+  border: 0;
+  border-radius: 0;
+  gap: 3px;
+  min-height: 30px;
+  padding: 2px 3px;
+}
+
+.task-start,
+.task-pill {
+  background: var(--w-face);
+  border: 0;
+  border-radius: 0;
+  color: var(--w-black);
+  font-size: 11px;
+  font-weight: bold;
+  padding: 3px 9px;
+}
+
+.task-pill {
+  font-weight: normal;
+  min-width: 120px;
+  text-align: left;
+}
+
+.task-start:active,
+.task-pill[aria-selected='true'],
+.task-pill.active {
+  box-shadow:
+    inset 1px 1px 0 var(--w-gray),
+    inset -1px -1px 0 var(--w-white),
+    inset 2px 2px 0 var(--w-black),
+    inset -2px -2px 0 var(--w-face-lit);
+}
+
+.task-tray {
+  background: var(--w-face);
+  border: 0;
+  border-radius: 0;
+  color: var(--w-black);
+  font-size: 11px;
+  gap: 6px;
+  padding: 2px 8px;
+}
+
+.task-clock {
+  color: var(--w-black);
+  font-size: 11px;
+}
+
+/* ----------------------------------------------------------- start menu */
+
+.start-menu {
+  background: var(--w-face);
+  border: 0;
+  border-radius: 0;
+  color: var(--w-black);
+  padding: 3px;
+}
+
+.start-menu-head {
+  background: var(--w-navy);
+  color: var(--w-white);
+  font-weight: bold;
+  padding: 4px 8px;
+}
+
+.start-menu-sub,
+.start-menu-foot {
+  color: var(--w-black);
+  font-size: 11px;
+}
+
+.start-item {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: var(--w-black);
+  padding: 4px 8px;
+}
+
+.start-item:hover {
+  background: var(--w-navy);
+  color: var(--w-white);
+}
+
+.start-item:hover .start-item-body,
+.start-item:hover .start-item-body * {
+  color: var(--w-white);
+}
+
+/* -------------------------------------------------------- generic parts */
+
+.btn,
+.field,
+button.btn-primary,
+button.btn-ghost {
+  border-radius: 0;
+  font-family: var(--font-ui);
+}
+
+.btn,
+.btn-primary,
+.btn-ghost {
+  background: var(--w-face);
+  border: 0;
+  color: var(--w-black);
+  min-height: 23px;
+  padding: 3px 12px;
+  box-shadow:
+    inset 1px 1px 0 var(--w-white),
+    inset -1px -1px 0 var(--w-black),
+    inset 2px 2px 0 var(--w-face-lit),
+    inset -2px -2px 0 var(--w-gray);
+}
+
+.btn:active,
+.btn-primary:active,
+.btn-ghost:active {
+  box-shadow:
+    inset 1px 1px 0 var(--w-gray),
+    inset -1px -1px 0 var(--w-white),
+    inset 2px 2px 0 var(--w-black),
+    inset -2px -2px 0 var(--w-face-lit);
+}
+
+.btn-primary {
+  font-weight: bold;
+}
+
+.field {
+  background: var(--w-white);
+  border: 0;
+  color: var(--w-black);
+  padding: 3px 4px;
+  box-shadow:
+    inset 1px 1px 0 var(--w-gray),
+    inset -1px -1px 0 var(--w-white),
+    inset 2px 2px 0 var(--w-black),
+    inset -2px -2px 0 var(--w-face-lit);
+}
+
+.toast {
+  background: #ffffe1; /* the tooltip yellow */
+  border: 1px solid var(--w-black);
+  border-radius: 0;
+  color: var(--w-black);
+  font-size: 11px;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* boot stays dark. it is a POST screen, it was always white on black. */
+.boot {
+  background: var(--w-black);
+  color: #c0c0c0;
+  font-family: var(--font-mono);
+}
+
+.boot-card {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.boot-title,
+.boot-brand,
+.boot-logo {
+  color: #ffffff;
+  font-family: var(--font-mono);
+}
+
+.boot-log,
+.boot-sub {
+  color: #c0c0c0;
+  font-family: var(--font-mono);
+}
+
+.boot-meter {
+  background: #333;
+  border: 1px solid #c0c0c0;
+  border-radius: 0;
+}
+
+.boot-meter-fill {
+  background: #c0c0c0;
+  border-radius: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-page-enter {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------- dark-theme leftovers
+ * These surfaces were painted for a near-black page and kept their colours
+ * when the net went light, so they ended up as dark boxes holding black text.
+ * Each one is repainted to what the equivalent widget looked like in 1999
+ * rather than just having its text colour bumped until the ratio passed.
+ */
+
+/* small caps labels: were mid-grey on dark, now a readable slate */
+.tag,
+.shift-led-label,
+.status-date,
+.search-hit-url {
+  color: #333;
+}
+
+.search-hit-route {
+  color: var(--w-purple);
+}
+
+/* the wiki/quest tag chips were dark chips, now they are raised grey chips */
+.tag {
+  background: var(--w-face);
+  border-radius: 0;
+  box-shadow:
+    inset 1px 1px 0 var(--w-white),
+    inset -1px -1px 0 var(--w-gray);
+  padding: 1px 6px;
+}
+
+/* an on-air lamp and a live badge: red and green, but readable ones */
+.status-live,
+.radio-on-air {
+  background: var(--w-face);
+  color: #006600;
+  font-weight: bold;
+  padding: 1px 6px;
+  box-shadow:
+    inset 1px 1px 0 var(--w-gray),
+    inset -1px -1px 0 var(--w-white);
+}
+
+/* these three were dark panels. they are readouts, so they get sunken wells. */
+.weather-crawl,
+.readme-cmd,
+.forum-nav {
+  background: var(--w-face);
+  color: var(--w-black);
+  box-shadow:
+    inset 1px 1px 0 var(--w-gray),
+    inset -1px -1px 0 var(--w-white),
+    inset 2px 2px 0 var(--w-black),
+    inset -2px -2px 0 var(--w-face-lit);
+}
+
+.readme-cmd {
+  font-family: var(--font-mono);
+  padding: 2px 6px;
+}
+
+.status-val,
+.status-big {
+  color: var(--w-black);
+}
+
+/* ---------------------------------------------------------- site skins
+ * site-themes.css gives every site six variables, which is a real system and
+ * worth keeping. Most of the skins in it are already period and good: search
+ * is early Google, wiki is Wikipedia, mail and chat are gray and yellow.
+ *
+ * These five were still dark-theme holdovers, so their headings came out as
+ * navy text on a navy panel once the net went light. Repainted to what that
+ * kind of site actually looked like in 1999.
+ */
+
+/* a UBB style message board: gray page, white posts, dark blue table heads */
+.browser-content .site-forum {
+  --site-bg: #eceff4;
+  --site-text: #000000;
+  --site-accent: #006699;
+  --site-panel: #ffffff;
+  --site-border: #a8b4c4;
+  --site-muted: #445566;
+  background: #eceff4;
+}
+
+/* an online store: white, sale red, cheap yellow highlights */
+.browser-content .site-mart {
+  --site-bg: #ffffff;
+  --site-text: #1a1a1a;
+  --site-accent: #cc0000;
+  --site-panel: #ffffe8;
+  --site-border: #c0a860;
+  --site-muted: #555555;
+  background: #ffffff;
+}
+
+/* a weather page: pale sky, navy headings, white cards */
+.browser-content .site-weather {
+  --site-bg: #dceaf6;
+  --site-text: #0a1a2a;
+  --site-accent: #003366;
+  --site-panel: #ffffff;
+  --site-border: #8aa8c4;
+  --site-muted: #3a5570;
+  background: #dceaf6;
+}
+
+/* the net map: a technical diagram on paper, not a radar screen */
+.browser-content .site-map {
+  --site-bg: #f4f4ec;
+  --site-text: #11150f;
+  --site-accent: #000080;
+  --site-panel: #ffffff;
+  --site-border: #9a9a86;
+  --site-muted: #4a4a3c;
+  background: #f4f4ec;
+}
+
+/* the net index card catalog: buff card stock */
+.browser-content .site-shift {
+  --site-bg: #e8e2d0;
+  --site-text: #14110a;
+  --site-accent: #000080;
+  --site-panel: #fffdf4;
+  --site-border: #a89a78;
+  --site-muted: #4a4130;
+  background: #e8e2d0;
+}
+
+/* the status board stays a dark NOC screen, that one is right, but its
+   readouts were mid-grey on it and needed to come up */
+.browser-content .site-status .status-val,
+.browser-content .site-status .status-big,
+.browser-content .site-status .status-sub,
+.browser-content .site-status .status-date {
+  color: #e8eef6;
+}
+
+.search-hit-url {
+  color: #1a1a1a;
+}
+
+/* ------------------------------------------------------- the front page
+ * The portal is excluded from the site theming layer, so it kept the old
+ * near-black IBM Plex look after everything else moved. It is the first thing
+ * anybody sees, so it gets the full treatment: an ISP welcome page, white with
+ * a navy masthead, the kind of thing that shipped as your browser home page
+ * and that you never changed.
+ */
+
+.browser-content .site-portal {
+  background: #ffffff;
+  color: #000000;
+  font-family: var(--font-ui);
+  padding: 0;
+}
+
+.portal-statusbar {
+  background: var(--w-face);
+  border-bottom: 1px solid var(--w-gray);
+  color: #000;
+  font-size: 11px;
+  gap: 14px;
+  padding: 3px 10px;
+}
+
+.portal-status-item em {
+  color: #444;
+  font-style: normal;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+}
+
+.portal-hero {
+  background: var(--w-navy);
+  border-bottom: 3px solid #000040;
+  color: #fff;
+  padding: 0;
+}
+
+.portal-hero-body {
+  padding: 16px 20px 18px;
+}
+
+.portal-brand {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+}
+
+.portal-logo {
+  background: #ffcc00;
+  border: 2px solid #fff;
+  border-radius: 0;
+  color: var(--w-navy);
+  font-family: var(--font-ui);
+  font-size: 20px;
+  font-weight: bold;
+  padding: 6px 10px;
+}
+
+.portal-title {
+  color: #fff;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+.portal-tagline {
+  color: #c8d4f0;
+  font-size: 12px;
+  margin: 2px 0 0;
+}
+
+.portal-omni {
+  margin-top: 14px;
+}
+
+.portal-omni-label {
+  color: #dde4f6;
+  font-size: 11px;
+}
+
+.portal-omni-frame {
+  background: var(--w-face);
+  border-radius: 0;
+  padding: 4px;
+  box-shadow:
+    inset 1px 1px 0 var(--w-white),
+    inset -1px -1px 0 var(--w-black),
+    inset 2px 2px 0 var(--w-face-lit),
+    inset -2px -2px 0 var(--w-gray);
+}
+
+.portal-omni-row {
+  background: #fff;
+  padding: 2px 4px;
+  box-shadow:
+    inset 1px 1px 0 var(--w-gray),
+    inset -1px -1px 0 var(--w-white),
+    inset 2px 2px 0 var(--w-black),
+    inset -2px -2px 0 var(--w-face-lit);
+}
+
+.portal-omni-prefix {
+  color: #666;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.portal-omni-input {
+  background: transparent;
+  border: 0;
+  color: #000;
+  font-family: var(--font-ui);
+  font-size: 13px;
+}
+
+.portal-omni-hint {
+  color: #c8d4f0;
+  font-size: 11px;
+  margin: 5px 0 0;
+}
+
+.portal-columns {
+  padding: 16px 18px 22px;
+}
+
+.portal-section-title,
+.portal-panel-title {
+  border-bottom: 2px solid var(--w-navy);
+  color: var(--w-navy);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 17px;
+  font-weight: bold;
+  letter-spacing: 0;
+  margin: 0 0 8px;
+  padding-bottom: 3px;
+  text-transform: none;
+}
+
+.portal-section-lead {
+  color: #333;
+  font-size: 12px;
+}
+
+/* the destination tiles: plain boxed links, the way a directory listed them */
+.portal-tile,
+.portal-recent-btn,
+.portal-thread,
+.portal-thread-all,
+.portal-action-btn {
+  background: #f4f4f4;
+  border: 1px solid #b0b0b0;
+  border-radius: 0;
+  color: #000;
+  text-align: left;
+}
+
+.portal-tile:hover,
+.portal-recent-btn:hover,
+.portal-thread:hover,
+.portal-thread-all:hover,
+.portal-action-btn:hover {
+  background: #ffffcc;
+  border-color: var(--w-navy);
+}
+
+.portal-tile strong,
+.portal-thread strong {
+  color: #0000cc;
+  text-decoration: underline;
+}
+
+.portal-tile-tag,
+.portal-thread-hour {
+  background: var(--w-face);
+  border-radius: 0;
+  color: #333;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  padding: 1px 5px;
+  text-transform: uppercase;
+}
+
+.portal-panel {
+  background: #f8f8f4;
+  border: 1px solid #b0b0b0;
+  border-radius: 0;
+}
+
+.portal-rumor-list li {
+  border-bottom: 1px dotted #c0c0c0;
+  color: #1a1a1a;
+  font-size: 12.5px;
+}
+
+.portal-more-link,
+.portal-aside a {
+  color: #0000cc;
+}
+
+/* --------------------------------------------------- remaining dark sites
+ * These four kept dark skins that fought the rest of the net. Repainted as the
+ * kind of page each one actually is: an index, a logbook, a job board, a
+ * records room. rn:status, rn:readme and rn:hack stay dark on purpose, because
+ * a NOC screen, a terminal and a text-mode game really were.
+ */
+
+.browser-content .site-chronicle {
+  --site-bg: #f2ece0;
+  --site-text: #17140c;
+  --site-accent: #5a3a1a;
+  --site-panel: #fffdf6;
+  --site-border: #b8a884;
+  --site-muted: #4a4030;
+  background: #f2ece0;
+}
+
+.browser-content .site-discover {
+  --site-bg: #f4f0e4;
+  --site-text: #16130c;
+  --site-accent: #14405a;
+  --site-panel: #fffef8;
+  --site-border: #b4ac94;
+  --site-muted: #464032;
+  background: #f4f0e4;
+}
+
+.browser-content .site-quests {
+  --site-bg: #e8dcc0;
+  --site-text: #1a1508;
+  --site-accent: #6a3a10;
+  --site-panel: #fdf8ec;
+  --site-border: #ab9668;
+  --site-muted: #4d4126;
+  background: #e8dcc0;
+}
+
+.browser-content .site-archive {
+  --site-bg: #e4e8e0;
+  --site-text: #101410;
+  --site-accent: #1a4a2a;
+  --site-panel: #fafcf8;
+  --site-border: #9aa494;
+  --site-muted: #40483c;
+  background: #e4e8e0;
+}
+
+/* ------------------------------------------------- last dark-theme remnants
+ * Nine specific leftovers found by walking every page and measuring contrast
+ * against the real computed background. Each was a colour picked for a
+ * near-black page: light-grey body text, the old accent green, or a panel that
+ * stayed dark while the page around it went light.
+ */
+
+/* portal body copy was #e8eef6, which on a white page is nothing at all */
+.portal-section-lead,
+.portal-tile small,
+.portal-recent-btn small,
+.portal-thread span {
+  color: #444444;
+}
+
+/* the old accent green on the address line under each tile */
+.portal-tile-url {
+  color: #006622;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.portal-more-link,
+.portal-more-row .portal-more-link {
+  background: #f4f4f4;
+  border: 1px solid #b0b0b0;
+  color: #0000cc;
+}
+
+/* board tables kept the dark cell fill under black text */
+.browser-content .site-forum td,
+.browser-content .site-forum th {
+  background: #ffffff;
+  border: 1px solid #b8c2d0;
+  color: #000000;
+}
+
+.browser-content .site-forum tr:nth-child(even) td {
+  background: #f2f5f9;
+}
+
+.browser-content .site-forum strong {
+  color: #003355;
+}
+
+/* a red live badge needs white on it, not the page's dark blue */
+.weather-live,
+.status-live-badge {
+  background: #b00000;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 1px 6px;
+}
+
+/* headings still carrying neon from the old palette */
+.browser-content .site-mart h1,
+.browser-content .site-mart h2 {
+  color: #b3005c;
+}
+
+.browser-content .site-map h1,
+.browser-content .site-map h2 {
+  color: #00004d;
+}
+
+/* the index LED strip was a dark readout on what is now buff card stock */
+.shift-led {
+  background: var(--w-face);
+  box-shadow:
+    inset 1px 1px 0 var(--w-gray),
+    inset -1px -1px 0 var(--w-white),
+    inset 2px 2px 0 var(--w-black),
+    inset -2px -2px 0 var(--w-face-lit);
+}
+
+.shift-led-label {
+  color: #333333;
+}
+
+.shift-led-value {
+  color: #000060;
+  font-weight: bold;
+}
+
+/*
+ * The portal root, at the specificity site-layouts.css uses for it.
+ *
+ * `.site p { color: inherit }` scores higher than any of the .portal-* class
+ * rules, so every paragraph on the front page took its colour from this root
+ * rather than from its own rule. The root was still the old near-white, so the
+ * body copy stayed invisible no matter how many times the class was fixed.
+ */
+.browser-content .site-home.site-portal {
+  background: #ffffff;
+  color: #000000;
+}
+
+/* last three, measured: thread hour labels, the tip panel's bold text, and my
+   own restricted stamp, which was a shade too light on cream */
+.portal-thread small,
+.portal-thread-hour {
+  color: #3a3a3a;
+}
+
+.portal-tip strong,
+.portal-panel strong {
+  color: #14181f;
+}

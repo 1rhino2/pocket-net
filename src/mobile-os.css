@@ -1,4 +1,20 @@
 /* Rhino handset shell - mobile-first layout */
+
+/*
+ * The handset keeps its own palette. It used to read --text, --muted, --accent
+ * and --border off :root, which was fine while the desktop was dark and broke
+ * the moment the desktop became a gray-and-teal 1999 machine: black label text
+ * on a black phone screen. A backlit handset screen is its own thing, so it
+ * declares its own colours here instead of borrowing the desktop's.
+ */
+.mobile-os {
+  --text: #eef4fb;
+  --muted: #93a4b8;
+  --accent: #6fd3ff;
+  --accent-dim: #1d5f80;
+  --border: #253243;
+}
+
 .mobile-os {
   height: 100%;
   min-height: 100dvh;
