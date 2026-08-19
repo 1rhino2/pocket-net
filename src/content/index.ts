@@ -40,8 +40,18 @@ export function authoredPagesBy(author: string): AuthoredPage[] {
   return AUTHORED_PAGES.filter((p) => p.author === author);
 }
 
-/** pages carrying a Hollow Night clue, for the vault payoff to count against */
+/** every page carrying any clue */
 export const CLUE_PAGES = AUTHORED_PAGES.filter((p) => p.clue);
+
+/** clue pages for one arc. no `arc` means Hollow Night, the original. */
+export function cluePagesForArc(arc: 'hollow' | 'signal') {
+  return AUTHORED_PAGES.filter((p) => p.clue && (p.arc ?? 'hollow') === arc);
+}
+
+/** the Hollow Night clue set, so the reading quest counts only its own pages */
+export const HOLLOW_CLUE_PAGES = cluePagesForArc('hollow');
+/** the second arc's clue set */
+export const SIGNAL_CLUE_PAGES = cluePagesForArc('signal');
 
 /**
  * Adapt to the shape the rest of the app already speaks. The old catalog had

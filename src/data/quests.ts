@@ -1,5 +1,5 @@
 import type { GameSnapshot, GameStats } from '../game/gameTypes';
-import { CLUE_PAGES } from '../content/index';
+import { HOLLOW_CLUE_PAGES } from '../content/index';
 
 export type QuestContext = {
   stats: GameStats;
@@ -259,9 +259,9 @@ export const QUESTS: QuestDef[] = [
   },
 ];
 
-/** the pages carrying a clue, so the reading quest counts real progress */
+/** Hollow Night clue pages only, so a second arc cannot inflate this count */
 const HOLLOW_URLS = new Set(
-  CLUE_PAGES.map((p) => `rn:n-${p.slug}`),
+  HOLLOW_CLUE_PAGES.map((p) => `rn:n-${p.slug}`),
 );
 
 export function questContext(s: GameSnapshot): QuestContext {
