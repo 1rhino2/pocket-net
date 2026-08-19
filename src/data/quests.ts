@@ -274,6 +274,46 @@ export const QUESTS: QuestDef[] = [
     tier: 'legend',
     check: (c) => c.discovered.includes('signal_solved'),
   },
+  {
+    id: 'q_minesweeper',
+    title: 'Field cleared',
+    blurb: 'Clear a Minesweeper board in the Games window.',
+    reward: 40,
+    tier: 'daily',
+    check: (c) => c.discovered.includes('game_minesweeper_win'),
+  },
+  {
+    id: 'q_solitaire',
+    title: 'Patience',
+    blurb: 'Solve a game of Solitaire.',
+    reward: 50,
+    tier: 'deep',
+    check: (c) => c.discovered.includes('game_solitaire_win'),
+  },
+  {
+    id: 'q_made_art',
+    title: 'Made something',
+    blurb: 'Save a doodle in PixelPaint.',
+    reward: 30,
+    tier: 'starter',
+    check: (c) => c.discovered.includes('made_art'),
+  },
+  {
+    id: 'q_paged_around',
+    title: 'Who is online',
+    blurb: 'Page three different buddies on PocketPager.',
+    reward: 40,
+    tier: 'daily',
+    check: (c) => c.discovered.filter((d) => d.startsWith('msgr_')).length >= 3,
+  },
+  {
+    id: 'q_dug_the_drive',
+    title: 'Dug through the drive',
+    blurb: 'Find both hidden readable files on the C: drive in My Computer.',
+    reward: 45,
+    tier: 'deep',
+    check: (c) => c.discovered.includes('files_watchlog') && c.discovered.includes('files_diary'),
+  },
 ];
 
 /** Hollow Night clue pages only, so a second arc cannot inflate this count */

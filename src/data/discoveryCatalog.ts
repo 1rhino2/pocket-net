@@ -41,6 +41,7 @@ const SITE_URLS = [
   'rn:archive',
   'rn:shift',
   'rn:chronicle',
+  'rn:aero',
 ] as const;
 
 const SECRET_URLS = ['rn:ghost', 'rn:bunker', 'rn:cache', 'rn:relay', 'rn:lint', 'rn:midnight'] as const;
@@ -67,6 +68,7 @@ const SITE_TITLES: Record<string, string> = {
   'rn:archive': 'Packet Archive',
   'rn:shift': 'Net Index',
   'rn:chronicle': 'Explore',
+  'rn:aero': 'Aqua Concept',
   'rn:ghost': 'Ghost Relay',
   'rn:bunker': 'Offline Bunker',
   'rn:cache': 'Stale Cache',
@@ -237,12 +239,33 @@ function chroniclePageDiscoveries(): DiscoveryEntry[] {
   }));
 }
 
+// the new desktop apps, the two mysteries, and the net-event layer all file
+// discoveries. register them so the log shows a title instead of a raw id.
+const APP_DISCOVERIES: DiscoveryEntry[] = [
+  { id: 'game_minesweeper_win', title: 'Field Cleared', category: 'milestone', hint: 'Clear a Minesweeper board in the Games window.', hidden: true },
+  { id: 'game_solitaire_win', title: 'Patience Rewarded', category: 'milestone', hint: 'Solve a game of Solitaire.', hidden: true },
+  { id: 'made_art', title: 'Made Something', category: 'lore', hint: 'Save a doodle in PixelPaint.', hidden: true },
+  { id: 'msgr_mary', title: 'Paged the night desk', category: 'lore', hint: 'Message modem_mary on PocketPager.', hidden: true },
+  { id: 'msgr_daemon', title: 'Paged the sysop', category: 'lore', hint: 'Message disk_daemon on PocketPager.', hidden: true },
+  { id: 'msgr_swap', title: 'Paged the trader', category: 'lore', hint: 'Message swap_meet on PocketPager.', hidden: true },
+  { id: 'msgr_legend', title: 'Paged the kid', category: 'lore', hint: 'Message localhost_legend on PocketPager.', hidden: true },
+  { id: 'msgr_aero', title: 'Paged the futurist', category: 'lore', hint: 'Message aero_prophet on PocketPager.', hidden: true },
+  { id: 'files_watchlog', title: 'Found the watch log', category: 'lore', hint: 'Open WATCH.LOG in My Computer.', hidden: true },
+  { id: 'files_diary', title: 'Read the shared diary', category: 'lore', hint: 'Open DIARY.TXT in My Computer.', hidden: true },
+  { id: 'hollow_night_solved', title: 'The Hollow Night', category: 'milestone', hint: 'Open the archive recovery vault.', hidden: true },
+  { id: 'signal_solved', title: 'The Lighthouse', category: 'milestone', hint: 'Open the sealed decode of the night signal.', hidden: true },
+  { id: 'event_outage', title: 'Weathered a degraded night', category: 'lore', hint: 'Be on the net during an overnight outage window.', hidden: true },
+  { id: 'event_nye', title: 'New year on Console 2', category: 'lore', hint: 'Check status on New Year\'s Eve.', hidden: true },
+  { id: 'event_holiday', title: 'A quiet holiday net', category: 'lore', hint: 'Check status over the holiday.', hidden: true },
+];
+
 export const STATIC_DISCOVERIES: DiscoveryEntry[] = [
   ...siteDiscoveries(),
   ...secretDiscoveries(),
   ...stampDiscoveries(),
   ...loreDiscoveries(),
   ...milestoneDiscoveries(),
+  ...APP_DISCOVERIES,
   ...CHRONICLE_STATIC_DISCOVERIES,
   ...chroniclePageDiscoveries(),
 ];
