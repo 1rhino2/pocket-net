@@ -12,6 +12,7 @@ import './mobile-os.css';
 // loaded last: owns the shell, replaces the two patch layers that used to sit here
 import './styles/os1999.css';
 import './styles/documents.css';
+import './styles/apps.css';
 import './styles/site-aero.css';
 
 initHandsetMode();
