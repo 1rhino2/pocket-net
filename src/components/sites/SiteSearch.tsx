@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useGame } from '../../game/GameContext';
 import type { NetUrl } from '../../types';
 import { searchDocs, type SearchDoc } from '../../data/searchIndex';
-import { secretUrlForSearch } from '../../data/procedural';
+import { secretUrlForSearch } from '../../data/dailyWire';
 import { consumePendingSearch } from '../../lib/browserNav';
 import { playHourBucket, todayKey } from '../../lib/seed';
 

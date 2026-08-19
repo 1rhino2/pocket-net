@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -p tsconfig.json --noEmit && vite build",
-    "preview": "vite preview"
+    "build": "node scripts/lint-content.mjs && tsc -p tsconfig.json --noEmit && vite build",
+    "preview": "vite preview",
+    "lint:content": "node scripts/lint-content.mjs"
   },
   "dependencies": {
     "react": "^19.1.0",
