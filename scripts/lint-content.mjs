@@ -128,7 +128,16 @@ for (const p of pages) {
 
   // no sentence twice on the same page, and no sentence shared across pages
   const local = new Set();
-  const all = [...(p.paragraphs ?? []), ...(p.bullets ?? []), p.quote ?? '', p.footnote ?? ''];
+  const all = [
+    ...(p.paragraphs ?? []),
+    ...(p.bullets ?? []),
+    p.quote ?? '',
+    p.footnote ?? '',
+    // the payoff text behind a lock is still prose somebody reads
+    ...(p.unlocked?.paragraphs ?? []),
+    p.unlocked?.quote ?? '',
+    p.unlocked?.footnote ?? '',
+  ];
   for (const chunk of all) {
     for (const s of sentences(chunk)) {
       if (words(s) < MIN_SENTENCE_WORDS) continue;
@@ -141,6 +150,20 @@ for (const p of pages) {
       else if (!prev) seenSentence.set(k, id);
     }
   }
+}
+
+// a locked page must not hand over its own answer, and must have a payoff
+for (const p of pages) {
+  if (!p.lock) continue;
+  const ans = String(p.lock.answer).toLowerCase();
+  const prompt = `${p.lock.question} ${p.lock.nudge}`.toLowerCase();
+  if (prompt.includes(ans)) fail(p.slug, 'the lock prompt gives away its own answer');
+  if (!p.unlocked?.paragraphs?.length) fail(p.slug, 'locked page has nothing behind the lock');
+  // the answer has to be derivable, so it must actually appear somewhere else
+  const elsewhere = pages.some(
+    (o) => o.slug !== p.slug && [...(o.paragraphs ?? []), o.quote ?? ''].join(' ').toLowerCase().includes(ans),
+  );
+  if (!elsewhere) fail(p.slug, `answer "${ans}" appears on no other page, so it cannot be worked out`);
 }
 
 for (let h = 0; h < 24; h += 1) {

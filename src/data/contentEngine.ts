@@ -211,6 +211,8 @@ export type MicroNodePage = {
   tag: string;
   author?: string;
   updated?: string;
+  lock?: import('./nodes/handbuiltTypes').NodeLock;
+  unlocked?: import('./nodes/handbuiltTypes').NodeUnlocked;
   layout: import('./nodes/handbuiltTypes').NodeLayout;
   paragraphs: string[];
   chapter?: number;
@@ -228,6 +230,8 @@ export function microNodePage(url: string): MicroNodePage | null {
     tag: built.tag,
     author: built.author,
     updated: built.updated,
+    lock: built.lock,
+    unlocked: built.unlocked,
     layout: built.layout,
     paragraphs: built.paragraphs,
     chapter: built.chapter,

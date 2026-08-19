@@ -56,6 +56,8 @@ export function handbuiltNodePage(url: string): (HandbuiltNodePage & { slug: str
       tag: perm.tag,
       author: perm.author,
       updated: perm.updated,
+      lock: perm.lock,
+      unlocked: perm.unlocked,
       layout: perm.layout,
       paragraphs: perm.paragraphs,
       chapter: perm.chapter,

@@ -51,6 +51,8 @@ export const AUTHORED_AS_NODES: HandbuiltNodeMeta[] = AUTHORED_PAGES.filter((p) 
   tag: p.tag,
   author: p.author,
   updated: p.updated,
+  lock: p.lock,
+  unlocked: p.unlocked,
   teaser: p.teaser,
   searchQuery: p.search,
   chapter: p.hour,

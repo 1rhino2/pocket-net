@@ -1,8 +1,84 @@
-import { useEffect, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { microNodePage } from '../../data/contentEngine';
 import type { NodeLayout } from '../../data/nodes/handbuiltTypes';
 import { useGame } from '../../game/GameContext';
 import type { NodeNetUrl, NetUrl } from '../../types';
+
+/** loose match: case, spaces and punctuation should never be the puzzle */
+function answerMatches(given: string, want: string) {
+  const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '');
+  const g = norm(given);
+  return g.length > 0 && (g === norm(want) || g === 'the' + norm(want));
+}
+
+/**
+ * The locked page. The answer is a word xerox_angel uses in plain sight on
+ * three separate pages, so anybody who actually read the net already has it,
+ * and nobody who skipped to the end can brute force it out of the prompt.
+ */
+function VaultLock({ page }: { page: NonNullable<ReturnType<typeof microNodePage>> }) {
+  const { snapshot, recordDiscovery, addCredits, unlockAchievement, setToast } = useGame();
+  const lock = page.lock!;
+  const alreadyOpen = snapshot.discovered.includes(lock.discoveryId);
+  const [open, setOpen] = useState(alreadyOpen);
+  const [value, setValue] = useState('');
+  const [missed, setMissed] = useState(false);
+
+  useEffect(() => {
+    if (alreadyOpen) setOpen(true);
+  }, [alreadyOpen]);
+
+  function submit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!answerMatches(value, lock.answer)) {
+      setMissed(true);
+      setToast('That is not the word.', 2600);
+      return;
+    }
+    setOpen(true);
+    // recordDiscovery returns false if this profile already had it, so a
+    // reload cannot be farmed for the reward
+    const isNew = recordDiscovery(lock.discoveryId);
+    if (isNew) {
+      addCredits(lock.reward);
+      unlockAchievement('hollow_night', 'The Hollow Night');
+      setToast(`Archive recovery open. +${lock.reward} RC`, 4200);
+    }
+  }
+
+  if (open) {
+    const u = page.unlocked;
+    return (
+      <div className='node-vault-open'>
+        {u?.paragraphs.map((p, i) => (
+          <p key={i}>{p}</p>
+        ))}
+        {u?.quote ? <blockquote className='node-quote'>{u.quote}</blockquote> : null}
+        {u?.footnote ? <p className='node-footnote'>{u.footnote}</p> : null}
+      </div>
+    );
+  }
+
+  return (
+    <form className='node-vault-lock' onSubmit={submit}>
+      <label htmlFor='vault-answer'>{lock.question}</label>
+      <div className='node-vault-row'>
+        <input
+          id='vault-answer'
+          className='field'
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          autoComplete='off'
+          spellCheck={false}
+        />
+        <button type='submit' className='btn btn-primary'>
+          Open
+        </button>
+      </div>
+      {missed ? <p className='node-vault-nudge'>{lock.nudge}</p> : null}
+    </form>
+  );
+}
 
 type Props = {
   url: NodeNetUrl;
@@ -230,6 +306,7 @@ function NodeShell({ layout, page, url, onNavigate, chapterAttr }: {
           <Prose page={page} />
           {quote}
           <Bullets page={page} />
+          {page.lock ? <VaultLock page={page} /> : null}
           {tail}
         </div>
       );
