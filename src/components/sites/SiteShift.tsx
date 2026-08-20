@@ -2,16 +2,17 @@ import { useMemo, useState } from 'react';
 import { microNodesForHour, pulseEvents } from '../../data/contentEngine';
 import { PERMANENT_NODES } from '../../data/nodeCatalog';
 import { useGame } from '../../game/GameContext';
+import { missionProgress, missionReady } from '../../game/shiftLogic';
 import { formatPlayMs, playHourBucket } from '../../lib/seed';
 import type { NetUrl } from '../../types';
 
 type Props = { onNavigate: (url: NetUrl) => void };
 
 const PERM_PAGE = 12;
-const DRAWERS = ['PERM', 'DRIFT', 'PULSE'] as const;
+const DRAWERS = ['PERM', 'DRIFT', 'PULSE', 'CONTRACTS'] as const;
 
 export function SiteShift({ onNavigate }: Props) {
-  const { snapshot } = useGame();
+  const { snapshot, completeShiftMission } = useGame();
   const bucket = playHourBucket(snapshot.playMs);
   const [permPage, setPermPage] = useState(0);
   const [drawer, setDrawer] = useState<(typeof DRAWERS)[number]>('PERM');
@@ -62,6 +63,46 @@ export function SiteShift({ onNavigate }: Props) {
                 </li>
               ))}
             </ul>
+          ) : drawer === 'CONTRACTS' ? (
+            <>
+              <p className="shift-drawer-note">This hour's contracts. They refresh when the wire clock rolls over.</p>
+              <ul className="shift-contract-list">
+                {snapshot.activeMissions.length === 0 ? (
+                  <li className="shift-contract-empty">No contracts posted this hour. Keep browsing, the clock rolls over as you play.</li>
+                ) : (
+                  snapshot.activeMissions.map((m) => {
+                    const done = snapshot.shiftMissionsDone.includes(m.id);
+                    const prog = Math.min(m.goal, missionProgress(m, snapshot));
+                    const ready = missionReady(m, snapshot) && !done;
+                    return (
+                      <li key={m.id} className={`shift-contract${done ? ' done' : ''}`}>
+                        <div className="shift-contract-head">
+                          <strong>{m.title}</strong>
+                          <span className="shift-contract-reward">+{m.reward} RC{m.integrity ? ` +${m.integrity} INT` : ''}</span>
+                        </div>
+                        <p className="shift-contract-blurb">{m.blurb}</p>
+                        <div className="shift-contract-row">
+                          <span className="shift-contract-prog">{done ? 'filed' : `${prog}/${m.goal}`}</span>
+                          {m.searchQuery ? (
+                            <button type="button" className="shift-pulse-link" onClick={() => onNavigate('rn:search')}>go search</button>
+                          ) : m.targetNode ? (
+                            <button type="button" className="shift-pulse-link" onClick={() => onNavigate(m.targetNode as NetUrl)}>open route</button>
+                          ) : null}
+                          <button
+                            type="button"
+                            className="shift-contract-claim"
+                            disabled={!ready}
+                            onClick={() => completeShiftMission(m.id)}
+                          >
+                            {done ? 'claimed' : ready ? 'claim' : 'in progress'}
+                          </button>
+                        </div>
+                      </li>
+                    );
+                  })
+                )}
+              </ul>
+            </>
           ) : drawer === 'PERM' ? (
             <>
               <p className="shift-drawer-note">Fixed routes. Browse in any order.</p>

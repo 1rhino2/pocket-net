@@ -24,6 +24,18 @@ export const WIRE_LINES = [
   `A wiki article was edited by an address with no other edits, and then edited back.`,
   `The good scissors are still missing. The office has stopped calling them the good scissors.`,
   `Night desk reports the room is quiet, which she notes is worth writing down while it is true.`,
+  `baro_hank logged a pressure drop of a hundredth every twenty minutes and told everyone to bring the cushions in.`,
+  `carrier_wave posted a timestamp to the second and asked whether anyone else heard the signal at 02:14.`,
+  `disk_daemon marked a shelf file do-not-use rather than delete it, because a warned bug is a footnote.`,
+  `swap_meet has a box of tapes labelled only with times and would like to know what he traded for.`,
+  `town_annals left a year of the record blank and marked it documents lost, refusing to reconstruct it.`,
+  `aero_prophet insists computers are about to get glossy and watery, and everyone is politely not laughing.`,
+  `A retired lineman wrote in to name the night carrier, and the name turned out to be sadder than the mystery.`,
+  `Somebody saved a doodle to the paint gallery on a shared machine and did not sign it.`,
+  `A game of solitaire has been left mid-deal on the front desk terminal since lunch.`,
+  `The minesweeper high score on console 2 is held by nobody, because mary refuses to enter her initials.`,
+  `A buddy on the pager has been away for three weeks with the same message still up.`,
+  `Someone opened WATCH.LOG on the C: drive and has not closed My Computer since.`,
 ] as const;
 
 /** shorter, more immediate than WIRE_LINES. these sit in the pulse ticker. */
@@ -40,6 +52,18 @@ export const PULSE_LINES = [
   `A page finished loading after ninety seconds. It was worth it, apparently.`,
   `Held envelope still in drawer 3. Fourteen days was a while ago.`,
   `Quiet. Writing it down while it is true.`,
+  `Barometer at 29.88 and falling. Cushions are in.`,
+  `Carrier up at 02:14:11. Three groups. Same as last night.`,
+  `A shelf file went from version 0.9 toward 1.0 by exactly one tested case.`,
+  `Twelve tapes, labelled with times, no takers yet.`,
+  `One year of the town record: blank on purpose.`,
+  `A glossy button was described in words because the tools do not exist yet.`,
+  `Pager buddy still away. The away message still says listening.`,
+  `Solitaire foundation count: 4 of 52. Somebody just started.`,
+  `Minesweeper field cleared on easy. Nobody claimed the credit.`,
+  `A doodle saved to the gallery. Sixteen colours, one canvas.`,
+  `WATCH.LOG opened again. The word is a plain object.`,
+  `East wind, needle down. Hank says pay attention.`,
 ] as const;
 
 export const FORUM_POSTS = [
@@ -53,6 +77,13 @@ export const FORUM_POSTS = [
   { user: 'a_subscriber', title: `best viewed at 800x600 is a threat`, body: `if your page needs my screen to be a specific size then it is not my screen that is the problem. i will die on this hill and several of you will be there with me.` },
   { user: 'soup_judge', title: `friday, the usual place, the sign is still broken`, body: `four of us last week which is fine. the seat at the end stays where it is. no you do not have to talk about march. you can talk about literally anything else.` },
   { user: 'lint_monk', title: `Notice 12 remains up and will remain up`, body: `Four people have now written asking me to remove the notice in which I am the one who was wrong. A corrections desk that deletes its own errors is an advertisement. It stays.` },
+  { user: 'baro_hank', title: `east wind and the needle is going down`, body: `not a forecast, a warning. west is the fair weather wind out here and east is the other story. flag swung east an hour ago and the barometer has been sliding since. cover the tender rows tonight.` },
+  { user: 'carrier_wave', title: `do not post the word`, body: `if you decoded it too, and i do not think im the only one anymore, dont print it in the open. a word spread is a word ruined. confirm privately and compare timestamps. mine is 02:14:11 every night, zero drift.` },
+  { user: 'disk_daemon', title: `NIGHTLOG 1.0 is up, reads the clock straight`, body: `timestamps whatever the modem hears and rounds nothing. built it for the fellow logging the overnight signal. tested on my machine. if you point it at the same thing he did, compare notes with him, not me.` },
+  { user: 'swap_meet', title: `WANTED: information, not money, on a box of tapes`, body: `traded for a box sight unseen and its a dozen cassettes labelled with times not dates. played one, its a tone and clicks. posting this in reverse. the times are free to whoever wants them. just tell me what i have.` },
+  { user: 'town_annals', title: `the mill fire was nine men and a bad winter, not twelve in one night`, body: `i say this with regret because the net version is a better story. the payroll lists nine and the insurance filing describes a slow burn over months. the number twelve is nowhere in the paper and everywhere on the boards. that is how a myth announces itself.` },
+  { user: 'aero_prophet', title: `the signal is the future knocking early`, body: `everyone reads it as a puzzle and i choose to read it as tomorrow testing the line. a thing that arrives before its time, regular as a heartbeat, carrying something we cannot read yet. let me have my reading. the careful men can keep theirs.` },
+  { user: 'a_subscriber', title: `there are new programs on the desktop machines`, body: `somebody added a solitaire and a paint and one of those buddy list things to the front desk terminals overnight. no announcement. the my computer icon has a folder called nightlog in it and i am afraid to ask.` },
 ] as const;
 
 export const WIRE_MAIL = [
@@ -128,6 +159,24 @@ export const WIRE_MAIL = [
     preview: 'Got the recipes back',
     body: `Somebody sent me my page. The whole thing, as it was in March.\n\nI am told not to ask where it came from so I am not asking. Four years of my mother's handwriting typed up, and I had made my peace with it being gone.\n\nNo reply needed. I just wanted it written down somewhere that it came back.`,
   },
+  {
+    from: 'baro_hank@pvo',
+    subject: 'cover the rows tonight',
+    preview: 'clear, calm, dew point sliding to the frost line',
+    body: `Not a forecast, a warning. 30.05, clear, the wind has gone flat and the dew point is sliding toward the frost line.\n\nThat is the exact recipe I have watched turn a garden black overnight. Cover the tender rows. Take the sheets off after the sun is up or you cook them.\n\nI could be wrong. Better a wasted sheet than a dead row. Next reading at first light.`,
+  },
+  {
+    from: 'disk_daemon@pvo',
+    subject: 'NIGHTLOG 1.0 posted',
+    preview: 'reads the clock straight, rounds nothing',
+    body: `NIGHTLOG is on the shelf. It timestamps whatever the modem hears and rounds nothing, because a recorder that fudges its clock is worse than no recorder.\n\nBuilt it for the fellow logging the overnight signal. If you point it at the same thing he did, compare notes with him, not me. He understands what it means. I just wrote the thing that catches it.\n\nTested on my machine.`,
+  },
+  {
+    from: 'carrier_wave@pvo',
+    subject: 'do not post the word',
+    preview: 'confirm privately, compare timestamps',
+    body: `If you decoded it too, and I no longer think I am the only one, do not print the word in the open.\n\nA word spread is a word ruined. Everyone who reads it afterward will hear it in the clicks whether it is there or not, and I will have lost the only clean test left.\n\nPost that you have it. Post your timestamps. We compare privately. Mine is 02:14:11, zero drift, since before I started listening.`,
+  },
 ] as const;
 
 export const WIKI_FRAGMENTS = [
@@ -201,6 +250,34 @@ export const WIKI_FRAGMENTS = [
       `The notice frequently outlives the intention. Several pages on this net have been under construction for longer than they were ever worked on.`,
     ],
   },
+  {
+    title: 'The night line test',
+    paragraphs: [
+      `Telephone exchanges send a test carrier down idle lines overnight to confirm the lines are still good. The carrier runs on a clock and repeats, which accounts for its dead regularity.`,
+      `In at least one exchange the test unit was set, in the early days, to send a single plain word rather than a meaningless tone. Crews commonly gave such units nicknames, and the nickname tended to describe what the unit did all night.`,
+    ],
+  },
+  {
+    title: 'Reading a barometer',
+    paragraphs: [
+      `A single pressure reading carries little information. A sequence of readings shows a trend, and the trend is what forecasts local weather.`,
+      `The rule of thumb is that pressure falling quickly indicates weather arriving soon, falling slowly indicates a change over the coming day, and flat pressure indicates a settled sky.`,
+    ],
+  },
+  {
+    title: 'Shareware, properly understood',
+    paragraphs: [
+      `Shareware distributed a working program on the honour system: try it, and if you keep using it, pay or otherwise be decent about it. It was not a time-limited demonstration.`,
+      `A one-person shareware author typically supports only software they wrote themselves, and documents known bugs in a changelog rather than concealing them.`,
+    ],
+  },
+  {
+    title: 'The mill fire, disputed',
+    paragraphs: [
+      `Popular accounts describe the Petersham Valley mill burning in a single night with twelve men losing their livelihoods. Documentary sources do not support this version.`,
+      `The payroll and insurance records indicate the mill burned in stages over a winter and that nine men were directly affected. The figure of twelve appears only in repeated retellings.`,
+    ],
+  },
 ] as const;
 
 export const ARCHIVE_ENTRIES = [
@@ -218,6 +295,12 @@ export const ARCHIVE_ENTRIES = [
   { title: 'Board digest: the January backup', body: `Subscribers compare which version of their page came back and establish between themselves that the backup was six weeks old.` },
   { title: 'Board digest: welcome to the new signups', body: `A thread that ran continuously through 1998 as the h- range filled up, ending with the last entry in December.` },
   { title: 'Board digest: nothing happened tonight', body: `The overnight operator posts a quiet week to the boards on request. It is the least eventful thing on the net and gets read anyway.` },
+  { title: 'Board digest: the signal at 02:14', body: `A watcher logs a repeating overnight carrier to the second and asks whether anyone else hears it. Three weeks of replies, then he stops posting, then a lineman explains it.` },
+  { title: 'Board digest: the barometer versus the radio', body: `A porch weather station and a broadcast forecast disagree, and the porch keeps winning locally. The thread becomes a small manual for reading pressure yourself.` },
+  { title: 'Board digest: the shelf and its changelog', body: `A one-man shareware shelf posts every bug it ever shipped rather than hiding them. The changelog gets quoted more than the programs get downloaded.` },
+  { title: 'Board digest: the box of timed tapes', body: `A trader posts a box of cassettes labelled only with times and asks the net to identify them. The times match the overnight signal, which nobody wants to say out loud.` },
+  { title: 'Board digest: the year the record skips', body: `The town historian explains why one year of the paper record is blank and refuses to fill it from the years around it. A short argument about honesty follows.` },
+  { title: 'Board digest: the man from the future', body: `A subscriber posts a homepage dressed as five years ahead, all glass and water, and is gently mocked. He dates the page and asks the future to check his work.` },
 ] as const;
 
 export const GHOST_NODES = [
@@ -229,10 +312,18 @@ export const GHOST_NODES = [
   { label: 'the wall thermometer', blurb: `Installed after August so the console can see the room.` },
   { label: 'the middle bank', blurb: `Fourteen units on the tenth. None on the twelfth.` },
   { label: 'the second ring', blurb: `The on-call line, answered at four in the morning, once.` },
+  { label: 'the 02:14 carrier', blurb: `A tone and three groups of clicks, dead regular, timed to the second.` },
+  { label: 'the box of tapes', blurb: `Twelve cassettes labelled with times, an earlier watcher who gave up.` },
+  { label: 'the porch gauge', blurb: `Reads a tenth low when the squirrel has been at it. Logged anyway.` },
+  { label: 'the blank year', blurb: `A year the town record skips. Documents lost, not reconstructed.` },
+  { label: 'the glass homepage', blurb: `A page from five years ahead. Everyone laughs. It is dated so you can check.` },
+  { label: 'the saved doodle', blurb: `A doodle in the paint gallery on a shared machine, unsigned.` },
 ] as const;
 
 /** codeword pool for the hack minigame. these are passwords, not prose. */
 export const CODE_WORDS = [
   'trunk', 'splice', 'carrier', 'handset', 'exchange', 'ringer', 'pulse', 'tone',
   'spool', 'platter', 'sled', 'bank', 'rack', 'console', 'patch', 'jack',
+  'barometer', 'squirrel', 'shelf', 'changelog', 'cassette', 'lineman', 'drift', 'ledger',
+  'guestbook', 'webring', 'marquee', 'shovel', 'bevel', 'bubble', 'glass', 'foundation',
 ] as const;

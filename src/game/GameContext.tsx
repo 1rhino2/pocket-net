@@ -101,6 +101,7 @@ const SITE_DISCOVERY: Record<string, string> = {
   'rn:archive': 'site_archive',
   'rn:shift': 'site_shift',
   'rn:chronicle': 'site_chronicle',
+  'rn:aero': 'site_aero',
   'rn:ghost': 'secret_ghost',
   'rn:bunker': 'secret_bunker',
   'rn:cache': 'secret_cache',

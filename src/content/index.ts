@@ -10,6 +10,14 @@ import { AURORA_PAGES } from './pages/aurora';
 import { MONK_PAGES } from './pages/lintMonk';
 import { TEXTURE_PAGES } from './pages/netTexture';
 import { ANGEL_PAGES } from './pages/angel';
+import { HANK_PAGES } from './pages/baroHank';
+import { DAEMON_PAGES } from './pages/diskDaemon';
+import { SWAP_PAGES } from './pages/swapMeet';
+import { ANNALS_PAGES } from './pages/townAnnals';
+import { AERO_PAGES } from './pages/aeroProphet';
+import { SIGNAL_PAGES } from './pages/theSignal';
+import { DRIFT_EXTRA } from './pages/driftExtra';
+import { EXTRA_PAGES } from './pages/threadExtras';
 
 /**
  * Every page on the permanent net, in one list, all of it typed by hand.
@@ -27,7 +35,15 @@ export const AUTHORED_PAGES: AuthoredPage[] = [
   ...MONK_PAGES,
   ...TEXTURE_PAGES,
   ...ANGEL_PAGES,
+  ...HANK_PAGES,
+  ...DAEMON_PAGES,
+  ...SWAP_PAGES,
+  ...ANNALS_PAGES,
+  ...AERO_PAGES,
+  ...SIGNAL_PAGES,
   ...DRIFT_AUTHORED,
+  ...DRIFT_EXTRA,
+  ...EXTRA_PAGES,
 ];
 
 export { CAST };
@@ -40,8 +56,18 @@ export function authoredPagesBy(author: string): AuthoredPage[] {
   return AUTHORED_PAGES.filter((p) => p.author === author);
 }
 
-/** pages carrying a Hollow Night clue, for the vault payoff to count against */
+/** every page carrying any clue */
 export const CLUE_PAGES = AUTHORED_PAGES.filter((p) => p.clue);
+
+/** clue pages for one arc. no `arc` means Hollow Night, the original. */
+export function cluePagesForArc(arc: 'hollow' | 'signal') {
+  return AUTHORED_PAGES.filter((p) => p.clue && (p.arc ?? 'hollow') === arc);
+}
+
+/** the Hollow Night clue set, so the reading quest counts only its own pages */
+export const HOLLOW_CLUE_PAGES = cluePagesForArc('hollow');
+/** the second arc's clue set */
+export const SIGNAL_CLUE_PAGES = cluePagesForArc('signal');
 
 /**
  * Adapt to the shape the rest of the app already speaks. The old catalog had

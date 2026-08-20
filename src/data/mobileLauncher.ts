@@ -8,7 +8,10 @@ export type MobileIcon =
   | 'search'
   | 'joystick'
   | 'gauge'
-  | 'keyboard';
+  | 'keyboard'
+  | 'folder'
+  | 'chat'
+  | 'brush';
 
 export type MobileTone =
   | 'browser'
@@ -50,6 +53,11 @@ export const MOBILE_HOME_APPS: MobileAppDef[] = [
   { id: 'chronicle', label: 'Explore', launch: { kind: 'browser', url: 'rn:chronicle' }, icon: 'search', tone: 'system' },
   { id: 'terminal', label: 'Terminal', launch: { kind: 'window', id: 'terminal' }, icon: 'screen', tone: 'term' },
   { id: 'notes', label: 'Notes', launch: { kind: 'window', id: 'notepad' }, icon: 'doc', tone: 'note' },
+  { id: 'games', label: 'Games', launch: { kind: 'window', id: 'games' }, icon: 'joystick', tone: 'arcade' },
+  { id: 'pager', label: 'PocketPager', launch: { kind: 'window', id: 'messenger' }, icon: 'chat', tone: 'social' },
+  { id: 'files', label: 'My Computer', launch: { kind: 'window', id: 'files' }, icon: 'folder', tone: 'system' },
+  { id: 'paint', label: 'PixelPaint', launch: { kind: 'window', id: 'paint' }, icon: 'brush', tone: 'note' },
+  { id: 'aero', label: 'Aqua', launch: { kind: 'browser', url: 'rn:aero' }, icon: 'globe', tone: 'browser' },
   { id: 'arcade', label: 'Arcade', launch: { kind: 'browser', url: 'rn:arcade' }, icon: 'joystick', tone: 'arcade' },
   { id: 'smile', label: 'FREE_SMILE', launch: { kind: 'virus' }, icon: 'flask', tone: 'warn' },
 ];

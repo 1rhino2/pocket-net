@@ -22,6 +22,7 @@ export type StaticNetUrl =
   | 'rn:archive'
   | 'rn:shift'
   | 'rn:chronicle'
+  | 'rn:aero'
   | 'rn:ghost'
   | 'rn:bunker'
   | 'rn:cache'
@@ -35,7 +36,14 @@ export type NodeNetUrl = `rn:n-${string}`;
 
 export type NetUrl = StaticNetUrl | NodeNetUrl | HourNetUrl | ChronicleNetUrl;
 
-export type WindowId = 'browser' | 'notepad' | 'terminal';
+export type WindowId =
+  | 'browser'
+  | 'notepad'
+  | 'terminal'
+  | 'games'
+  | 'messenger'
+  | 'files'
+  | 'paint';
 
 export type DesktopWindow = {
   id: WindowId;
@@ -83,6 +91,9 @@ const URL_ALIASES: Record<string, StaticNetUrl | ChronicleNetUrl> = {
   ops: 'rn:shift',
   chronicle: 'rn:chronicle',
   explore: 'rn:chronicle',
+  aero: 'rn:aero',
+  future: 'rn:aero',
+  glass: 'rn:aero',
   ghost: 'rn:ghost',
   bunker: 'rn:bunker',
   cache: 'rn:cache',

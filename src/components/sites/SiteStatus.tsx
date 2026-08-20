@@ -1,9 +1,16 @@
+import { useEffect } from 'react';
 import { todayKey } from '../../game/gameTypes';
 import { QUESTS, questContext } from '../../data/quests';
 import { useGame } from '../../game/GameContext';
+import { activeNetEvent } from '../../data/netEvents';
 
 export function SiteStatus() {
-  const { snapshot, claimDailyBonus, discoveryProgress } = useGame();
+  const { snapshot, claimDailyBonus, discoveryProgress, recordDiscovery } = useGame();
+  const event = activeNetEvent(snapshot.playMs);
+  // seeing a distinct net event once files it in the discovery log
+  useEffect(() => {
+    recordDiscovery(event.discovery, { silent: true });
+  }, [event.discovery, recordDiscovery]);
   const s = snapshot.stats;
   const ctx = questContext(snapshot);
   const day = todayKey();
@@ -24,6 +31,14 @@ export function SiteStatus() {
         </header>
 
         <p className='status-tagline'>Local save telemetry. Nothing phones home.</p>
+
+        <div className={`status-event status-event-${event.kind}`}>
+          <span className='status-event-tag'>{event.kind === 'outage' ? 'DEGRADED' : event.kind === 'holiday' ? 'HOLIDAY' : event.kind === 'drama' ? 'ON THE WIRE' : 'NOMINAL'}</span>
+          <div className='status-event-body'>
+            <strong>{event.headline}</strong>
+            <p>{event.note}</p>
+          </div>
+        </div>
 
         <div className='status-ticker' aria-hidden>
           <span>

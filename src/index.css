@@ -443,12 +443,6 @@ kbd {
   justify-content: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
-
-.d-icon-emoji {
-  font-size: 1.35rem;
-  line-height: 1;
-}
-
 .d-icon-label {
   margin-top: 8px;
   font-size: 0.74rem;
@@ -809,31 +803,10 @@ kbd {
   flex: 1;
   min-height: 0;
 }
-
-.browser-breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  margin-bottom: 0.75rem;
-  padding: 0.35rem 0.55rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  background: #080c10;
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-}
-
 .browser-breadcrumb strong {
   color: var(--text);
   font-weight: 600;
 }
-
-.bc-sep {
-  opacity: 0.45;
-  user-select: none;
-}
-
 .browser-chrome {
   flex-shrink: 0;
   background: var(--titlebar);
@@ -1279,14 +1252,6 @@ kbd {
   flex-wrap: wrap;
   align-items: center;
 }
-
-.site-btn-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 148px), 1fr));
-  gap: 0.5rem;
-  margin-top: 0.65rem;
-}
-
 .site-btn-grid .btn {
   width: 100%;
   min-height: 44px;
@@ -1960,14 +1925,6 @@ kbd {
   background: var(--accent);
   border-right: 1px solid #166642;
 }
-
-.stat-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: var(--font-mono);
-  font-size: 0.84rem;
-}
-
 .stat-table td {
   padding: 0.35rem 0.25rem;
   border-bottom: 1px solid var(--border);
@@ -1977,12 +1934,6 @@ kbd {
   text-align: right;
   color: #dbe6f3;
 }
-
-.ach-list {
-  margin: 0.35rem 0 0;
-  padding-left: 1.1rem;
-}
-
 .arcade-lane {
   position: relative;
   height: 44px;
@@ -2338,30 +2289,6 @@ kbd {
   gap: 0.65rem;
   border-left-color: var(--accent);
 }
-
-.home-link-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
-  gap: 0.5rem;
-  margin-top: 0.5rem;
-}
-
-.home-link {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.2rem;
-  text-align: left;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: #0d1218;
-  padding: 0.55rem 0.65rem;
-  cursor: pointer;
-  color: inherit;
-  font: inherit;
-  transition: border-color 0.12s ease, background 0.12s ease;
-}
-
 .home-link:hover {
   border-color: #3f5268;
   background: #121922;
@@ -2455,24 +2382,10 @@ kbd {
   font-size: 0.82rem;
   color: var(--accent);
 }
-
-.wiki-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
 .wiki-list .btn {
   justify-content: flex-start;
   text-align: left;
 }
-
-.job-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-}
-
 .job-card h3 {
   margin: 0 0 0.25rem;
   font-size: 0.98rem;
@@ -2521,11 +2434,6 @@ kbd {
   flex: 1;
   min-width: 140px;
 }
-
-.hack-card {
-  border-left-color: #4a3a62;
-}
-
 .hack-phrase {
   font-family: var(--font-mono);
   font-size: 1rem;
@@ -2550,40 +2458,6 @@ kbd {
   background: var(--accent);
   transition: width 0.08s linear;
 }
-
-.netmap {
-  position: relative;
-  min-height: 280px;
-  padding: 1.5rem;
-}
-
-.netmap-ring {
-  position: absolute;
-  inset: 1rem;
-  border: 1px dashed #2a3545;
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.netmap-core {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.netmap-node {
-  position: absolute;
-  border: 1px solid var(--border);
-  background: #121922;
-  border-radius: 10px;
-  padding: 0.35rem 0.5rem;
-  font-size: 0.72rem;
-  font-family: var(--font-mono);
-  cursor: pointer;
-  color: #dbe6f3;
-}
-
 .netmap-node.core {
   border-color: var(--accent-dim);
   background: #0f1f16;
@@ -2608,13 +2482,6 @@ kbd {
 .quest-list .card.ready {
   border-left-color: var(--accent);
 }
-
-.stat-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.86rem;
-}
-
 .stat-table td {
   padding: 0.35rem 0.25rem;
   border-bottom: 1px solid var(--border);
@@ -2857,24 +2724,10 @@ kbd {
   color: var(--muted);
   margin: 0.5rem 0;
 }
-
-.netmap-ghosts {
-  margin-top: 1rem;
-  padding-top: 0.75rem;
-  border-top: 1px dashed var(--border);
-}
-
 .netmap-ghosts h2 {
   font-size: 0.95rem;
   margin: 0 0 0.5rem;
 }
-
-.netmap-ghost-grid {
-  display: grid;
-  gap: 0.45rem;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-}
-
 .netmap-node.ghost {
   border-style: dashed;
   background: #0f141b;
@@ -3938,13 +3791,6 @@ kbd {
   font-size: 0.72rem;
   cursor: pointer;
 }
-
-.shift-mission-list {
-  display: grid;
-  gap: 0.65rem;
-  margin-top: 0.75rem;
-}
-
 .shift-mission.ready {
   border-color: var(--accent-dim);
 }
@@ -3952,14 +3798,6 @@ kbd {
 .shift-mission.claimed {
   opacity: 0.7;
 }
-
-.shift-node-grid {
-  display: grid;
-  gap: 0.45rem;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  margin-top: 0.5rem;
-}
-
 .shift-node-grid .btn {
   display: flex;
   flex-direction: column;

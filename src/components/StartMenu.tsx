@@ -1,10 +1,20 @@
-import type { NetUrl } from '../types';
-import { IconDoc, IconGlobe, IconGauge, IconJoystick, IconKeyboard, IconSearch } from './icons';
+import type { NetUrl, WindowId } from '../types';
+import {
+  IconDoc,
+  IconGlobe,
+  IconGauge,
+  IconJoystick,
+  IconKeyboard,
+  IconSearch,
+  IconChatDots,
+  IconFolder,
+  IconBrush,
+} from './icons';
 
 type Props = {
   open: boolean;
   onClose: () => void;
-  onOpen: (kind: 'browser' | 'notepad' | 'terminal', url?: NetUrl) => void;
+  onOpen: (kind: WindowId, url?: NetUrl) => void;
 };
 
 export function StartMenu({ open, onClose, onOpen }: Props) {
@@ -78,6 +88,42 @@ export function StartMenu({ open, onClose, onOpen }: Props) {
           <span className="start-item-body">
             <strong>Terminal</strong>
             <small>Fake shell, real attitude</small>
+          </span>
+        </button>
+        <button type="button" className="start-item" onClick={() => onOpen('games')}>
+          <span className="start-item-icon" aria-hidden>
+            <IconJoystick size={18} className="icon-svg" />
+          </span>
+          <span className="start-item-body">
+            <strong>Games</strong>
+            <small>Minesweeper and Solitaire</small>
+          </span>
+        </button>
+        <button type="button" className="start-item" onClick={() => onOpen('messenger')}>
+          <span className="start-item-icon" aria-hidden>
+            <IconChatDots size={18} className="icon-svg" />
+          </span>
+          <span className="start-item-body">
+            <strong>PocketPager</strong>
+            <small>Who is online tonight</small>
+          </span>
+        </button>
+        <button type="button" className="start-item" onClick={() => onOpen('files')}>
+          <span className="start-item-icon" aria-hidden>
+            <IconFolder size={18} className="icon-svg" />
+          </span>
+          <span className="start-item-body">
+            <strong>My Computer</strong>
+            <small>Browse the C: drive</small>
+          </span>
+        </button>
+        <button type="button" className="start-item" onClick={() => onOpen('paint')}>
+          <span className="start-item-icon" aria-hidden>
+            <IconBrush size={18} className="icon-svg" />
+          </span>
+          <span className="start-item-body">
+            <strong>PixelPaint</strong>
+            <small>16 colors, one canvas</small>
           </span>
         </button>
         <button type="button" className="start-item" onClick={() => onOpen('browser', 'rn:arcade')}>

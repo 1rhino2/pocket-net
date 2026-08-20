@@ -1,5 +1,5 @@
 import type { GameSnapshot, GameStats } from '../game/gameTypes';
-import { CLUE_PAGES } from '../content/index';
+import { HOLLOW_CLUE_PAGES, SIGNAL_CLUE_PAGES } from '../content/index';
 
 export type QuestContext = {
   stats: GameStats;
@@ -257,11 +257,73 @@ export const QUESTS: QuestDef[] = [
     tier: 'legend',
     check: (c) => c.discovered.includes('hollow_night_solved'),
   },
+  {
+    id: 'q_signal_read',
+    title: 'Night watch',
+    blurb: 'Open five of the pages that track the signal on the overnight lines.',
+    reward: 90,
+    tier: 'deep',
+    check: (c) => c.visitedNodes.filter((u) => SIGNAL_URLS.has(u)).length >= 5,
+  },
+  {
+    id: 'q_signal_solved',
+    title: 'The Lighthouse',
+    blurb: 'Work out what the linemen called it, and open the sealed decode.',
+    reward: 200,
+    integrity: 5,
+    tier: 'legend',
+    check: (c) => c.discovered.includes('signal_solved'),
+  },
+  {
+    id: 'q_minesweeper',
+    title: 'Field cleared',
+    blurb: 'Clear a Minesweeper board in the Games window.',
+    reward: 40,
+    tier: 'daily',
+    check: (c) => c.discovered.includes('game_minesweeper_win'),
+  },
+  {
+    id: 'q_solitaire',
+    title: 'Patience',
+    blurb: 'Solve a game of Solitaire.',
+    reward: 50,
+    tier: 'deep',
+    check: (c) => c.discovered.includes('game_solitaire_win'),
+  },
+  {
+    id: 'q_made_art',
+    title: 'Made something',
+    blurb: 'Save a doodle in PixelPaint.',
+    reward: 30,
+    tier: 'starter',
+    check: (c) => c.discovered.includes('made_art'),
+  },
+  {
+    id: 'q_paged_around',
+    title: 'Who is online',
+    blurb: 'Page three different buddies on PocketPager.',
+    reward: 40,
+    tier: 'daily',
+    check: (c) => c.discovered.filter((d) => d.startsWith('msgr_')).length >= 3,
+  },
+  {
+    id: 'q_dug_the_drive',
+    title: 'Dug through the drive',
+    blurb: 'Find both hidden readable files on the C: drive in My Computer.',
+    reward: 45,
+    tier: 'deep',
+    check: (c) => c.discovered.includes('files_watchlog') && c.discovered.includes('files_diary'),
+  },
 ];
 
-/** the pages carrying a clue, so the reading quest counts real progress */
+/** Hollow Night clue pages only, so a second arc cannot inflate this count */
 const HOLLOW_URLS = new Set(
-  CLUE_PAGES.map((p) => `rn:n-${p.slug}`),
+  HOLLOW_CLUE_PAGES.map((p) => `rn:n-${p.slug}`),
+);
+
+/** the signal arc's own clue pages, counted separately */
+const SIGNAL_URLS = new Set(
+  SIGNAL_CLUE_PAGES.map((p) => `rn:n-${p.slug}`),
 );
 
 export function questContext(s: GameSnapshot): QuestContext {

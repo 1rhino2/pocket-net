@@ -1,0 +1,182 @@
+/*
+ * Frutiger Aero skin for rn:aero. Deliberately out of period: glossy glass,
+ * water, green, drifting bubbles. Gradients are on purpose here, the whole
+ * aesthetic is glossiness. Everything is self contained, no external assets.
+ * Loaded last so it wins the cascade over the 1999 base skin.
+ */
+
+.browser-content .site-aero {
+  position: relative;
+  min-height: 100%;
+  margin: 0;
+  padding: 0 0 2rem;
+  overflow: hidden;
+  color: #103a4a;
+  font-family: 'Segoe UI', 'Frutiger', 'Myriad Pro', Tahoma, sans-serif;
+  background: linear-gradient(180deg, #7fd3ff 0%, #bfeaff 34%, #dff6e8 70%, #a6e06a 100%);
+}
+
+/* the drifting bubble layer */
+.browser-content .site-aero .aero-sky {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.browser-content .site-aero .aero-bubble {
+  position: absolute;
+  bottom: -80px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.15) 45%, rgba(120, 200, 255, 0.05) 70%);
+  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.6), 0 0 8px rgba(255, 255, 255, 0.3);
+  animation: aero-rise 14s linear infinite;
+}
+.browser-content .site-aero .aero-bubble-1 { left: 8%; width: 46px; height: 46px; animation-duration: 17s; animation-delay: 0s; }
+.browser-content .site-aero .aero-bubble-2 { left: 28%; width: 26px; height: 26px; animation-duration: 12s; animation-delay: 3s; }
+.browser-content .site-aero .aero-bubble-3 { left: 52%; width: 62px; height: 62px; animation-duration: 21s; animation-delay: 1.5s; }
+.browser-content .site-aero .aero-bubble-4 { left: 71%; width: 34px; height: 34px; animation-duration: 15s; animation-delay: 5s; }
+.browser-content .site-aero .aero-bubble-5 { left: 88%; width: 20px; height: 20px; animation-duration: 10s; animation-delay: 2s; }
+
+@keyframes aero-rise {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 0.85; }
+  50% { transform: translateY(-46vh) translateX(14px); }
+  90% { opacity: 0.7; }
+  100% { transform: translateY(-92vh) translateX(-10px); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .browser-content .site-aero .aero-bubble { animation: none; opacity: 0.5; bottom: auto; top: 30%; }
+}
+
+/* glass panels */
+.browser-content .site-aero .aero-glass {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.42) 48%, rgba(235, 248, 255, 0.55) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(20, 80, 120, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(3px);
+}
+/* the glossy top highlight every aero surface has */
+.browser-content .site-aero .aero-glass::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 4px;
+  height: 42%;
+  border-radius: 12px 12px 40% 40%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
+  pointer-events: none;
+}
+
+.browser-content .site-aero .aero-hero {
+  position: relative;
+  z-index: 1;
+  padding: 2rem 1.5rem 1rem;
+}
+.browser-content .site-aero .aero-hero-panel { padding: 1.6rem 1.8rem; max-width: 640px; }
+
+.browser-content .site-aero .aero-eyebrow {
+  margin: 0 0 0.2rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: #2f7fa0;
+}
+.browser-content .site-aero h1 {
+  margin: 0 0 0.5rem;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #0d4d66;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+  border: none;
+}
+.browser-content .site-aero .aero-lede { margin: 0 0 1.1rem; font-size: 1.05rem; line-height: 1.5; color: #123f52; }
+
+.browser-content .site-aero .aero-actions { display: flex; gap: 0.7rem; flex-wrap: wrap; }
+
+/* wet buttons */
+.browser-content .site-aero .aero-btn {
+  position: relative;
+  padding: 0.6rem 1.3rem;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 22px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #08415c;
+  cursor: pointer;
+  overflow: hidden;
+  background: linear-gradient(180deg, #eafff4 0%, #8fe3a8 46%, #57c07e 54%, #7fd6a0 100%);
+  box-shadow: 0 4px 10px rgba(20, 90, 60, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+.browser-content .site-aero .aero-btn::after {
+  content: '';
+  position: absolute;
+  left: 6px; right: 6px; top: 3px; height: 42%;
+  border-radius: 18px 18px 40% 40%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0));
+  pointer-events: none;
+}
+.browser-content .site-aero .aero-btn:hover { filter: brightness(1.05); }
+.browser-content .site-aero .aero-btn:active { transform: translateY(1px); }
+.browser-content .site-aero .aero-btn-ghost {
+  background: linear-gradient(180deg, #f4fbff 0%, #cfeeff 46%, #a7dcff 54%, #cbecff 100%);
+  color: #0d4d66;
+  box-shadow: 0 4px 10px rgba(20, 80, 120, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* cards */
+.browser-content .site-aero .aero-cards {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+}
+.browser-content .site-aero .aero-card { padding: 1.2rem 1.2rem 1.3rem; }
+.browser-content .site-aero .aero-card h2 { margin: 0.6rem 0 0.4rem; font-size: 1.2rem; color: #0d4d66; border: none; }
+.browser-content .site-aero .aero-card p { margin: 0; font-size: 0.95rem; line-height: 1.5; color: #134255; }
+
+/* glossy orbs on the cards */
+.browser-content .site-aero .aero-orb {
+  width: 54px; height: 54px; border-radius: 50%;
+  box-shadow: inset 0 -6px 12px rgba(0, 0, 0, 0.12), inset 0 4px 8px rgba(255, 255, 255, 0.9), 0 6px 12px rgba(20, 80, 120, 0.28);
+}
+.browser-content .site-aero .aero-orb-water { background: radial-gradient(circle at 34% 28%, #eafffb, #35bdf0 60%, #1878b8); }
+.browser-content .site-aero .aero-orb-leaf { background: radial-gradient(circle at 34% 28%, #f0ffd8, #7fd23f 58%, #3f9a2e); }
+.browser-content .site-aero .aero-orb-sky { background: radial-gradient(circle at 34% 28%, #ffffff, #8fd0ff 58%, #4a9fe0); }
+
+/* note + links */
+.browser-content .site-aero .aero-note {
+  position: relative;
+  z-index: 1;
+  margin: 1rem 1.5rem;
+  padding: 1.2rem 1.4rem;
+}
+.browser-content .site-aero .aero-note p { margin: 0 0 0.8rem; line-height: 1.55; color: #123f52; }
+.browser-content .site-aero .aero-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; }
+.browser-content .site-aero .aero-link {
+  background: none; border: none; padding: 0; cursor: pointer;
+  color: #0f6f9c; font-size: 0.92rem; text-decoration: underline;
+}
+.browser-content .site-aero .aero-link:hover { color: #0a4d6e; }
+
+.browser-content .site-aero .aero-foot {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 1.2rem 1.5rem 0;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  color: #2a6a84;
+}
+.browser-content .site-aero .aero-foot-mark { font-weight: 700; color: #0d4d66; }
