@@ -13,9 +13,9 @@ argued on boards, ran a webring, and one of them kept a nightly copy of the
 whole thing on borrowed rack space. On the night of 11 March 1999 a block of
 those pages stopped resolving and the company called it a disk fault.
 
-Every page on the permanent net is written by hand. Six people write on it and
-they do not sound alike, which is deliberate: cover the byline on any page and
-you should still know who wrote it.
+Every page on the permanent net is written by hand, 144 of them. Fourteen people
+write on it and they dont sound alike, which is the point: cover the byline on
+any page and you should still know who wrote it.
 
 ## Content rules, enforced by the build
 

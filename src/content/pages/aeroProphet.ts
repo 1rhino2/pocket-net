@@ -1,13 +1,10 @@
 import type { AuthoredPage } from '../types';
 
-/**
- * aero_prophet, convinced computers are about to get glossy, watery, alive.
- * The rn:aero site is his homepage; these are his node pages, the manifesto
- * and the mockups he can only describe because the tools do not exist yet.
- *
- * Rule for these: everything glows, breathes, or ripples. Promise a feeling,
- * not a feature. Sincere past embarrassment, which is the entire point.
- */
+// aero_prophet, convinced computers are about to get glossy, watery, alive.
+// rn:aero is his homepage, these are his node pages: the manifesto and mockups
+// he can only describe bc the tools dont exist yet.
+// rule: everything glows, breathes or ripples. promise a feeling not a feature.
+// sincere past embarrassment, thats the whole point.
 export const AERO_PAGES: AuthoredPage[] = [
   {
     slug: 'aero-manifesto',

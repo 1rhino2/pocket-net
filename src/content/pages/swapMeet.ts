@@ -1,12 +1,8 @@
 import type { AuthoredPage } from '../types';
 
-/**
- * swap_meet, the classifieds guy. Always selling, always buying.
- *
- * Rule for these: drop the verbs, keep the item in caps. Every ad tries to
- * become a story he did not mean to tell, and then he catches himself and
- * cuts it off. The cut-off is the joke.
- */
+// swap_meet, the classifieds guy. always selling, always buying.
+// rule: drop the verbs, item stays in caps. every ad tries to become a story he
+// didnt mean to tell, then he catches himself and cuts it off. the cut-off is the joke.
 export const SWAP_PAGES: AuthoredPage[] = [
   {
     slug: 'swap-listings',

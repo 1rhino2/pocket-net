@@ -19,13 +19,10 @@ import { SIGNAL_PAGES } from './pages/theSignal';
 import { DRIFT_EXTRA } from './pages/driftExtra';
 import { EXTRA_PAGES } from './pages/threadExtras';
 
-/**
- * Every page on the permanent net, in one list, all of it typed by hand.
- *
- * scripts/lint-content.mjs imports this file and fails the build on a repeated
- * sentence, a page with no author, an hour with no pages, or a teaser that is
- * just a slice of a paragraph. That last one is what the old generator did.
- */
+// every page on the permanent net, one list, all typed by hand. lint-content.mjs
+// imports this and fails the build on a repeated sentence, a page with no author,
+// an hour with no pages, or a teaser thats just a slice of a paragraph (what the
+// old generator did).
 export const AUTHORED_PAGES: AuthoredPage[] = [
   ...HOLLOW_NIGHT,
   ...MARY_PAGES,
@@ -69,11 +66,8 @@ export const HOLLOW_CLUE_PAGES = cluePagesForArc('hollow');
 /** the second arc's clue set */
 export const SIGNAL_CLUE_PAGES = cluePagesForArc('signal');
 
-/**
- * Adapt to the shape the rest of the app already speaks. The old catalog had
- * `chapter` where this has `hour`, and `searchQuery` where this has `search`.
- * Everything downstream stays as it is.
- */
+// map to the shape the rest of the app already speaks. old catalog used chapter
+// where this has hour, searchQuery where this has search. downstream unchanged.
 export const AUTHORED_AS_NODES: HandbuiltNodeMeta[] = AUTHORED_PAGES.filter((p) => !p.drift).map((p) => ({
   url: `rn:n-${p.slug}` as `rn:n-${string}`,
   slug: p.slug,

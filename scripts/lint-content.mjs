@@ -1,15 +1,10 @@
 #!/usr/bin/env node
-/**
- * Content linter. Runs before every build.
- *
- * This exists because the net used to be 480 pages spat out of a template with
- * eight filler sentences reused sixty times each. Every rule below is one of
- * the specific ways that content was fake. If the generator ever comes back,
- * the build stops here.
- *
- * Bundles src/content/index.ts with esbuild (already a vite dep) and checks the
- * real exported objects rather than grepping source.
- */
+// content linter, runs before every build.
+// exists bc the net used to be 480 pages out of a template, eight filler
+// sentences reused sixty times each. every rule below is one way that content
+// was fake. if the generator ever comes back the build stops here.
+// bundles src/content/index.ts with esbuild (already a vite dep) and checks the
+// real exported objects instead of grepping source.
 import { build } from 'esbuild';
 import { readFileSync, unlinkSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
@@ -18,24 +13,17 @@ import path from 'node:path';
 const ROOT = path.resolve(import.meta.dirname, '..');
 const OUT = path.join(ROOT, 'node_modules', '.content-lint.mjs');
 
-/**
- * Min words in the body of a page. Short is fine, empty is not.
- *
- * Drift pages get a lower floor on purpose. A guestbook with no entries and a
- * four word away message are real page types, and padding them to hit a number
- * would be the exact failure this file exists to prevent.
- */
+// min words in a page body. short is fine, empty is not. drift pages get a lower
+// floor on purpose: a guestbook with no entries or a four word away message are
+// real page types, and padding them to a number is the exact thing this prevents.
 const MIN_WORDS = 70;
 const MIN_WORDS_DRIFT = 25;
-/** a sentence shorter than this is boilerplate-ish and not worth uniqueness-checking */
+// under this many words a sentence is boilerplate-ish, not worth uniqueness check
 const MIN_SENTENCE_WORDS = 4;
 
-/**
- * Form furniture that is allowed to repeat, because in 1999 it did. A fax
- * header really does say PAGE 1 OF 1 on every page and making aurora vary it
- * would be worse writing, not better. Keep this list short and boring: if
- * something here is a whole sentence of prose, it does not belong.
- */
+// form furniture thats allowed to repeat bc in 1999 it did. a fax header really
+// does say PAGE 1 OF 1 every page, making aurora vary it would be worse writing.
+// keep this short and boring, no whole sentences of prose.
 const BOILERPLATE = new Set([
   'page 1 of 1',
   'page 1 of 2',

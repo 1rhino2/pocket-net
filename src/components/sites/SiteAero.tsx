@@ -1,11 +1,8 @@
 import type { NetUrl } from '../../types';
 
-/**
- * aero_prophet's homepage. Deliberately anachronistic: it is 1999 on this net
- * and this page is dressed as about 2007, all glossy glass and water and
- * green. That is the joke and the point. The bubbles are pure CSS so nothing
- * loads from outside.
- */
+// aero_prophet's homepage. its 1999 on this net and this page is dressed as ~2007,
+// glossy glass and water and green. thats the joke. bubbles are pure css, nothing
+// loads from outside.
 export function SiteAero({ onNavigate }: { onNavigate: (url: NetUrl) => void }) {
   return (
     <div className='site site-aero'>

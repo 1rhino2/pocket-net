@@ -1,10 +1,8 @@
 import type { AuthoredPage } from '../types';
 
-/**
- * More drift: the odd corners of an amateur net. Guestbooks, away messages,
- * under-construction pages, webring stops, one page that never rendered right.
- * Short is fine here (drift floor is lower), but every one has a specific voice.
- */
+// more drift, the odd corners of an amateur net. guestbooks, away messages,
+// under-construction, webring stops, one page that never rendered right. short is
+// fine here (drift floor is lower) but every one still has a specific voice.
 export const DRIFT_EXTRA: AuthoredPage[] = [
   {
     slug: 'drift-guestbook-legend',

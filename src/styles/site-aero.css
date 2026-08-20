@@ -1,9 +1,6 @@
-/*
- * Frutiger Aero skin for rn:aero. Deliberately out of period: glossy glass,
- * water, green, drifting bubbles. Gradients are on purpose here, the whole
- * aesthetic is glossiness. Everything is self contained, no external assets.
- * Loaded last so it wins the cascade over the 1999 base skin.
- */
+/* frutiger aero skin for rn:aero. out of period on purpose: glossy glass, water,
+   green, drifting bubbles. gradients are the whole point here so theyre allowed.
+   self contained, no external assets. loaded last so it beats the 1999 base skin. */
 
 .browser-content .site-aero {
   position: relative;

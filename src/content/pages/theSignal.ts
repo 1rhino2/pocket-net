@@ -1,17 +1,13 @@
 import type { AuthoredPage } from '../types';
 
-/**
- * The Signal. Second mystery arc. carrier_wave logs a repeating night
- * transmission, decodes it over weeks, and goes quiet.
- *
- * The solve: the "signal" is the telephone exchange's automated night line
- * test, a carrier the linemen nicknamed the lighthouse because it pulses all
- * night to tell the equipment the line is still alive. The answer word to the
- * vault is `lighthouse`, and it appears in plain prose on carrier-the-tech.
- *
- * Clue pages elsewhere (arc:'signal') point inward: hank-the-anomaly (timing),
- * daemon-nightlog (recorder), swap-the-mystery-box (tapes), aero (future).
- */
+// the signal, second mystery arc. carrier_wave logs a repeating night
+// transmission, decodes it over weeks, goes quiet.
+// the solve: the signal is the exchange's automated night line test, a carrier
+// the linemen nicknamed the lighthouse bc it pulses all night to tell the gear
+// the line is still alive. vault answer is `lighthouse`, planted in plain prose
+// on carrier-the-tech.
+// clue pages elsewhere (arc:'signal') point inward: hank-the-anomaly (timing),
+// daemon-nightlog (recorder), swap-the-mystery-box (tapes), aero (future).
 export const SIGNAL_PAGES: AuthoredPage[] = [
   {
     slug: 'carrier-log1',

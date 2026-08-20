@@ -1,15 +1,10 @@
 import type { CastId } from './types';
 
-/**
- * The people on this net.
- *
- * The bar for every page: cover the byline and you should still know who wrote
- * it. If two of these voices could be swapped without anyone noticing, one of
- * them is not a character yet, it is a name slot.
- *
- * `voice` is the note I write to myself before drafting a page. It stays in the
- * shipped bundle because it is small and because it is the actual spec.
- */
+// the people on this net. bar for every page: cover the byline and you should
+// still know who wrote it. two voices you could swap and nobody notices means
+// one isnt a character yet, just a name slot.
+// voice is the note-to-self i write before drafting. stays in the bundle bc its
+// tiny and its the actual spec.
 export type CastMember = {
   id: CastId;
   handle: string;

@@ -1,15 +1,8 @@
-/**
- * The ambient net: pulse lines, mail, wiki stubs, board digests, forum posts.
- *
- * This is the living layer. It rotates, which is worth keeping, but everything
- * in it was written whole. It replaces two separate adjective/noun/verb
- * modules that between them put "a sleepy relay archives" and "Live: nested
- * tower folds near rn:search" on the front page of the net.
- *
- * A pool of real lines is a much smaller number than 40 adjectives times 40
- * nouns times 19 verbs. That trade is the entire point: 30,400 combinations,
- * none of them written by anyone.
- */
+// the ambient net: pulse lines, mail, wiki stubs, board digests, forum posts.
+// this is the living layer, it rotates, but every line was written whole.
+// replaces two adj/noun/verb modules that used to put stuff like "a sleepy relay
+// archives" on the front page. a pool of real lines is way smaller than 40x40x19
+// combos, and thats the point: none of those combos were written by anyone.
 
 export const WIRE_LINES = [
   `soup_judge has rated the coffee in the second floor break room. It is not food, so it gets no number.`,

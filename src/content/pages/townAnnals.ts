@@ -1,13 +1,9 @@
 import type { AuthoredPage } from '../types';
 
-/**
- * town_annals, keeps the town record as a hobby. Cross-references the paper
- * archive against what the net remembers, and the two rarely agree.
- *
- * Rule for these: the claim, then the source in parentheses. Distinguish what
- * is recorded from what is merely repeated. Leave a question open rather than
- * close it wrong.
- */
+// town_annals, keeps the town record as a hobby. cross-refs the paper archive
+// against what the net remembers, the two rarely agree.
+// rule: the claim, then the source in parens. separate whats recorded from whats
+// just repeated. leave a question open rather than close it wrong.
 export const ANNALS_PAGES: AuthoredPage[] = [
   {
     slug: 'annals-index',

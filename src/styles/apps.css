@@ -1,8 +1,6 @@
-/*
- * Desktop app skins: Games (minesweeper + solitaire), PocketPager, My
- * Computer, PixelPaint. All in the 1999 gray bevel look so they sit inside the
- * window chrome without arguing with it. Self contained, no assets.
- */
+/* desktop app skins: games (minesweeper + solitaire), pocketpager, my computer,
+   pixelpaint. all in the 1999 gray bevel look so they sit inside the window
+   chrome without arguing with it. self contained, no assets. */
 
 :root {
   --app-face: #c0c0c0;

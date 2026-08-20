@@ -1,11 +1,8 @@
 import type { AuthoredPage } from '../types';
 
-/**
- * baro_hank, amateur weather station, back porch, reports to nobody.
- *
- * Rule for these: a reading and its units open the thought. If a line would
- * survive without the number in front of it, it belongs to somebody else.
- */
+// baro_hank, amateur weather station, back porch, reports to nobody.
+// rule for these: a reading and its units open the thought. if a line survives
+// without the number in front of it, its somebody else's line.
 export const HANK_PAGES: AuthoredPage[] = [
   {
     slug: 'hank-station',

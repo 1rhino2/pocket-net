@@ -1,10 +1,8 @@
 import type { AuthoredPage } from '../types';
 
-/**
- * More pages for the founding voices. Same rules as their home files: cover the
- * byline and you should still know who wrote it. One combined file so the wiring
- * is a single import.
- */
+// more pages for the founding voices. same rule as their home files: cover the
+// byline and you still know who wrote it. one combined file so the wiring is a
+// single import.
 export const EXTRA_PAGES: AuthoredPage[] = [
   // --- modem_mary ---
   {

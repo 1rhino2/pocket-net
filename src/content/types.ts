@@ -17,14 +17,9 @@ export type CastId =
   | 'carrier_wave'
   | 'aero_prophet';
 
-/**
- * One page somebody wrote. Every field here is typed by hand, there is no
- * generator behind this file and scripts/lint-content.mjs fails the build if
- * one sneaks back in.
- *
- * `hour` is the old `chapter` number. The net is organised into 24 hour
- * threads and every hour needs at least one page or chronicle24 blows up.
- */
+// one hand-written page. no generator, lint-content.mjs fails the build if one
+// sneaks back. hour is the old chapter number, 24 hour threads, each hour needs
+// at least one page or chronicle24 blows up.
 export type AuthoredPage = {
   slug: string;
   title: string;
@@ -44,18 +39,13 @@ export type AuthoredPage = {
   related?: { label: string; url: NetUrl }[];
   /** marks a page as carrying a clue, used by the payoff check */
   clue?: string;
-  /**
-   * which mystery a clue belongs to. left off = the original Hollow Night arc,
-   * so old pages keep working. a clue page has to name its arc or its progress
-   * lands in the wrong quest count.
-   */
+  // which mystery this clue is for. left off = the old hollow night arc so old
+  // pages keep working. name the arc or its progress lands in the wrong count.
   arc?: 'hollow' | 'signal';
   /** drift pages are the odd corners: dead ends, stubs, one broken page */
   drift?: boolean;
-  /**
-   * A page that asks for a passphrase. The answer has to be derivable from
-   * pages the player can actually read, never from a hint on the lock itself.
-   */
+  // a page that wants a passphrase. answer has to come from pages you can
+  // actually read, never from a hint on the lock itself.
   lock?: {
     question: string;
     /** compared lowercased and trimmed, punctuation stripped */

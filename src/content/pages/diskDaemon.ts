@@ -1,12 +1,8 @@
 import type { AuthoredPage } from '../types';
 
-/**
- * disk_daemon, one-man shareware shelf. Uploads utilities he wrote or fixed.
- *
- * Rule for these: read like a README. Requirements, version, a changelog line.
- * If a sentence has no version number and no requirement in it, ask whether it
- * earns its place on a download page.
- */
+// disk_daemon, one-man shareware shelf. uploads utils he wrote or fixed.
+// rule: read like a readme. requirements, version, a changelog line. no version
+// and no requirement in a sentence, ask if it earns a spot on a download page.
 export const DAEMON_PAGES: AuthoredPage[] = [
   {
     slug: 'daemon-shelf',
