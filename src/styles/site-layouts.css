@@ -447,6 +447,20 @@
   color: #14181f;
 }
 
+/* the hollow night breadcrumb. dimmer + italic so it reads like a stray note
+   left in the margin, not a headline */
+.portal-tip-trace {
+  margin-top: 0.55rem;
+  padding-top: 0.5rem;
+  border-top: 1px dotted #b9b1a3;
+}
+.portal-tip-trace small {
+  font-size: 0.74rem;
+  font-style: italic;
+  color: #6f6a60;
+  line-height: 1.45;
+}
+
 /* --- RhinoSearch: 1999 results page --- */
 .site-search {
   background: #fff;

@@ -257,6 +257,13 @@ export function SiteHome({ onNavigate }: Props) {
               Hour <strong>{String(playH).padStart(2, '0')}</strong> of your session. Drift routes in the Net Index
               rotate with bucket <strong>{bucket}</strong>.
             </p>
+            {/* breadcrumb for the hollow night arc. oblique on purpose, points a
+                curious reader at march + the archive without naming the answer */}
+            <p className='portal-tip-trace'>
+              <small>
+                Some pages from March 1999 never came back. This index is a copy that did. Someone still keeps it.
+              </small>
+            </p>
           </section>
         </aside>
       </div>
